@@ -1,7 +1,7 @@
 <?php
-class Apartments_model extends CI_Model {
+class Fairs_model extends CI_Model {
 
-    public $table = 'apartments';
+    public $table = 'fairs';
 
     public function __construct()
     {
@@ -18,11 +18,10 @@ class Apartments_model extends CI_Model {
                 $query->where($key, $value);
             }
         }
-        $query->order_by('address');
         return $query->get()->result_array();
     }
 
-    public function createApartment($data)
+    public function createFair($data)
     {
         if (isset($data['id'])) {
             $id = $data['id'];
