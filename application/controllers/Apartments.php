@@ -4,19 +4,21 @@
  * @property Fairs_model $fairs
  * @property Bookings_model $bookings
  */
-class Apartments extends MY_Controller {
-
+class Apartments extends MY_Controller
+{
     public function index()
-	{
+    {
         $apartments = $this->apartments->get();
-//        $fairFilters = [
-//            [
-//                'field' => 'start',
-//                'operand' => '>=',
-//                'value' => date("Y-m-01")
-//            ],
-//        ];
-//        $fairs = $this->fairs->get($fairFilters);
+        $fairParams = [
+            'filters' => [
+                [
+                    'field' => 'start',
+                    'operand' => '>=',
+                    'value' => date("Y-m-01")
+                ]
+            ],
+        ];
+        $fairs = $this->fairs->get($fairParams);
         $bookings = $this->bookings->get();
         $monthDays = intval(date("t"));
         $this->showView(
@@ -27,7 +29,7 @@ class Apartments extends MY_Controller {
                 'monthDays' => $monthDays
             ]
         );
-	}
+    }
 
     public function fill()
     {
@@ -51,7 +53,7 @@ class Apartments extends MY_Controller {
             'end' => $end,
             'price' => rand(1, 100),
         ];
-//        $this->apartments_model->createApartment($apartment);
+//        $this->apartments_model->update($apartment);
         $this->fairs_model->createFair($fair);
     }
 }

@@ -1,13 +1,5 @@
 <?php
-class Config_model extends CI_Model {
-
-    public function __construct()
-    {
-        $this->load->database();
-    }
-
-    public function get()
-    {
-        return $this->db->get('config')->result_array();
-    }
+class Config_model extends MY_Model
+{
+    public $table = 'config';
 }
