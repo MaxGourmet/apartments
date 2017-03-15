@@ -1,7 +1,5 @@
 <?php
-echo form_open('bookings/create', ['class' => 'create-booking']);
-echo form_label('Apartment', 'apartment');
-echo form_dropdown(['name' => 'apartment', 'id' => 'apartment'], $apartments);
+echo form_open('fairs/create', ['class' => 'create-fair']);
 echo form_label('Start Date', 'start_date');
 echo form_input(['name' => 'start', 'value' => date('Y-m-d'), 'id' => 'start_date']);
 echo form_label('End Date', 'end_date');

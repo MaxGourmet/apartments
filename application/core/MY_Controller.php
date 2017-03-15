@@ -15,6 +15,7 @@ class MY_Controller extends CI_Controller {
         $this->load->model('fairs_model', 'fairs');
         $this->load->model('bookings_model', 'bookings');
         $this->load->helper('security');
+        $this->load->helper('array');
     }
 
     public function showView($viewName, $data = [])
