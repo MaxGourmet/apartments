@@ -10,12 +10,18 @@ class Bookings extends MY_Controller
     {
     }
 
-    public function create_booking()
+    public function create()
     {
         if ($data = $this->post() && !empty($data)) {
             $this->bookings->update($data);
         } else {
-            $apartments = $this->apartments->get();
+            $this->load->helper('form');
+            $this->load->helper('html');
+            $apartmentsResult = $this->apartments->get();
+            $apartments = [];
+            foreach ($apartmentsResult as $apartment) {
+                $apartments[$apartment['id']] = $apartment['address'];
+            }
             $this->showView('bookings/create', ['apartments' => $apartments]);
         }
     }
