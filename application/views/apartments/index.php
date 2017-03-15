@@ -9,7 +9,7 @@
         <tr>
             <td><?= $apartment['address']; ?></td>
             <?php for($i = 0; $i < $monthDays; $i++) : ?>
-                <td class="booked"></td>
+                <td></td>
             <?php endfor; ?>
         </tr>
     <?php endforeach; ?>
