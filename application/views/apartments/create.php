@@ -1,6 +1,6 @@
 <div>
 <?php
-echo form_open('bookings/create', ['class' => 'create-booking']);
+echo form_open('apartments/create', ['class' => 'create-booking']);
 $input = form_label('Apartment', 'apartment')
     . form_dropdown(['name' => 'apartment', 'id' => 'apartment'], $apartments);
 echo div($input, ['class' => 'form-input']);

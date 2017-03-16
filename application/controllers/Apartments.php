@@ -1,9 +1,4 @@
 <?php
-/**
- * @property Apartments_model $apartments
- * @property Fairs_model $fairs
- * @property Bookings_model $bookings
- */
 class Apartments extends MY_Controller
 {
     public function index()
@@ -31,29 +26,16 @@ class Apartments extends MY_Controller
         );
     }
 
-    public function fill()
+    public function create()
     {
-//        $apartment = [
-//            'address' => substr(md5(date('i:s')), 0, rand(5, 25)) . " " . rand(1, 100),
-//            'beds' => rand(1, 10),
-//            'price1' => rand(1, 100),
-//            'price2' => rand(1, 100),
-//            'price3' => rand(1, 100),
-//        ];
-        $md5 = md5(date('i:s'));
-        $name = substr($md5, 0, rand(5, 25)) . " " . str_shuffle(substr($md5, 0, rand(5, 25)));
-        $start = rand(1, 31);
-        $end = rand($start, 31);
-        $start = date('Y-m') . "-$start";
-        $end = date('Y-m') . "-$end";
-        $fair = [
-            'name' => $name,
-            'address' => substr(md5(date('i:s')), 0, rand(5, 25)) . " " . rand(1, 100),
-            'start' => $start,
-            'end' => $end,
-            'price' => rand(1, 100),
-        ];
-//        $this->apartments_model->update($apartment);
-        $this->fairs_model->createFair($fair);
+        if (($data = $this->post()) && !empty($data)) {
+            array_extract($data, 'submit');
+            $this->apartments->update($data);
+        } else {
+            $this->load->helper('form');
+            $this->load->helper('html');
+            $cities = json_decode($this->config->get('city'), true);
+            $this->showView('apartments/create', ['cities' => $cities]);
+        }
     }
 }
