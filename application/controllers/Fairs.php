@@ -1,9 +1,4 @@
 <?php
-/**
- * @property Apartments_model $apartments
- * @property Fairs_model $fairs
- * @property Bookings_model $bookings
- */
 class Fairs extends MY_Controller
 {
     public function index()
@@ -15,10 +10,16 @@ class Fairs extends MY_Controller
         if (($data = $this->post()) && !empty($data)) {
             array_extract($data, 'submit');
             $this->fairs->update($data);
+            redirect();
         } else {
             $this->load->helper('form');
             $this->load->helper('html');
-            $this->showView('fairs/create');
+            $citiesResult = json_decode($this->configs->get('city'), true);
+            $cities = [];
+            foreach ($citiesResult as $city) {
+                $cities[$city] = $city;
+            }
+            $this->showView('fairs/create', ['cities' => $cities]);
         }
     }
 }

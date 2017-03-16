@@ -11,6 +11,6 @@ class Config_model extends MY_Model
         $query = $this->db->select('value')
             ->from($this->table)
             ->where('name', $param);
-        return $query->get()->result();
+        return $query->get()->row()->value;
     }
 }

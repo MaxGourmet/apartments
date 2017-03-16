@@ -1,9 +1,4 @@
 <?php
-/**
- * @property Apartments_model $apartments
- * @property Fairs_model $fairs
- * @property Bookings_model $bookings
- */
 class Bookings extends MY_Controller
 {
     public function index()
@@ -15,6 +10,7 @@ class Bookings extends MY_Controller
         if (($data = $this->post()) && !empty($data)) {
             array_extract($data, 'submit');
             $this->bookings->update($data);
+            redirect();
         } else {
             $this->load->helper('form');
             $this->load->helper('html');

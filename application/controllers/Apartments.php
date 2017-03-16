@@ -31,10 +31,15 @@ class Apartments extends MY_Controller
         if (($data = $this->post()) && !empty($data)) {
             array_extract($data, 'submit');
             $this->apartments->update($data);
+            redirect();
         } else {
             $this->load->helper('form');
             $this->load->helper('html');
-            $cities = json_decode($this->config->get('city'), true);
+            $citiesResult = json_decode($this->configs->get('city'), true);
+            $cities = [];
+            foreach ($citiesResult as $city) {
+                $cities[$city] = $city;
+            }
             $this->showView('apartments/create', ['cities' => $cities]);
         }
     }

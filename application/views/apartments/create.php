@@ -1,30 +1,35 @@
 <div>
 <?php
-echo form_open('apartments/create', ['class' => 'create-booking']);
-$input = form_label('Apartment', 'apartment')
-    . form_dropdown(['name' => 'apartment', 'id' => 'apartment'], $apartments);
+echo form_open('apartments/create', ['class' => 'create-apartment']);
+
+$input = form_label('Address', 'address')
+    . form_input(['name' => 'address', 'value' => '', 'id' => 'address']);
 echo div($input, ['class' => 'form-input']);
-$input = form_label('Start Date', 'start_date')
-    . form_input(['name' => 'start', 'value' => date('Y-m-d'), 'id' => 'start_date']);
+
+$input = form_label('City', 'city')
+    . form_dropdown(['name' => 'city', 'id' => 'city'], $cities);
 echo div($input, ['class' => 'form-input']);
-$input = form_label('End Date', 'end_date')
-    . form_input(['name' => 'end', 'value' => date('Y-m-d', strtotime("+1 day")), 'id' => 'end_date']);
+
+$input = form_label('Beds', 'beds')
+    . form_input(['name' => 'beds', 'id' => 'beds', 'value' => 0, 'type' => 'number', 'step' => 1]);
 echo div($input, ['class' => 'form-input']);
-$input = form_label('Info', 'info')
-    . form_textarea(['name' => 'info', 'value' => '', 'id' => 'info']);
-echo div(
-    span('Price') . " " . span('0', ['id' => 'calculated_price']) . "&euro; (" . span('', ['id' => 'calc_text']) . ")",
-    []
-);
-$input = form_label('To Pay', 'to_pay')
-    . form_input(['name' => 'to_pay', 'id' => 'to_pay', 'value' => 0, 'disabled' => 'disabled']);
+
+$input = form_label('Price 1', 'price1')
+    . form_input(['name' => 'price1', 'id' => 'price1', 'value' => 0, 'type' => 'number', 'step' => 0.01]);
 echo div($input, ['class' => 'form-input']);
-$input = form_label('Payed', 'payed')
-    . form_input(['name' => 'payed', 'id' => 'payed', 'value' => 0]);
+
+$input = form_label('Price 2', 'price2')
+    . form_input(['name' => 'price2', 'id' => 'price2', 'value' => 0, 'type' => 'number', 'step' => 0.01]);
 echo div($input, ['class' => 'form-input']);
+
+$input = form_label('Price 3', 'price3')
+    . form_input(['name' => 'price3', 'id' => 'price3', 'value' => 0, 'type' => 'number', 'step' => 0.01]);
+echo div($input, ['class' => 'form-input']);
+
 $input = form_button(['name' => 'cancel', 'id' => 'cancel', 'content' => 'Cancel'])
     . form_submit(['name' => 'submit', 'id' => 'submit', 'value' => 'Save']);
 echo div($input, ['class' => 'buttons']);
+
 echo form_close();
 ?>
 </div>
