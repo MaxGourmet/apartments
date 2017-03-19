@@ -14,16 +14,30 @@ class MY_Model extends CI_Model
 
     public function get($params = [])
     {
-        $select = isset($params['select']) ? $params['select'] : '*';
+        $select = isset($params['select']) ? $params['select'] : "{$this->table}.*";
         $filters = isset($params['filters']) ? $params['filters'] : [];
         $order = isset($params['order']) ? $params['order'] : false;
         $limit = isset($params['limit']) ? $params['limit'] : 0;
         $offset = isset($params['offset']) ? $params['offset'] : 0;
+        $joins = isset($params['joins']) ? $params['joins'] : [];
         $query = $this->db->select($select)->from($this->table);
         foreach ($filters as $filter) {
-            $key = "{$filter['field']} {$filter['operand']}";
-            $value = $filter['value'];
-            $query->where($key, $value);
+            if (is_array($filter)) {
+                $key = "{$filter['field']} {$filter['operand']}";
+                $value = $filter['value'];
+                $query->where($key, $value);
+            } else {
+                $query->where($filter);
+            }
+        }
+        foreach ($joins as $join) {
+            $table = $join['table'];
+            $type = isset($join['type']) ? $join['type'] : '';
+            $condition = $join['condition'];
+            if (isset($join['select'])) {
+                $query->select($join['select']);
+            }
+            $query->join($table, $condition, $type);
         }
         if ($order) {
             $orderBy = isset($order['orderBy']) ? $order['orderBy'] : 'id';
@@ -39,6 +53,24 @@ class MY_Model extends CI_Model
         return $query->get()->result_array();
     }
 
+    public function getById($id)
+    {
+        if (!$id) {
+            return [];
+        }
+        $params = [
+            'filters' => [
+                [
+                    'field' => 'id',
+                    'operand' => '=',
+                    'value' => $id
+                ]
+            ]
+        ];
+        $result = self::get($params);
+        return isset($result[0]) ? $result[0] : [];
+    }
+
     public function update($data)
     {
         if (isset($data['id'])) {
@@ -47,5 +79,10 @@ class MY_Model extends CI_Model
         } else {
             $this->db->insert($this->table, $data);
         }
+    }
+
+    public function delete($id)
+    {
+        return $this->db->delete($this->table, "id = $id");
     }
 }

@@ -19,6 +19,7 @@ class MY_Controller extends CI_Controller {
         $this->load->helper('security');
         $this->load->helper('array');
         $this->load->helper('url');
+        $this->load->helper('date');
     }
 
     public function showView($viewName, $data = [])
@@ -65,5 +66,10 @@ class MY_Controller extends CI_Controller {
             $item = xss_clean($item);
             $item = encode_php_tags($item);
         }
+    }
+
+    protected function checkAjax()
+    {
+        return $_SERVER['HTTP_X_REQUESTED_WITH'] === 'XMLHttpRequest';
     }
 }

@@ -1,4 +1,25 @@
-.apartments td {border: black 1px solid;}
-.apartments tr td:nth-child(n+2) {width: 25px}
-.apartments td.free {background-color:#e9e9e9}
-.apartments td.booked {background-color:#6ed56e}
+.calendar tr td:nth-child(n+2) {width: 25px}
+.calendar tr:nth-child(n+2) td:nth-child(n+2) {cursor: pointer}
+.calendar td {border: black 1px solid;}
+.calendar td.free {background-color:#e9e9e9}
+.calendar td.date {background-color:#f9f9ac}
+.calendar td.date.weekend {background-color:#dfdf88}
+.calendar td.booked {background-color:#6ed56e}
+.calendar td.booked.first-day {
+    background:#ffb4c1;
+    background:linear-gradient(to right, #e9e9e9, #e9e9e9, #e9e9e9, #ffb4c1, #ffb4c1);
+}
+.calendar td.booked.last-day {
+    background:#ffb4c1;
+    background:linear-gradient(to left, #e9e9e9, #e9e9e9, #e9e9e9, #ffb4c1, #ffb4c1);
+}
+.calendar td.booked.first-day.last-day {
+    background:#ffb4c1;
+    background:linear-gradient(to left, #ffb4c1, #e9e9e9, #e9e9e9, #e9e9e9, #ffb4c1);
+}
+
+.bookings td {border: black 1px solid;}
+.bookings tr:nth-child(n+2) {cursor: pointer}
+
+.fairs td {border: black 1px solid;}
+.fairs tr:nth-child(n+2) {cursor: pointer}

@@ -3,7 +3,7 @@ class Config_model extends MY_Model
 {
     public $table = 'config';
 
-    public function get($param = false)
+    public function get($param = false, $default = false)
     {
         if (!$param) {
             return '';
@@ -11,6 +11,7 @@ class Config_model extends MY_Model
         $query = $this->db->select('value')
             ->from($this->table)
             ->where('name', $param);
-        return $query->get()->row()->value;
+        $result = $query->get()->row();
+        return $result ? $result->value : $default;
     }
 }
