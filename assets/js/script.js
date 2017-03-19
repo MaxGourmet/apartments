@@ -79,4 +79,24 @@ $(function() {
             'json'
         );
     });
+
+    $('.search').on('click', '#search', function() {
+        $(document).trigger('search');
+    });
+
+    $('.search').on('keyup', '[name="search"]', function(ev) {
+        if (ev.keyCode == '13') {
+            $(document).trigger('search');
+        }
+    });
+    $('.buttons').on('click', '#cancel', function() {
+        history.back();
+    });
+    $(document).on('search', function () {
+        var search = $('[name="search"]').val().trim();
+        if (!search) {
+            return;
+        }
+        location.href = '/bookings/search/?search=' + search;
+    });
 });

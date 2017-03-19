@@ -1,6 +1,8 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
+$config['admin'] = 'ZVQRfoe7C8';
+$config['dev'] = 'FnSXrImUSr';
 /*
 |--------------------------------------------------------------------------
 | Base Site URL

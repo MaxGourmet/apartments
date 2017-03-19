@@ -56,6 +56,9 @@ p {
 </style>
 </head>
 <body>
+    <div class="logout">
+        <a href="/auth/logout">Logout</a>
+    </div>
 	<div id="container">
 		<h1><?php echo $heading; ?></h1>
 		<?php echo $message; ?>

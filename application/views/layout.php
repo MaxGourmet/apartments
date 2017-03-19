@@ -10,9 +10,12 @@
     <script type="application/javascript" src="/assets/js/script.js"></script>
 </head>
 <body>
-<? $this->load->view('includes/menu'); ?>
-<div class="content">
-    <?= $content ?>
+<div class="body">
+    <? $this->load->view('includes/menu'); ?>
+    <h1><?= $title; ?></h1>
+    <div class="content">
+        <?= $content ?>
+    </div>
 </div>
 </body>
 </html>

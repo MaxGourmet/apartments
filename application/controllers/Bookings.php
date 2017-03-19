@@ -1,7 +1,21 @@
 <?php
 class Bookings extends MY_Controller
 {
+    public function __construct()
+    {
+        parent::__construct();
+        if (!$this->checkRole('admin')) {
+            show_404();
+        }
+    }
+
     public function index()
+    {
+        $this->title = $this->configs->get(false, 'bookings_title');
+        $this->indexView();
+    }
+
+    protected function indexView($additionalParams = [])
     {
         $params = [
             'filters' => [
@@ -19,6 +33,9 @@ class Bookings extends MY_Controller
                 ]
             ]
         ];
+        if ($additionalParams) {
+            $params['filters'] = array_merge($params['filters'], $additionalParams['filters']);
+        }
         $bookings = $this->bookings->get($params);
         foreach ($bookings as &$booking) {
             $booking['diff'] = floatval($booking['to_pay']) - floatval($booking['payed']);
@@ -47,11 +64,13 @@ class Bookings extends MY_Controller
             }
             $selectedApartment = $apartmentsResult[0]['id'];
             if ($id) {
+                $this->title = $this->configs->get(false, 'bookings_edit_title');
                 $booking = $this->bookings->getById($id);
                 if (empty($booking)) {
                     redirect('bookings');
                 }
             } else {
+                $this->title = $this->configs->get(false, 'bookings_create_title');
                 if ($apartmentId && isset($apartments[$apartmentId])) {
                     $selectedApartment = $apartmentId;
                 }
@@ -87,6 +106,24 @@ class Bookings extends MY_Controller
             $this->create(null, null, $id);
         } else {
             redirect('bookings');
+        }
+    }
+
+    public function search()
+    {
+        $this->title = $this->configs->get(false, 'bookings_search_title');
+        $searchQuery = $this->get('search');
+        if ($searchQuery) {
+            $params = [
+                'filters' => [
+                    [
+                        'field' => 'info',
+                        'operand' => 'like',
+                        'value' => "%$searchQuery%"
+                    ]
+                ]
+            ];
+            $this->indexView($params);
         }
     }
 }

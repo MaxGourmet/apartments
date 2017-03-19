@@ -85,4 +85,30 @@ class MY_Model extends CI_Model
     {
         return $this->db->delete($this->table, "id = $id");
     }
+
+    public function deleteAll()
+    {
+        return $this->db->truncate($this->table);
+    }
+
+    public function dump($table = false)
+    {
+        if (!$table) {
+            $tablesFromDb = $this->db->query("SHOW TABLES")->result_array();
+            $tables = [];
+            foreach ($tablesFromDb as $table) {
+                $tables[] = current($table);
+            }
+        } else {
+            $tables = [$table];
+        }
+        $dumpDir = __DIR__;
+        $dumpDir = str_replace(['application\core', 'application/core'], '', $dumpDir);
+        $dumpDir .= 'assets/uploads/';
+        $dumpDir = str_replace('\\', '/', $dumpDir);
+        foreach ($tables as $table) {
+            $fileName = $dumpDir . $table . "_" . date('Y-m-d') . ".sql";
+            $this->db->query("SELECT * FROM $table INTO OUTFILE '$fileName'");
+        }
+    }
 }

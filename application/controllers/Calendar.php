@@ -1,8 +1,17 @@
 <?php
 class Calendar extends MY_Controller
 {
+    public function __construct()
+    {
+        parent::__construct();
+        if (!$this->checkRole('admin')) {
+            show_404();
+        }
+    }
+
     public function index($ym = null)
     {
+        $this->title = $this->configs->get(false, 'calendar_title');
         $apartments = $this->apartments->get();
         $filtersDate = $ym && ($d = date('Y-m', strtotime($ym))) ? $d : date('Y-m');
         $monthDays = intval(date("t", strtotime($filtersDate)));

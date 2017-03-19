@@ -1,8 +1,17 @@
 <?php
 class Apartments extends MY_Controller
 {
+    public function __construct()
+    {
+        parent::__construct();
+        if (!$this->checkRole('admin')) {
+            show_404();
+        }
+    }
+
     public function index()
     {
+        $this->title = $this->configs->get(false, 'apartments_title');
         $apartments = $this->apartments->get();
         $this->showView(
             'apartments/index',
@@ -21,20 +30,22 @@ class Apartments extends MY_Controller
         } else {
             $this->load->helper('form');
             $this->load->helper('html');
-            $citiesResult = json_decode($this->configs->get('city'), true);
+            $citiesResult = $this->configs->get('city', false, []);
             $cities = [];
             foreach ($citiesResult as $city) {
-                $cities[$city] = $city;
+                $cities[$city['value']] = $city['value'];
             }
             if ($id) {
+                $this->title = $this->configs->get(false, 'apartments_edit_title');
                 $apartment = $this->apartments->getById($id);
                 if (empty($apartment)) {
                     redirect('apartments');
                 }
             } else {
+                $this->title = $this->configs->get(false, 'apartments_create_title');
                 $apartment = [
                     'address' => '',
-                    'city' => $citiesResult[0],
+                    'city' => $citiesResult[0]['value'],
                     'beds' => 0,
                     'price1' => 0,
                     'price2' => 0,
@@ -85,8 +96,8 @@ class Apartments extends MY_Controller
         }
         $countDays = count($dates);
         $priceIndex = 1;
-        $daysForPrice2 = $this->configs->get('days_for_price2');
-        $daysForPrice3 = $this->configs->get('days_for_price3');
+        $daysForPrice2 = $this->configs->get(false, 'days_for_price2');
+        $daysForPrice3 = $this->configs->get(false, 'days_for_price3');
         if ($countDays >= $daysForPrice2) {
             $priceIndex = 2;
         } elseif ($countDays >= $daysForPrice3) {
@@ -103,16 +114,35 @@ class Apartments extends MY_Controller
         $this->fairs->prepare($fairs);
         $totalPrice = 0;
         $priceText = '';
+        $prices = [];
         foreach ($dates as $date) {
             if (isset($fairs[$date])) {
-                $totalPrice += $fairs[$date];
-                $priceText .= '1 x ' . $fairs[$date] . "€ + ";
+                $prices[$date] = $fairs[$date];
             } else {
-                $totalPrice += $price;
-                $priceText .= '1 x ' . $price . "€ + ";
+                $prices[$date] = floatval($price);
             }
         }
-        $priceText = substr($priceText, 0, -3);
+        foreach ($prices as $date => &$pr) {
+            $previousDate = date('Y-m-d', strtotime($date . " -1day"));
+            if (isset($fairs[$date]) && in_array($previousDate, $dates)) {
+                $prices[$previousDate] = max($prices[$previousDate], $fairs[$date]);
+            }
+        }
+        unset($pr);
+        $priceIndex = 0;
+        reset($prices);
+        $currentPrice = current($prices);
+        foreach ($prices as $date => $pr) {
+            $totalPrice += $pr;
+            if ($pr == $currentPrice) {
+                $priceIndex++;
+            } else {
+                $priceText .= "$priceIndex x $currentPrice € + ";
+                $priceIndex = 1;
+                $currentPrice = $pr;
+            }
+        }
+        $priceText .= "$priceIndex x $currentPrice €";
         echo json_encode(['success' => 'true', 'price' => $totalPrice, 'priceText' => $priceText]);
     }
 }

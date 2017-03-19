@@ -1,8 +1,17 @@
 <?php
 class Fairs extends MY_Controller
 {
+    public function __construct()
+    {
+        parent::__construct();
+        if (!$this->checkRole('admin')) {
+            show_404();
+        }
+    }
+
     public function index()
     {
+        $this->title = $this->configs->get(false, 'fairs_title');
         $fairs = $this->fairs->get();
         $this->showView(
             'fairs/index',
@@ -21,21 +30,23 @@ class Fairs extends MY_Controller
         } else {
             $this->load->helper('form');
             $this->load->helper('html');
-            $citiesResult = json_decode($this->configs->get('city'), true);
+            $citiesResult = $this->configs->get('city', false, []);
             $cities = [];
             foreach ($citiesResult as $city) {
-                $cities[$city] = $city;
+                $cities[$city['value']] = $city['value'];
             }
             if ($id) {
+                $this->title = $this->configs->get(false, 'fairs_edit_title');
                 $fair = $this->fairs->getById($id);
                 if (empty($fair)) {
                     redirect('fairs');
                 }
             } else {
+                $this->title = $this->configs->get(false, 'fairs_create_title');
                 $fair = [
                     'name' => '',
                     'address' => '',
-                    'city' => $citiesResult[0],
+                    'city' => $citiesResult[0]['value'],
                     'start' => date('Y-m-d'),
                     'end' => date('Y-m-d'),
                     'price' => 0
