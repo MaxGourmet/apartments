@@ -1,9 +1,27 @@
+var dateArray = [];
 $(function() {
+    var d = new Date();
     $('#start_date').datepicker({
-        dateFormat: "yy-mm-dd"
+        dateFormat: "yy-mm-dd",
+        minDate: d,
+        onSelect: function () {
+            var endDate = $('#end_date');
+            var date = $(this).datepicker('getDate');
+            endDate.datepicker('setDate', date);
+            endDate.datepicker('option', 'minDate', date);
+        },
+        beforeShowDay: function(date){
+            var string = jQuery.datepicker.formatDate('yy-mm-dd', date);
+            return [$.inArray(string, dateArray) == -1];
+        }
     });
     $('#end_date').datepicker({
-        dateFormat: "yy-mm-dd"
+        dateFormat: "yy-mm-dd",
+        minDate: d,
+        beforeShowDay: function(date){
+            var string = jQuery.datepicker.formatDate('yy-mm-dd', date);
+            return [$.inArray(string, dateArray) == -1];
+        }
     });
     //Calendar Table
     $('.calendar').on('click', 'td.free, td.booked', function () {
@@ -55,8 +73,23 @@ $(function() {
         });
         $('#apartment, #start_date, #end_date').on('change', function () {
             $(document).trigger('apartments-get-price');
+            if ($(this).attr('id') == 'apartment') {
+                $(document).trigger('apartments-get-booked-dates', [$(this).val()]);
+            }
         });
     }
+    $(document).on('apartments-get-booked-dates', function (ev, apartmentId) {
+        $.get(
+            '/apartments/getBookedDates',
+            {"apartmentId": apartmentId},
+            function (response) {
+                if (response.success) {
+                    window.dateArray = response.dateArray;
+                }
+            },
+            'json'
+        );
+    });
     $(document).on('apartments-get-price', function () {
         var data = {
             'apartment_id' : $('#apartment').val(),

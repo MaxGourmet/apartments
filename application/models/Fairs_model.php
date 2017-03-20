@@ -12,7 +12,8 @@ class Fairs_model extends MY_Model
     }
 
 
-    public function prepare(&$fairs) {
+    public function prepare(&$fairs)
+    {
         $result = [];
         foreach ($fairs as $fair) {
             $start = $fair['start'];

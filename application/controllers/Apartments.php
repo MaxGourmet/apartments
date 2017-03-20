@@ -145,4 +145,32 @@ class Apartments extends MY_Controller
         $priceText .= "$priceIndex x $currentPrice €";
         echo json_encode(['success' => 'true', 'price' => $totalPrice, 'priceText' => $priceText]);
     }
+
+    public function getBookedDates()
+    {
+        if (!$this->checkAjax()) {
+            echo json_encode(['success' => 'false', 'error' => 'Invalid Data']);
+            return;
+        }
+        $apartmentId = $this->get('apartmentId');
+        if (!$apartmentId) {
+            echo json_encode(['success' => 'false', 'error' => 'Invalid apartmentId']);
+            return;
+        }
+        $date = date('Y-m-d');
+        $fairsFilters = [
+            'filters' => [
+                "(start <= '{$date}' AND end >= '{$date}')",
+                ['field' => 'apartment_id', 'operand' => '=', 'value' => $apartmentId]
+            ]
+        ];
+        $fairs = $this->fairs->get($fairsFilters);
+        if (empty($fairs)) {
+            echo json_encode(['success' => 'true', 'dateArray' => []]);
+            return;
+        }
+        $this->fairs->prepare($fairs);
+        $dateArray = array_keys($fairs);
+        echo json_encode(['success' => 'true', 'dateArray' => $dateArray]);
+    }
 }
