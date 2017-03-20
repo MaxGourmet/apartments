@@ -80,10 +80,12 @@ $(function() {
         });
     }
     $(document).on('apartments-get-booked-dates', function (ev, apartmentId) {
+        $(document).trigger('show-loading');
         $.get(
             '/apartments/getBookedDates',
             {"apartmentId": apartmentId},
             function (response) {
+                $(document).trigger('hide-loading');
                 if (response.success) {
                     window.dateArray = response.dateArray;
                 }
@@ -92,6 +94,7 @@ $(function() {
         );
     });
     $(document).on('apartments-get-price', function () {
+        $(document).trigger('show-loading');
         var data = {
             'apartment_id' : $('#apartment').val(),
             'start_date' : $('#start_date').val(),
@@ -101,6 +104,7 @@ $(function() {
             '/apartments/getPrice',
             data,
             function (response) {
+                $(document).trigger('hide-loading');
                 if (response.success) {
                     $('#calculated_price').html(response.price);
                     $('#calc_text').html(response.priceText);
@@ -135,7 +139,7 @@ $(function() {
     });
     $(document).on('show-loading', function() {
         if (!$("#loading").length) {
-            $(document).append('<div id="loading"><div></div></div>');
+            $('body').append('<div id="loading"><div></div></div>');
         }
     });
     $(document).on('hide-loading', function() {
