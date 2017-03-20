@@ -12,11 +12,6 @@ class Bookings extends MY_Controller
     public function index()
     {
         $this->title = $this->configs->get(false, 'bookings_title');
-        $this->indexView();
-    }
-
-    protected function indexView($additionalParams = [])
-    {
         $params = [
             'filters' => [
                 [
@@ -24,7 +19,15 @@ class Bookings extends MY_Controller
                     'operand' => '>',
                     'value' => 0
                 ]
-            ],
+            ]
+        ];
+        $this->indexView($params);
+    }
+
+    protected function indexView($additionalParams = [])
+    {
+        $params = [
+            'filters' => [],
             'joins' => [
                 [
                     'select' => 'address',

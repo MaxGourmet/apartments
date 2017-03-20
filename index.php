@@ -53,8 +53,12 @@
  *
  * NOTE: If you change these, also change the error_reporting() code below
  */
-	define('ENVIRONMENT', isset($_SERVER['CI_ENV']) ? $_SERVER['CI_ENV'] : 'development');
-
+define('ENVIRONMENT', isset($_SERVER['CI_ENV']) ? $_SERVER['CI_ENV'] : 'development');
+if (strripos($_SERVER['SERVER_NAME'], 'apartments')) {
+    define('ENVIRONMENT', 'development');
+} elseif (strripos($_SERVER['SERVER_NAME'], 'http://nrw.ibolit.de')) {
+    define('ENVIRONMENT', 'production');
+}
 /*
  *---------------------------------------------------------------
  * ERROR REPORTING

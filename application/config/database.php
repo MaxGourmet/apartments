@@ -75,10 +75,10 @@ $query_builder = TRUE;
 
 $db['default'] = array(
 	'dsn'	=> '',
-	'hostname' => 'localhost',
-	'username' => 'root',
-	'password' => '',
-	'database' => 'apartments',
+	'hostname' => 'j290088.servers.jiffybox.net',
+	'username' => 'ibolit_nrw',
+	'password' => 'LnnDcGTXHp',
+	'database' => 'ibolit_nrw',
 	'dbdriver' => 'mysqli',
 	'dbprefix' => '',
 	'pconnect' => FALSE,

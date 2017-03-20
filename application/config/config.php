@@ -25,7 +25,7 @@ $config['dev'] = 'FnSXrImUSr';
 | a PHP script and you can easily do that on your own.
 |
 */
-$config['base_url'] = 'http://apartments';
+$config['base_url'] = 'http://nrw.ibolit.de';
 
 /*
 |--------------------------------------------------------------------------
