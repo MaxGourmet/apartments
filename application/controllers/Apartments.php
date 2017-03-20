@@ -158,19 +158,19 @@ class Apartments extends MY_Controller
             return;
         }
         $date = date('Y-m-d');
-        $fairsFilters = [
+        $bookingsFilters = [
             'filters' => [
-                "(start <= '{$date}' AND end >= '{$date}')",
+                "(start <= '{$date}' OR end >= '{$date}')",
                 ['field' => 'apartment_id', 'operand' => '=', 'value' => $apartmentId]
             ]
         ];
-        $fairs = $this->fairs->get($fairsFilters);
-        if (empty($fairs)) {
+        $bookings = $this->bookings->get($bookingsFilters);
+        if (empty($bookings)) {
             echo json_encode(['success' => 'true', 'dateArray' => []]);
             return;
         }
-        $this->fairs->prepare($fairs);
-        $dateArray = array_keys($fairs);
+        $this->fairs->prepare($bookings);
+        $dateArray = array_keys($bookings);
         echo json_encode(['success' => 'true', 'dateArray' => $dateArray]);
     }
 }

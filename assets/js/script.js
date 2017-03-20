@@ -70,6 +70,7 @@ $(function() {
     if (bookingCreateForm.length) {
         $(bookingCreateForm).ready(function() {
             $(document).trigger('apartments-get-price');
+            $(document).trigger('apartments-get-booked-dates', [$('#apartment').val()]);
         });
         $('#apartment, #start_date, #end_date').on('change', function () {
             $(document).trigger('apartments-get-price');
@@ -131,5 +132,15 @@ $(function() {
             return;
         }
         location.href = '/bookings/search/?search=' + search;
+    });
+    $(document).on('show-loading', function() {
+        if (!$("#loading").length) {
+            $(document).append('<div id="loading"><div></div></div>');
+        }
+    });
+    $(document).on('hide-loading', function() {
+        if ($("#loading").length) {
+            $("#loading").remove();
+        }
     });
 });

@@ -25,3 +25,7 @@
 .fairs tr:nth-child(n+2) {cursor: pointer}
 
 .configs td {border: black 1px solid;}
+
+#loading {
+
+}

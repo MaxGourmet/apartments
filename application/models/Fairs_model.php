@@ -23,7 +23,8 @@ class Fairs_model extends MY_Model
                 if (!isset($result[$date])) {
                     $result[$date] = 0;
                 }
-                $result[$date] = max($result[$date], floatval($fair['price']));
+                $price = isset($fair['price']) ? $fair['price'] : 0;
+                $result[$date] = max($result[$date], floatval($price));
             }
         }
         $fairs = $result;
