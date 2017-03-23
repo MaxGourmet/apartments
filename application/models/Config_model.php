@@ -45,4 +45,9 @@ class Config_model extends MY_Model
         }
         return $result;
     }
+
+    public function updateConfig($alias, $name, $value)
+    {
+        return $this->db->update($this->table, ['value' => $value], ['alias' => $alias, 'name' => $name]);
+    }
 }

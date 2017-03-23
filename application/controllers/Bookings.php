@@ -156,8 +156,9 @@ class Bookings extends MY_Controller
         $this->load->helper('html');
         if (($data = $this->post()) && !empty($data)) {
             array_extract($data, 'submit');
-            var_dump($data);exit;
-            $this->bookings->update($data);
+            $this->configs->updateConfig('reminder', 'email', $data['email']);
+            $this->configs->updateConfig('reminder', 'start_remind', $data['start_remind']);
+            $this->configs->updateConfig('reminder', 'end_remind', $data['end_remind']);
         } else {
             $reminderConfigs = $this->configs->get('reminder');
             $email = '';
