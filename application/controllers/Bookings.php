@@ -174,12 +174,12 @@ class Bookings extends MY_Controller
                     $endRemind = $config['value'];
                 }
             }
-            var_dump($email, $startRemind, $endRemind);exit;
             $this->showView(
                 'bookings/reminder',
                 [
-                    'apartments' => $apartments,
-                    'booking' => $booking
+                    'email' => $email,
+                    'startRemind' => $startRemind,
+                    'endRemind' => $endRemind,
                 ]
             );
         }
@@ -188,5 +188,19 @@ class Bookings extends MY_Controller
     public function remind()
     {
         $reminderConfigs = $this->configs->get('reminder');
+        $email = '';
+        $startRemind = '';
+        $endRemind = '';
+        foreach ($reminderConfigs as $config) {
+            if ($config['name'] == 'email') {
+                $email = $config['value'];
+            }
+            if ($config['name'] == 'start_remind') {
+                $startRemind = $config['value'];
+            }
+            if ($config['name'] == 'end_remind') {
+                $endRemind = $config['value'];
+            }
+        }
     }
 }
