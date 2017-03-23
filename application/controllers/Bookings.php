@@ -159,6 +159,7 @@ class Bookings extends MY_Controller
             $this->configs->updateConfig('reminder', 'email', $data['email']);
             $this->configs->updateConfig('reminder', 'start_remind', $data['start_remind']);
             $this->configs->updateConfig('reminder', 'end_remind', $data['end_remind']);
+            redirect('bookings/reminder_view');
         } else {
             $reminderConfigs = $this->configs->get('reminder');
             $email = '';
@@ -189,6 +190,8 @@ class Bookings extends MY_Controller
     public function remind()
     {
         $reminderConfigs = $this->configs->get('reminder');
+        $bookingStart = $this->configs->get(false, 'booking_start');
+        $bookingEnd = $this->configs->get(false, 'booking_end');
         $email = '';
         $startRemind = '';
         $endRemind = '';
@@ -201,6 +204,22 @@ class Bookings extends MY_Controller
             }
             if ($config['name'] == 'end_remind') {
                 $endRemind = $config['value'];
+            }
+        }
+        $date = date('Y-m-d');
+        $bookingsParams = [
+            'filters' => [
+                "(`start` = '$date' OR `end` = '$date')"
+            ]
+        ];
+        $bookings = $this->bookings->get($bookingsParams);
+        foreach ($bookings as $booking) {
+            if ($booking['start'] == $date) {
+                var_dump($bookingStart, $startRemind);
+                //START
+            } else {
+                var_dump($bookingEnd, $endRemind);
+                //END
             }
         }
     }
