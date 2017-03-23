@@ -51,21 +51,29 @@ class Bookings extends MY_Controller
         );
     }
 
-    public function create($apartmentId = null, $startDate = null, $id = null)
+    public function create($apartmentId = null, $startDate = null, $endDate = null, $id = null)
     {
+        $this->load->helper('form');
+        $this->load->helper('html');
         if (($data = $this->post()) && !empty($data)) {
             array_extract($data, 'submit');
-            $this->bookings->update($data);
-            redirect();
-        } else {
-            $this->load->helper('form');
-            $this->load->helper('html');
-            $apartmentsResult = $this->apartments->get();
-            $apartments = [];
-            foreach ($apartmentsResult as $apartment) {
-                $apartments[$apartment['id']] = $apartment['address'];
+            if ($this->bookings->checkFreeBooking($data)) {
+                $this->bookings->update($data);
+                redirect();
+            } else {
+                $this->showView(
+                    'bookings/create',
+                    [
+                        'apartments' => $this->apartments->prepare($this->apartments->get()),
+                        'booking' => $data,
+                        'error' => 'Sorry, but this dates are booked now. Please check another.'
+                    ]
+                );
             }
-            $selectedApartment = $apartmentsResult[0]['id'];
+        } else {
+            $apartments = $this->apartments->prepare($this->apartments->get());
+            reset($apartments);
+            $selectedApartment = key($apartments);
             if ($id) {
                 $this->title = $this->configs->get(false, 'bookings_edit_title');
                 $booking = $this->bookings->getById($id);
@@ -85,10 +93,21 @@ class Bookings extends MY_Controller
                 } else {
                     $startDate = date('Y-m-d');
                 }
+                if ($endDate) {
+                    $endDate = date('Y-m-d', strtotime($endDate));
+                    if ($endDate == '1970-01-01') {
+                        $endDate = date('Y-m-d', strtotime("$startDate +1day"));
+                    }
+                } else {
+                    $endDate = date('Y-m-d', strtotime("$startDate +1day"));
+                }
+                if (strtotime($startDate) > strtotime($endDate)) {
+                    $endDate = $startDate;
+                }
                 $booking = [
                     'apartment_id' => $selectedApartment,
                     'start' => $startDate,
-                    'end' => date('Y-m-d', strtotime("$startDate +1day")),
+                    'end' => $endDate,
                     'to_pay' => 0,
                     'payed' => 0,
                     'info' => ''
@@ -104,9 +123,10 @@ class Bookings extends MY_Controller
         }
     }
 
-    public function edit($id) {
+    public function edit($id)
+    {
         if ($id) {
-            $this->create(null, null, $id);
+            $this->create(null, null, null, $id);
         } else {
             redirect('bookings');
         }
@@ -128,5 +148,34 @@ class Bookings extends MY_Controller
             ];
             $this->indexView($params);
         }
+    }
+
+    public function reminder_view()
+    {
+        $this->load->helper('form');
+        $this->load->helper('html');
+        if (($data = $this->post()) && !empty($data)) {
+            array_extract($data, 'submit');
+            $this->bookings->update($data);
+        } else {
+            $reminderConfigs = $this->configs->get('reminder');
+            var_dump($reminderConfigs);exit;
+            $email = $reminderConfigs['email'];
+            $startRemind = $reminderConfigs['email'];
+            $endRemind = $reminderConfigs['email'];
+            var_dump($email);exit;
+            $this->showView(
+                'bookings/reminder',
+                [
+                    'apartments' => $apartments,
+                    'booking' => $booking
+                ]
+            );
+        }
+    }
+
+    public function remind()
+    {
+        $reminderConfigs = $this->configs->get('reminder');
     }
 }
