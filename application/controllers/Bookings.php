@@ -156,14 +156,25 @@ class Bookings extends MY_Controller
         $this->load->helper('html');
         if (($data = $this->post()) && !empty($data)) {
             array_extract($data, 'submit');
+            var_dump($data);exit;
             $this->bookings->update($data);
         } else {
             $reminderConfigs = $this->configs->get('reminder');
-            var_dump($reminderConfigs);exit;
-            $email = $reminderConfigs['email'];
-            $startRemind = $reminderConfigs['email'];
-            $endRemind = $reminderConfigs['email'];
-            var_dump($email);exit;
+            $email = '';
+            $startRemind = '';
+            $endRemind = '';
+            foreach ($reminderConfigs as $config) {
+                if ($config['name'] == 'email') {
+                    $email = $config['value'];
+                }
+                if ($config['name'] == 'start_remind') {
+                    $startRemind = $config['value'];
+                }
+                if ($config['name'] == 'end_remind') {
+                    $endRemind = $config['value'];
+                }
+            }
+            var_dump($email, $startRemind, $endRemind);exit;
             $this->showView(
                 'bookings/reminder',
                 [
