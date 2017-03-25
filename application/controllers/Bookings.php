@@ -235,7 +235,10 @@ class Bookings extends MY_Controller
                 foreach ($booking as $key => $value) {
                     $message .= ucfirst($key) . ": $value \r\n";
                 }
-                $res = mail($email, $subject, $message);
+                $emailPostFix = str_replace(['http://', 'https://', '/', '//'], '', base_url());
+                $emailPostFix = $emailPostFix ? $emailPostFix : 'apartments.de';
+                $header = "From: Apartments info <info@{$emailPostFix}>";
+                $res = mail($email, $subject, $message, $header);
                 if ($res) {
                     $this->reminder->saveRemind($booking['id'], $type);
                 }
