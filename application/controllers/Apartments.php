@@ -169,8 +169,7 @@ class Apartments extends MY_Controller
             echo json_encode(['success' => 'true', 'dateArray' => []]);
             return;
         }
-        $this->fairs->prepare($bookings);
-        $dateArray = array_keys($bookings);
+        $dateArray = $this->bookings->getBookedDates($bookings);
         echo json_encode(['success' => 'true', 'dateArray' => $dateArray]);
     }
 }

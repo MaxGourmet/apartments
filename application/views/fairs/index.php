@@ -1,7 +1,6 @@
 <table class="fairs">
     <tr>
         <td>Name</td>
-        <td>Address</td>
         <td>City</td>
         <td>Start</td>
         <td>End</td>
@@ -11,7 +10,6 @@
     <?php foreach($fairs as $fair) : ?>
         <tr>
             <td><?= $fair['name'] ?></td>
-            <td><?= $fair['address'] ?></td>
             <td><?= $fair['city'] ?></td>
             <td><?= $fair['start'] ?></td>
             <td><?= $fair['end'] ?></td>

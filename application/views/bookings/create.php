@@ -1,5 +1,8 @@
 <div>
 <?php
+if (isset($error)) {
+    echo div($error, ['class' => 'error']);
+}
 echo form_open('bookings/create', ['class' => 'create-booking']);
 
 if (isset($booking['id'])) {

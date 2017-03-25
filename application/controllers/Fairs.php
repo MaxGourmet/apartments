@@ -45,7 +45,6 @@ class Fairs extends MY_Controller
                 $this->title = $this->configs->get(false, 'fairs_create_title');
                 $fair = [
                     'name' => '',
-                    'address' => '',
                     'city' => $citiesResult[0]['value'],
                     'start' => date('Y-m-d'),
                     'end' => date('Y-m-d'),

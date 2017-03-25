@@ -58,7 +58,7 @@ class Configs extends MY_Controller
     public function delete($id)
     {
         if ($id) {
-            $this->fairs->delete($id);
+            $this->configs->delete($id);
         }
         redirect('configs');
     }
