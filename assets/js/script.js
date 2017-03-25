@@ -27,7 +27,9 @@ $(function() {
     $('.calendar').on('click', 'td.free, td.booked', function () {
         var apartmentId = $(this).parents('tr').attr('data-attr-apartment_id'),
             date = $(this).attr('data-attr-date');
-        if ($(this).hasClass('free')) {
+        if ($(this).hasClass('first-day')) {
+            location.href = '/bookings/create/' + apartmentId + '/' + '0' + '/' + date;
+        } else if ($(this).hasClass('last-day') || $(this).hasClass('free')) {
             location.href = '/bookings/create/' + apartmentId + '/' + date;
         } else {
             var bookingId = $(this).attr('data-attr-booking_id');

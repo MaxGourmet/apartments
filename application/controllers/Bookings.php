@@ -150,7 +150,7 @@ class Bookings extends MY_Controller
         }
     }
 
-    public function reminder_view()
+    public function reminder()
     {
         $this->load->helper('form');
         $this->load->helper('html');
@@ -159,7 +159,7 @@ class Bookings extends MY_Controller
             $this->configs->updateConfig('reminder', 'email', $data['email']);
             $this->configs->updateConfig('reminder', 'start_remind', $data['start_remind']);
             $this->configs->updateConfig('reminder', 'end_remind', $data['end_remind']);
-            redirect('bookings/reminder_view');
+            redirect('bookings/reminder');
         } else {
             $reminderConfigs = $this->configs->get('reminder');
             $email = '';
@@ -210,16 +210,35 @@ class Bookings extends MY_Controller
         $bookingsParams = [
             'filters' => [
                 "(`start` = '$date' OR `end` = '$date')"
+            ],
+            'joins' => [
+                [
+                    'select' => 'address',
+                    'table' => 'apartments',
+                    'condition' => 'apartments.id = apartment_id'
+                ]
             ]
         ];
         $bookings = $this->bookings->get($bookingsParams);
         foreach ($bookings as $booking) {
             if ($booking['start'] == $date) {
-                var_dump($bookingStart, $startRemind);
-                //START
+                $type = 'start';
+                $bookingReminder = strtotime($booking['start'] . " $bookingStart -$startRemind minutes");
             } else {
-                var_dump($bookingEnd, $endRemind);
-                //END
+                $type = 'end';
+                $bookingReminder = strtotime($booking['end'] . " $bookingEnd -$endRemind minutes");
+            }
+            if (time() >= $bookingReminder && $this->reminder->checkNeedRemind($booking['id'], $type)) {
+                $subject = ucfirst($type) . ". Booking ID: {$booking['id']}. Address: {$booking['address']}.";
+                array_extract($booking, 'apartment_id');
+                $message = '';
+                foreach ($booking as $key => $value) {
+                    $message .= ucfirst($key) . ": $value \r\n";
+                }
+                $res = mail($email, $subject, $message);
+                if ($res) {
+                    $this->reminder->saveRemind($booking['id'], $type);
+                }
             }
         }
     }

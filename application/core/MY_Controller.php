@@ -3,7 +3,8 @@
  * @property Apartments_model $apartments
  * @property Fairs_model $fairs
  * @property Bookings_model $bookings
- * @property Config_model configs
+ * @property Config_model $configs
+ * @property Reminder_model $reminder
  */
 class MY_Controller extends CI_Controller {
 
@@ -18,6 +19,7 @@ class MY_Controller extends CI_Controller {
         $this->load->model('fairs_model', 'fairs');
         $this->load->model('bookings_model', 'bookings');
         $this->load->model('config_model', 'configs');
+        $this->load->model('reminder_model', 'reminder');
         $this->load->helper('security');
         $this->load->helper('array');
         $this->load->helper('url');

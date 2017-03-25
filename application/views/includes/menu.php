@@ -21,6 +21,9 @@
         <div>
             <a href="<?= site_url('fairs/create'); ?>"><?= $menuLang['new_fair'] ?></a>
         </div>
+        <div>
+            <a href="<?= site_url('bookings/reminder'); ?>"><?= $menuLang['reminder'] ?></a>
+        </div>
         <div class="search">
             <input name="search" placeholder="Search" />
             <a href="javascript:void(0)" id="search">Search</a>
