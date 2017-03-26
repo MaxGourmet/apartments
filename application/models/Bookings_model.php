@@ -39,6 +39,9 @@ class Bookings_model extends MY_Model
         $existedDates = [];
         foreach ($bookings as $booking) {
             $dr = date_range(date('Y-m-d', strtotime($booking['start'] . " +1day")), date('Y-m-d', strtotime($booking['end'] . " -1day")));
+            if (!$dr) {
+                $dr = [$booking['start']];
+            }
             $existedDates = array_merge($existedDates, $dr);
         }
         return $existedDates;

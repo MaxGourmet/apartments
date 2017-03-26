@@ -157,6 +157,7 @@ class Apartments extends MY_Controller
             echo json_encode(['success' => 'false', 'error' => 'Invalid apartmentId']);
             return;
         }
+        $bookingId = intval($this->get('bookingId'));
         $date = date('Y-m-d');
         $bookingsFilters = [
             'filters' => [
@@ -164,6 +165,9 @@ class Apartments extends MY_Controller
                 ['field' => 'apartment_id', 'operand' => '=', 'value' => $apartmentId]
             ]
         ];
+        if ($bookingId) {
+            $bookingsFilters['filters'][] = ['field' => 'id', 'operand' => '!=', 'value' => $bookingId];
+        }
         $bookings = $this->bookings->get($bookingsFilters);
         if (empty($bookings)) {
             echo json_encode(['success' => 'true', 'dateArray' => []]);

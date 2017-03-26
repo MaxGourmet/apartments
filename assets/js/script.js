@@ -27,9 +27,7 @@ $(function() {
     $('.calendar').on('click', 'td.free, td.booked', function () {
         var apartmentId = $(this).parents('tr').attr('data-attr-apartment_id'),
             date = $(this).attr('data-attr-date');
-        if ($(this).hasClass('first-day')) {
-            location.href = '/bookings/create/' + apartmentId + '/' + '0' + '/' + date;
-        } else if ($(this).hasClass('last-day') || $(this).hasClass('free')) {
+        if ($(this).hasClass('free')) {
             location.href = '/bookings/create/' + apartmentId + '/' + date;
         } else {
             var bookingId = $(this).attr('data-attr-booking_id');
@@ -62,6 +60,15 @@ $(function() {
             }
         }
     });
+    //Fairs Table
+    $('.create-booking').on('click', '#delete', function () {
+        var bookingId = $('[name="id"]').val();
+        if (bookingId) {
+            if (confirm("Do you want to delete this booking?")) {
+                location.href = '/bookings/delete/' + bookingId;
+            }
+        }
+    });
     //fair create form
     var fairCreateForm = $('.create-fair');
     if (fairCreateForm.length) {
@@ -72,20 +79,20 @@ $(function() {
     if (bookingCreateForm.length) {
         $(bookingCreateForm).ready(function() {
             $(document).trigger('apartments-get-price');
-            $(document).trigger('apartments-get-booked-dates', [$('#apartment').val()]);
+            $(document).trigger('apartments-get-booked-dates', [$('#apartment').val(), $('[name="id"]').val()]);
         });
         $('#apartment, #start_date, #end_date').on('change', function () {
             $(document).trigger('apartments-get-price');
             if ($(this).attr('id') == 'apartment') {
-                $(document).trigger('apartments-get-booked-dates', [$(this).val()]);
+                $(document).trigger('apartments-get-booked-dates', [$(this).val(), $('[name="id"]').val()]);
             }
         });
     }
-    $(document).on('apartments-get-booked-dates', function (ev, apartmentId) {
+    $(document).on('apartments-get-booked-dates', function (ev, apartmentId, bookingId) {
         $(document).trigger('show-loading');
         $.get(
             '/apartments/getBookedDates',
-            {"apartmentId": apartmentId},
+            {"apartmentId": apartmentId, "bookingId": bookingId},
             function (response) {
                 $(document).trigger('hide-loading');
                 if (response.success) {

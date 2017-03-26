@@ -206,6 +206,7 @@ class Bookings extends MY_Controller
                 $endRemind = $config['value'];
             }
         }
+//        $startDate = date('Y-m-d H:i:s', strtotime(""));
         $date = date('Y-m-d');
         $bookingsParams = [
             'filters' => [
@@ -244,5 +245,12 @@ class Bookings extends MY_Controller
                 }
             }
         }
+    }
+
+    public function delete($id) {
+        if ($id) {
+            $this->bookings->delete($id);
+        }
+        redirect('calendar');
     }
 }
