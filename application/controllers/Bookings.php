@@ -152,6 +152,7 @@ class Bookings extends MY_Controller
 
     public function reminder()
     {
+        $this->title = $this->configs->get(false, 'reminder');
         $this->load->helper('form');
         $this->load->helper('html');
         if (($data = $this->post()) && !empty($data)) {

@@ -1,12 +1,12 @@
 <table class="apartments">
     <tr>
-        <td>Apartment</td>
-        <td>City</td>
-        <td>Beds</td>
-        <td>Price 1</td>
-        <td>Price 2</td>
-        <td>Price 3</td>
-        <td>Actions</td>
+        <td>Appartement</td>
+        <td>Ort</td>
+        <td>Schlafplätze</td>
+        <td>Preis 1</td>
+        <td>Preis 2</td>
+        <td>Preis 3</td>
+        <td></td>
     </tr>
     <?php foreach($apartments as $apartment) : ?>
         <tr>
@@ -17,9 +17,9 @@
             <td><?= $apartment['price2']; ?></td>
             <td><?= $apartment['price3']; ?></td>
             <td>
-                <a href="/apartments/edit/<?= $apartment['id']; ?>">Edit</a>
+                <a href="/apartments/edit/<?= $apartment['id']; ?>">Bearbeiten</a>
                 /
-                <a class="delete" href="javascript:void(0)" data-attr-apartment_id="<?= $apartment['id']; ?>">Delete</a>
+                <a class="delete" href="javascript:void(0)" data-attr-apartment_id="<?= $apartment['id']; ?>">Löschen</a>
             </td>
         </tr>
     <?php endforeach; ?>

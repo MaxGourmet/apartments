@@ -1,10 +1,10 @@
 <table class="bookings">
     <tr>
-        <td>Apartment</td>
-        <td>Booking ID</td>
-        <td>Dates</td>
-        <td>To Pay</td>
-        <td>Payed</td>
+        <td>Appartement</td>
+        <td>Buchung ID</td>
+        <td>Datum</td>
+        <td>Soll</td>
+        <td>Ist</td>
         <td>Diff</td>
     </tr>
     <?php foreach($bookings as $booking) : ?>

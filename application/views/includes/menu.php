@@ -25,11 +25,11 @@
             <a href="<?= site_url('bookings/reminder'); ?>"><?= $menuLang['reminder'] ?></a>
         </div>
         <div class="search">
-            <input name="search" placeholder="Search" />
-            <a href="javascript:void(0)" id="search">Search</a>
+            <input name="search" placeholder="Suchen" />
+            <a href="javascript:void(0)" id="search">Suchen</a>
         </div>
     <?php endif; ?>
     <div class="logout">
-        <a href="/auth/logout">Logout</a>
+        <a href="/auth/logout">Ausloggen</a>
     </div>
 </div>
