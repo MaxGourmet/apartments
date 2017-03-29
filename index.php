@@ -56,7 +56,7 @@
 define('ENVIRONMENT', isset($_SERVER['CI_ENV']) ? $_SERVER['CI_ENV'] : 'development');
 if (strripos($_SERVER['SERVER_NAME'], 'apartments')) {
     define('ENVIRONMENT', 'development');
-} elseif (strripos($_SERVER['SERVER_NAME'], 'http://nrw.ibolit.de')) {
+} elseif (strripos($_SERVER['SERVER_NAME'], 'nrw.ibolit.de')) {
     define('ENVIRONMENT', 'production');
 }
 /*
