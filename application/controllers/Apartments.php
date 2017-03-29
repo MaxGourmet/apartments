@@ -11,6 +11,7 @@ class Apartments extends MY_Controller
 
     public function index()
     {
+      var_dump('yo');exit;
         $this->title = $this->configs->get(false, 'apartments_title');
         $apartments = $this->apartments->get();
         $this->showView(
