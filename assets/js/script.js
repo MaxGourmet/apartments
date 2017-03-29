@@ -157,10 +157,11 @@ $(function() {
         }
     });
 
-    // var pgurl = window.location.href.substr(window.location.href.lastIndexOf("/")+1);
-    // $(".menu a").each(function(){
-    //     if($(this).attr('href') == pgurl || $(this).attr('href') == '' ){
-    //         $(this).closest("div").addClass("active");
-    //     }
-    // })
+    //Скрывам дропдауны по клику вне списков
+    $('body').click(function () {
+        $('#menu-trigger').prop('checked', false);
+    });
+    $(".menu,#menu-trigger-label,#menu-trigger").click(function (e) {
+        e.stopPropagation();
+    });
 });
