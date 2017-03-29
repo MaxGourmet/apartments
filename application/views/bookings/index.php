@@ -1,20 +1,20 @@
 <table class="bookings">
     <tr>
-        <td>Appartement</td>
-        <td>Buchung ID</td>
-        <td>Datum</td>
-        <td>Soll</td>
-        <td>Ist</td>
-        <td>Diff</td>
+        <th>Appartement</th>
+        <th>Buchung ID</th>
+        <th>Datum</th>
+        <th>Soll</th>
+        <th>Ist</th>
+        <th>Diff</th>
     </tr>
     <?php foreach($bookings as $booking) : ?>
         <tr data-attr-booking_id="<?= $booking['id'] ?>">
             <td><?= $booking['address'] ?></td>
-            <td><?= $booking['id'] ?></td>
-            <td><?= "{$booking['start']} - {$booking['end']}" ?></td>
-            <td><?= $booking['to_pay'] . " €" ?></td>
-            <td><?= $booking['payed'] . " €" ?></td>
-            <td><?= $booking['diff'] . " €" ?></td>
+            <td class="text-center"><?= $booking['id'] ?></td>
+            <td class="text-right"><?= "{$booking['start']} - {$booking['end']}" ?></td>
+            <td class="text-right"><?= $booking['to_pay'] . " €" ?></td>
+            <td class="text-right"><?= $booking['payed'] . " €" ?></td>
+            <td class="text-right"><?= $booking['diff'] . " €" ?></td>
         </tr>
     <?php endforeach; ?>
 </table>

@@ -156,4 +156,11 @@ $(function() {
             $("#loading").remove();
         }
     });
+
+    // var pgurl = window.location.href.substr(window.location.href.lastIndexOf("/")+1);
+    // $(".menu a").each(function(){
+    //     if($(this).attr('href') == pgurl || $(this).attr('href') == '' ){
+    //         $(this).closest("div").addClass("active");
+    //     }
+    // })
 });

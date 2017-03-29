@@ -1,6 +1,6 @@
 <div>
 <?php
-echo form_open('fairs/create', ['class' => 'create-fair']);
+echo form_open('fairs/create', ['class' => 'create-fair base-form']);
 
 if (isset($fair['id'])) {
     $input = form_input(['name' => 'id', 'value' => $fair['id'], 'type' => 'hidden']);

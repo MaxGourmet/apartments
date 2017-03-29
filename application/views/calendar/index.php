@@ -10,20 +10,20 @@
     $currentMonthText = utf8_encode(strftime('%B', strtotime($currentMonth)));
     $nextMonthText = utf8_encode(strftime('%B', strtotime($nextMonth)));
     ?>
-    <a href="/calendar/month/<?= $previousMonth; ?>"><?= $previousMonthText; ?></a>
+    <a href="/calendar/month/<?= $previousMonth; ?>"><?//= $previousMonthText; ?>&laquo;</a>
     <span><?= $currentMonthText; ?></span>
-    <a href="/calendar/month/<?= $nextMonth; ?>"><?= $nextMonthText; ?></a>
+    <a href="/calendar/month/<?= $nextMonth; ?>"><?//= $nextMonthText; ?>&raquo;</a>
 </div>
 <table class="calendar">
     <tr>
-        <td></td>
+        <th></th>
         <?php $i = 0; ?>
         <?php foreach ($monthDays as $date) : ?>
             <?php
             $i++;
             $isWeekend = in_array(date('N', strtotime($date)), [6, 7]);
             ?>
-            <td class="date <?= $isWeekend ? 'weekend' : '' ?>"><?= $i; ?></td>
+            <th class="date <?= $isWeekend ? 'weekend' : '' ?>"><?= $i; ?></th>
         <?php endforeach; ?>
     </tr>
     <?php foreach($apartments as $apartment) : ?>

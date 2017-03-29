@@ -1,6 +1,6 @@
 <div>
 <?php
-echo form_open('bookings/reminder', ['class' => 'edit-reminder']);
+echo form_open('bookings/reminder', ['class' => 'edit-reminder base-form']);
 
 $input = form_label('Email', 'email')
     . form_input(['name' => 'email', 'value' => $email, 'id' => 'email']);

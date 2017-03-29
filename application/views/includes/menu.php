@@ -1,3 +1,8 @@
+<input type="checkbox" id="menu-trigger">
+<label for="menu-trigger" id="menu-trigger-label">
+    <i class="fa fa-bars" aria-hidden="true"></i>
+    <i class="fa fa-window-close" aria-hidden="true"></i>
+</label>
 <div class="menu">
     <?php if (user('role') == 'admin') : ?>
         <div>
@@ -24,12 +29,8 @@
         <div>
             <a href="<?= site_url('bookings/reminder'); ?>"><?= $menuLang['reminder'] ?></a>
         </div>
-        <div class="search">
-            <input name="search" placeholder="Suchen" />
-            <a href="javascript:void(0)" id="search">Suchen</a>
-        </div>
     <?php endif; ?>
     <div class="logout">
-        <a href="/auth/logout">Ausloggen</a>
+        <a href="/auth/logout"><i class="fa fa-toggle-left" aria-hidden="true"></i> Ausloggen</a>
     </div>
 </div>

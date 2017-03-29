@@ -1,6 +1,6 @@
 <div>
 <?php
-echo form_open('apartments/create', ['class' => 'create-apartment']);
+echo form_open('apartments/create', ['class' => 'create-apartment base-form']);
 
 if (isset($apartment['id'])) {
     $input = form_input(['name' => 'id', 'value' => $apartment['id'], 'type' => 'hidden']);
