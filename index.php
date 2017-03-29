@@ -53,6 +53,7 @@
  *
  * NOTE: If you change these, also change the error_reporting() code below
  */
+var_dump($_SERVER['SERVER_NAME'], strripos($_SERVER['SERVER_NAME'], 'nrw.ibolit.de'), strripos($_SERVER['SERVER_NAME'], 'nrw.ibolit.de') !== false);exit;
 if (strripos($_SERVER['SERVER_NAME'], 'apartments')) {
     define('ENVIRONMENT', 'development');
 } elseif (strripos($_SERVER['SERVER_NAME'], 'nrw.ibolit.de')) {
