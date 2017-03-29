@@ -109,6 +109,10 @@ h1 {
     background-color: #dfdf88
 }
 
+.calendar th.date.today {
+    background-color: #ef1c0c
+}
+
 .calendar td.booked {
     background-color: #3deb3c;
 }

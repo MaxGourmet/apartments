@@ -22,8 +22,9 @@
             <?php
             $i++;
             $isWeekend = in_array(date('N', strtotime($date)), [6, 7]);
+            $isToday = $date == date('Y-m-d');
             ?>
-            <th class="date <?= $isWeekend ? 'weekend' : '' ?>"><?= $i; ?></th>
+            <th class="date <?= $isWeekend ? 'weekend' : '' ?> <?= $isToday ? 'today' : '' ?>"><?= $i; ?></th>
         <?php endforeach; ?>
     </tr>
     <?php foreach($apartments as $apartment) : ?>
@@ -38,8 +39,8 @@
                 if (!empty($bookingsForApartment)) {
                     foreach ($bookingsForApartment as $bookingId => $booking) {
                         if (in_array($date, $booking)) {
-                            $addClass = $booking[0] == $date ? 'first-day' : $addClass;
-                            $addClass = $booking[count($booking) - 1] == $date ? $addClass . ' ' . 'last-day' : $addClass;
+                            $addClass = $booking[0] == $date ? $addClass . ' first-day' : $addClass;
+                            $addClass = $booking[count($booking) - 1] == $date ? $addClass . ' last-day' : $addClass;
                             $defaultClass = 'booked';
                             $addAttributes .= " data-attr-booking_id='$bookingId'";
                         }
