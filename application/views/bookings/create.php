@@ -6,7 +6,7 @@ if (isset($error)) {
 echo form_open('bookings/create', ['class' => 'create-booking base-form']);
 
 if (isset($booking['id'])) {
-    $input = span("Buchung Id: {$booking['id']}");
+    $input = span("Buchung Id: {$booking['id']}",['class' => 'label']);
     $input .= form_input(['name' => 'id', 'value' => $booking['id'], 'type' => 'hidden']);
     echo div($input, ['class' => 'form-input']);
 }

@@ -110,7 +110,8 @@ h1 {
 }
 
 .calendar th.date.today {
-    background-color: #ef1c0c
+    background-color: #ef1c0c;
+    color:            #fff;
 }
 
 .calendar td.booked {
@@ -271,7 +272,8 @@ h1 {
 
 .menu a {
     color:       #fff;
-    line-height: 30px;
+    line-height: 32px;
+    font-size:   19px;
 }
 
 #menu-trigger {
@@ -283,7 +285,7 @@ h1 {
     z-index:               11;
     color:                 red;
     left:                  25px;
-    top:                   15px;
+    top:                   41px;
     width:                 24px;
     height:                24px;
     -webkit-border-radius: 3px;
@@ -308,6 +310,7 @@ h1 {
 #menu-trigger:checked + label {
     border-color: transparent;
     left:         215px;
+    top:          15px;
 }
 
 #menu-trigger:checked + label .fa-window-close {
@@ -461,6 +464,12 @@ button {
     padding-left: 2px;
 }
 
+.base-form #delete {
+    position:    absolute;
+    bottom:      104px;
+    margin-left: -70px;
+}
+
 .base-form #cancel {
     margin-left: 170px;
     position:    absolute;
@@ -519,4 +528,86 @@ input:disabled {
 .half #start_date,
 .half #end_date {
     background-position-x: 95%;
+}
+
+/*Media*/
+
+@media screen and (max-width: 768px) {
+    h1 {
+        margin-bottom: 15px;
+        font-size:     24px;
+    }
+
+    .form-input {
+        margin-bottom: 10px;
+    }
+
+    .base-form #delete,
+    .base-form #submit,
+    .base-form #cancel {
+        position: static;
+        float:    right;
+        margin:   0 0 0 100px;
+    }
+
+    .create-booking.base-form #submit {
+        margin-left: 30px;
+    }
+
+    .create-booking.base-form #cancel {
+        margin-left: 100px;
+    }
+
+    .create-booking.base-form #delete {
+        margin-left: 0;
+    }
+
+    .search input {
+        width:  150px;
+        height: 25px;
+    }
+
+    #search {
+        font-size: 17px;
+    }
+
+    #menu-trigger-label {
+        top: 38px;
+    }
+
+    .base-form input[type=text],
+    .base-form input[type=number],
+    .base-form select {
+        width:     380px;
+        height:    25px;
+        font-size: 15px;
+    }
+
+    .base-form .label,
+    .base-form label {
+        line-height: 25px;
+    }
+
+    .calendar th,
+    .calendar td {
+        font-size: 14px;
+    }
+
+    .calendar tr td:first-child {
+        white-space: nowrap;
+    }
+}
+
+@media screen and (max-width: 768px) and (orientation: landscape) {
+    .create-booking textarea {
+        height: 90px;
+    }
+
+    .buttons {
+        overflow: hidden;
+    }
+
+    .base-form {
+        padding-bottom: 25px;
+    }
 }

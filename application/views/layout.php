@@ -2,6 +2,7 @@
 <html>
 <head>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title><?= $title ?></title>
     <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
     <link type="text/css" rel="stylesheet" href="/assets/css/jquery-ui-1.9.2.custom.min.css" />
@@ -11,7 +12,7 @@
     <script type="application/javascript" src="/assets/js/jquery-ui-1.9.2.custom.min.js"></script>
     <script type="application/javascript" src="/assets/js/script.js"></script>
 </head>
-<body>
+<body id="body">
 <div class="wrapper">
     <? $this->load->view('includes/menu'); ?>
     <div class="content">
