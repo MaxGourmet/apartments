@@ -1,5 +1,6 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
+var_dump(BASEPATH);
 
 $config['admin'] = 'ZVQRfoe7C8';
 $config['dev'] = 'FnSXrImUSr';
