@@ -10,9 +10,9 @@
     $currentMonthText = utf8_encode(strftime('%B', strtotime($currentMonth)));
     $nextMonthText = utf8_encode(strftime('%B', strtotime($nextMonth)));
     ?>
-    <a href="/calendar/month/<?= $previousMonth; ?>"><?//= $previousMonthText; ?>&laquo;</a>
+    <a id="prev_month" href="javascript:void(0)" data-attr-href="/calendar/month/<?= $previousMonth; ?>"><?//= $previousMonthText; ?>&laquo;</a>
     <span><?= $currentMonthText; ?></span>
-    <a href="/calendar/month/<?= $nextMonth; ?>"><?//= $nextMonthText; ?>&raquo;</a>
+    <a id="next_month" href="javascript:void(0)" data-attr-href="/calendar/month/<?= $nextMonth; ?>"><?//= $nextMonthText; ?>&raquo;</a>
 </div>
 <table class="calendar">
     <tr>

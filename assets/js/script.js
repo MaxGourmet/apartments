@@ -164,4 +164,10 @@ $(function() {
     $(".menu,#menu-trigger-label,#menu-trigger").click(function (e) {
         e.stopPropagation();
     });
+    $('.month').on('click', 'a', function() {
+        var href = $(this).attr('data-attr-href');
+        if (href)  {
+            location.href = href;
+        }
+    });
 });
