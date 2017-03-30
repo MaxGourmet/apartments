@@ -1,6 +1,5 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
-var_dump(BASEPATH . '../' .'application/ci_sessions');
 $config['admin'] = 'ZVQRfoe7C8';
 $config['dev'] = 'FnSXrImUSr';
 /*
