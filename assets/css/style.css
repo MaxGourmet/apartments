@@ -73,6 +73,12 @@ h1 {
     font-size:     30px;
 }
 
+input {
+    -webkit-appearance: none;
+    -moz-appearance:    none;
+    appearance:         none;
+}
+
 .calendar {
     width: 100%;
 }
@@ -216,6 +222,7 @@ h1 {
     position: relative;
     padding:  0 5px;
     height:   100%;
+    width:    100%;
 }
 
 .content {
@@ -258,7 +265,7 @@ h1 {
     top:                0;
     bottom:             0;
     left:               -250px;
-    z-index:            10;
+    z-index:            998;
     background:         #717171;
     color:              #fff;
     padding:            30px 15px;
@@ -282,7 +289,7 @@ h1 {
 
 #menu-trigger-label {
     position:              fixed;
-    z-index:               11;
+    z-index:               999;
     color:                 red;
     left:                  25px;
     top:                   41px;
@@ -317,6 +324,7 @@ h1 {
     display: block;
 }
 
+#menu-trigger:checked ~ .menu,
 #menu-trigger:checked + label + .menu {
     left: 0;
 }
@@ -331,7 +339,7 @@ h1 {
 .delete,
 .edit,
 .logout a {
-    color:  red;
+    color:  red !important;
     cursor: pointer;
 }
 
@@ -401,14 +409,17 @@ h1 {
 
 input[type=submit],
 button {
-    height:      30px;
-    background:  #fff;
-    color:       #717171;
-    line-height: 24px;
-    border:      2px solid #6f6f6f;
-    width:       140px;
-    text-align:  center;
-    font-size:   16px;
+    height:                30px;
+    background:            #fff !important;
+    color:                 #717171 !important;
+    line-height:           24px;
+    border:                2px solid #6f6f6f !important;
+    width:                 140px;
+    text-align:            center;
+    font-size:             16px;
+    -webkit-border-radius: 0;
+    -moz-border-radius:    0;
+    border-radius:         0;
 }
 
 .month {
@@ -466,20 +477,23 @@ button {
 
 .base-form #delete {
     position:    absolute;
-    bottom:      104px;
     margin-left: -70px;
 }
 
 .base-form #cancel {
     margin-left: 170px;
     position:    absolute;
-    bottom:      104px;
 }
 
 .base-form #submit {
     position:    absolute;
-    bottom:      104px;
     margin-left: 410px;
+}
+
+.base-form #delete,
+.base-form #cancel,
+.base-form #submit {
+    bottom: 60px;
 }
 
 .create-apartment label,
@@ -488,7 +502,7 @@ button {
 }
 
 .form-input {
-    margin-bottom: 24px;
+    margin-bottom: 20px;
 }
 
 .buttons {
@@ -609,5 +623,30 @@ input:disabled {
 
     .base-form {
         padding-bottom: 25px;
+    }
+}
+
+@media screen and (max-width: 640px) and (orientation: landscape) {
+    .menu a {
+        color:       #fff;
+        line-height: 26px;
+        font-size:   17px;
+    }
+
+    .logout {
+        position: static;
+    }
+
+    .fairs,
+    .bookings,
+    .apartments {
+        font-size: 15px;
+        width:     100%;
+    }
+
+    .bookings tr td:nth-last-child(3),
+    .bookings tr td:nth-last-child(2),
+    .bookings tr td:nth-last-child(1) {
+        white-space: nowrap;
     }
 }
