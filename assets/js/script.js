@@ -247,7 +247,11 @@ $(function() {
                     if ($(td[i]).hasClass('first-day') || $(td[i]).hasClass('last-day')) {
                         continue;
                     }
-                    var t = text.substr(4*(i-1), 4);
+                    var pos = i-1;
+                    if (!$(td[0]).hasClass('first-day')) {
+                        pos = i;
+                    }
+                    var t = text.substr(4*(pos), 4);
                     $(td[i]).html(t);
                 }
             }
