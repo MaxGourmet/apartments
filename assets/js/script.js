@@ -252,7 +252,7 @@ $(function() {
                         pos = i;
                     }
                     var t = text.substr(4*(pos), 4);
-                    $(td[i]).html(t);
+                    //$(td[i]).html(t);
                 }
             }
         }
