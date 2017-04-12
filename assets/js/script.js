@@ -221,4 +221,36 @@ $(function() {
             $('#prev_month').click();
         }
     });
+
+    var calendarTable = $('table.calendar');
+    if ($(calendarTable).length) {
+        //var td = $(calendarTable).find('td[data-info]');
+        //var currentId = 0,
+        //    currentText = '';
+        //for (var i = 0; i < td.length; i++) {
+        //    if ($(td[i]).hasClass('first-day') || $(td[i]).hasClass('last-day')) {
+        //        continue;
+        //    }
+        //    var bId = $(td[i]).attr('data-attr-booking_id');
+        //}
+        if (typeof bookingsInfo != undefined) {
+            for (var bookingId in bookingsInfo) {
+                if (!bookingsInfo.hasOwnProperty(bookingId)) {
+                    continue;
+                }
+                var text = bookingsInfo[bookingId].trim();
+                if (text == '') {
+                    continue;
+                }
+                var td = $(calendarTable).find('td[data-attr-booking_id='+ bookingId +']');
+                for (var i = 0; i < td.length; i++) {
+                    if ($(td[i]).hasClass('first-day') || $(td[i]).hasClass('last-day')) {
+                        continue;
+                    }
+                    var t = text.substr(4*(i-1), 4);
+                    $(td[i]).html(t);
+                }
+            }
+        }
+    }
 });

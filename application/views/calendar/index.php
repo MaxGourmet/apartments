@@ -38,17 +38,25 @@
                 $addAttributes = "data-attr-date='$date'";
                 if (!empty($bookingsForApartment)) {
                     foreach ($bookingsForApartment as $bookingId => $booking) {
+                        $info = '';
                         if (in_array($date, $booking)) {
                             $addClass = $booking[0] == $date ? $addClass . ' first-day' : $addClass;
                             $addClass = $booking[count($booking) - 1] == $date ? $addClass . ' last-day' : $addClass;
                             $defaultClass = 'booked';
                             $addAttributes .= " data-attr-booking_id='$bookingId'";
+                            if (isset($bookingsInfo[$bookingId])) {
+                                $info = "data-info='{$bookingsInfo[$bookingId]}'";
+//                                $info = $bookingsInfo[$bookingId];
+                            }
                         }
                     }
                 }
-                echo "<td class='$defaultClass $addClass' $addAttributes></td>";
+                echo "<td $info class='$defaultClass $addClass' $addAttributes></td>";
             }
             ?>
         </tr>
     <?php endforeach; ?>
 </table>
+<script>
+    var bookingsInfo = <?= json_encode($bookingsInfo); ?>;
+</script>

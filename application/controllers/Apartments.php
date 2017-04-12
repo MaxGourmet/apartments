@@ -94,7 +94,8 @@ class Apartments extends MY_Controller
             echo json_encode(['success' => 'false', 'error' => 'Invalid Dates']);
             return;
         }
-        $countDays = count($dates);
+        $countDays = count($dates) - 1;
+        unset($dates[$countDays]);
         $priceIndex = 1;
         $daysForPrice2 = $this->configs->get(false, 'days_for_price2');
         $daysForPrice3 = $this->configs->get(false, 'days_for_price3');

@@ -93,7 +93,8 @@ input {
 }
 
 .calendar tr:nth-child(n+2) td:nth-child(n+2) {
-    cursor: pointer
+    cursor: pointer;
+    font-size: 10px;
 }
 
 .calendar th,

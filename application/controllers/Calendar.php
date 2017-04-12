@@ -16,10 +16,18 @@ class Calendar extends MY_Controller
         $filtersDate = $ym && ($d = date('Y-m', strtotime($ym))) ? $d : date('Y-m');
         $monthDays = intval(date("t", strtotime($filtersDate)));
         $monthDays = date_range("$filtersDate-01", "$filtersDate-$monthDays");
+        $ym = date('Ym', strtotime($filtersDate));
         $bookingFilters = [
-            'filters' => ["(start >= '$filtersDate-01' OR end <= '$filtersDate-31')"]
+            'select' => "*, DATE_FORMAT(`start`, '%Y%m') AS start_month, DATE_FORMAT(`end`, '%Y%m') AS end_month",
+            'having' => ["(start_month <= '$ym' OR end_month >= '$ym')"]
         ];
         $bookings = $this->bookings->get($bookingFilters);
+        $bookingsInfo = [];
+        foreach ($bookings as $booking) {
+            $preparedInfo = trim($booking['info']);
+            $preparedInfo = str_replace(["\r\n", "\r", "\n"], ' ', $preparedInfo);
+            $bookingsInfo[$booking['id']] = $preparedInfo;
+        }
         $this->bookings->prepare($bookings);
         $this->showView(
             'calendar/index',
@@ -27,7 +35,8 @@ class Calendar extends MY_Controller
                 'apartments' => $apartments,
                 'bookings' =>  $bookings,
                 'monthDays' => $monthDays,
-                'currentMonth' => $filtersDate
+                'currentMonth' => $filtersDate,
+                'bookingsInfo' => $bookingsInfo,
             ]
         );
     }

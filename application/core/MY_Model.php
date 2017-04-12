@@ -16,6 +16,7 @@ class MY_Model extends CI_Model
     {
         $select = isset($params['select']) ? $params['select'] : "{$this->table}.*";
         $filters = isset($params['filters']) ? $params['filters'] : [];
+        $having = isset($params['having']) ? $params['having'] : [];
         $order = isset($params['order']) ? $params['order'] : false;
         $limit = isset($params['limit']) ? $params['limit'] : 0;
         $offset = isset($params['offset']) ? $params['offset'] : 0;
@@ -29,6 +30,9 @@ class MY_Model extends CI_Model
             } else {
                 $query->where($filter);
             }
+        }
+        foreach ($having as $h) {
+            $query->having($h);
         }
         foreach ($joins as $join) {
             $table = $join['table'];
