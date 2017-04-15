@@ -214,10 +214,14 @@ $(function() {
     }
 
     detectswipe('body',function (el,d) {
+        var href = '';
         if(d === 'l'){
-            $('#next_month').click();
+            href = $('#next_month').attr('data-attr-href');
         } else if(d === 'r'){
-            $('#prev_month').click();
+            href = $('#prev_month').attr('data-attr-href');
+        }
+        if (href)  {
+            location.href = href;
         }
     });
 
