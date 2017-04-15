@@ -187,26 +187,23 @@ $(function() {
         var direc = "";
         var ele = document.getElementById(el);
         ele.addEventListener('touchstart',function(e){
+            //console.log(e);return;
             var t = e.touches[0];
             swipe_det.sX = t.screenX;
             swipe_det.sY = t.screenY;
         },false);
-        ele.addEventListener('touchmove',function(e){
-            // e.preventDefault();
-            var t = e.touches[0];
+        //ele.addEventListener('touchmove',function(e){
+        //    // e.preventDefault();
+        //},false);
+        ele.addEventListener('touchend',function(e){
+            //console.log(e);return;
+            var t = e.changedTouches[0];
             swipe_det.eX = t.screenX;
             swipe_det.eY = t.screenY;
-        },false);
-        ele.addEventListener('touchend',function(e){
             //horizontal detection
             if ((((swipe_det.eX - min_x > swipe_det.sX) || (swipe_det.eX + min_x < swipe_det.sX)) && ((swipe_det.eY < swipe_det.sY + max_y) && (swipe_det.sY > swipe_det.eY - max_y)))) {
                 if(swipe_det.eX > swipe_det.sX) direc = "r";
                 else direc = "l";
-            }
-            //vertical detection
-            if ((((swipe_det.eY - min_y > swipe_det.sY) || (swipe_det.eY + min_y < swipe_det.sY)) && ((swipe_det.eX < swipe_det.sX + max_x) && (swipe_det.sX > swipe_det.eX - max_x)))) {
-                if(swipe_det.eY > swipe_det.sY) direc = "d";
-                else direc = "u";
             }
 
             if (direc != "") {
