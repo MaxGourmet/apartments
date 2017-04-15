@@ -189,12 +189,12 @@ $(function() {
             swipe_det.sX = t.screenX;
             swipe_det.sY = t.screenY;
         },false);
-        //ele.addEventListener('touchmove',function(e){
-        //    // e.preventDefault();
-        //    var t = e.touches[0];
-        //    swipe_det.eX = t.screenX;
-        //    swipe_det.eY = t.screenY;
-        //},false);
+        ele.addEventListener('touchmove',function(e){
+            // e.preventDefault();
+            var t = e.touches[0];
+            swipe_det.eX = t.screenX;
+            swipe_det.eY = t.screenY;
+        },false);
         ele.addEventListener('touchend',function(e){
             //horizontal detection
             if ((((swipe_det.eX - min_x > swipe_det.sX) || (swipe_det.eX + min_x < swipe_det.sX)) && ((swipe_det.eY < swipe_det.sY + max_y) && (swipe_det.sY > swipe_det.eY - max_y)))) {
