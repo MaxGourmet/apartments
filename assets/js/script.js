@@ -242,18 +242,31 @@ $(function() {
                 if (text == '') {
                     continue;
                 }
-                var td = $(calendarTable).find('td[data-attr-booking_id='+ bookingId +']');
+                var td = $(calendarTable).find('td[data-attr-booking_id='+ bookingId +']'),
+                    firstPosition = false,
+                    tdIndexToDelte = [];
                 for (var i = 0; i < td.length; i++) {
                     if ($(td[i]).hasClass('first-day') || $(td[i]).hasClass('last-day')) {
                         continue;
                     }
-                    var pos = i-1;
-                    if (!$(td[0]).hasClass('first-day')) {
-                        pos = i;
+                    if (firstPosition === false) {
+                        firstPosition = i;
+                    } else {
+                        tdIndexToDelte.push(i);
                     }
-                    var t = text.substr(4*(pos), 4);
-                    //$(td[i]).html(t);
                 }
+                var cnt = tdIndexToDelte.length,
+                    width = $(td[0]).width();
+                for (var k in tdIndexToDelte) {
+                    if (!tdIndexToDelte.hasOwnProperty(k)) {
+                        continue;
+                    }
+                    $(td[tdIndexToDelte[k]]).remove();
+                }
+                $(td[firstPosition]).attr('colspan', cnt + 1);
+                //text.substr(0, 4*(cnt + 1));
+                $(td[firstPosition]).html("<div class='booking_info'>" + text + "</div>");
+                $(td[firstPosition]).find('.booking_info').width(width * (cnt + 1));
             }
         }
     }

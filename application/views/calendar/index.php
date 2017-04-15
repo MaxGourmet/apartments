@@ -33,12 +33,14 @@
             <td><?= $apartment['address']; ?></td>
             <?php
             foreach($monthDays as $date) {
-                $defaultClass = 'free';
+                $isWeekend = in_array(date('N', strtotime($date)), [6, 7]);
+                $defaultClass = $isWeekend ? 'weekend' : 'free';
                 $addClass = '';
                 $addAttributes = "data-attr-date='$date'";
                 if (!empty($bookingsForApartment)) {
                     foreach ($bookingsForApartment as $bookingId => $booking) {
                         $info = '';
+                        $colspan = 1;
                         if (in_array($date, $booking)) {
                             $addClass = $booking[0] == $date ? $addClass . ' first-day' : $addClass;
                             $addClass = $booking[count($booking) - 1] == $date ? $addClass . ' last-day' : $addClass;
@@ -48,6 +50,7 @@
                                 $info = "data-info='{$bookingsInfo[$bookingId]}'";
 //                                $info = $bookingsInfo[$bookingId];
                             }
+                            $colspan++;
                         }
                     }
                 }
