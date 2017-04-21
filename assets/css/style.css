@@ -61,7 +61,7 @@ q:before, q:after {
 table {
     border-collapse: collapse;
     border-spacing:  0;
-    border: 1px solid #c9c9c9;
+    border:          1px solid #c9c9c9;
 }
 
 a {
@@ -90,21 +90,21 @@ input {
 }
 
 .calendar tr td:nth-child(n+2) {
-    width: 25px
+    width: 23px
 }
 
 .calendar tr:nth-child(n+2) td:nth-child(n+2) {
-    cursor: pointer;
+    cursor:    pointer;
     font-size: 10px;
 }
 
 .calendar th,
 .calendar td {
-    border:   1px solid #c9c9c9;
-    position: relative;
-    overflow: hidden;
+    border:          1px solid #c9c9c9;
+    position:        relative;
+    overflow:        hidden;
     background-clip: padding-box !important;
-    min-width: 18px;
+    min-width:       23px;
 }
 
 .calendar td.free {
@@ -112,9 +112,9 @@ input {
 }
 
 .calendar td div.booking_info {
-    overflow: hidden;
+    overflow:      hidden;
     text-overflow: ellipsis;
-    white-space: nowrap;
+    white-space:   nowrap;
 }
 
 .calendar th.date {
@@ -131,7 +131,11 @@ input {
 }
 
 .calendar td.booked {
-    background-color: #3deb3c;
+    background-color:    #3deb3c;
+
+    background-image:    linear-gradient(90deg, #c9c9c9 1px, transparent 0px);
+    background-size:     23px 20px;
+    background-position: 22px top;
 }
 
 .calendar td.booked.first-day {
@@ -434,9 +438,9 @@ button {
 
 .month {
     text-align: center;
-    color: red;
-    margin: 0px 0 35px;
-    font-size: 30px;
+    color:      red;
+    margin:     0px 0 35px;
+    font-size:  30px;
 }
 
 .month a {
