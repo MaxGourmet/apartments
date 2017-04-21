@@ -7,10 +7,10 @@
     <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
     <link type="text/css" rel="stylesheet" href="/assets/css/jquery-ui-1.9.2.custom.min.css" />
     <link type="text/css" rel="stylesheet" href="/assets/css/font-awesome-4.7.0/css/font-awesome.min.css" />
-    <link type="text/css" rel="stylesheet" href="/assets/css/style.css" />
+    <link type="text/css" rel="stylesheet" href="/assets/css/style.css?v=4" />
     <script type="application/javascript" src="/assets/js/jquery-1.8.3.js"></script>
     <script type="application/javascript" src="/assets/js/jquery-ui-1.9.2.custom.min.js"></script>
-    <script type="application/javascript" src="/assets/js/script.js"></script>
+    <script type="application/javascript" src="/assets/js/script.js?v=3"></script>
 </head>
 <body id="body">
 <div class="wrapper">

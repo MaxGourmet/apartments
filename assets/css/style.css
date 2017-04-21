@@ -61,6 +61,7 @@ q:before, q:after {
 table {
     border-collapse: collapse;
     border-spacing:  0;
+    border: 1px solid #c9c9c9;
 }
 
 a {
@@ -102,6 +103,8 @@ input {
     border:   1px solid #c9c9c9;
     position: relative;
     overflow: hidden;
+    background-clip: padding-box !important;
+    min-width: 18px;
 }
 
 .calendar td.free {
@@ -235,7 +238,7 @@ input {
 .content {
     position:    relative;
     height:      100%;
-    padding-top: 32px;
+    padding-top: 13px;
 }
 
 .fairs,
@@ -268,7 +271,7 @@ input {
 }
 
 .menu {
-    position:           fixed;
+    position:           absolute;
     top:                0;
     bottom:             0;
     left:               -250px;
@@ -299,7 +302,7 @@ input {
     z-index:               999;
     color:                 red;
     left:                  25px;
-    top:                   41px;
+    top:                   22px;
     width:                 24px;
     height:                24px;
     -webkit-border-radius: 3px;
@@ -364,7 +367,7 @@ input {
 .search {
     position: absolute;
     right:    15px;
-    top:      38px;
+    top:      19px;
 }
 
 .search input {
@@ -431,9 +434,9 @@ button {
 
 .month {
     text-align: center;
-    color:      red;
-    font-size:  24px;
-    margin:     -10px 0 25px;
+    color: red;
+    margin: 0px 0 35px;
+    font-size: 30px;
 }
 
 .month a {
@@ -480,27 +483,6 @@ button {
 
 .base-form select {
     padding-left: 2px;
-}
-
-.base-form #delete {
-    position:    absolute;
-    margin-left: -70px;
-}
-
-.base-form #cancel {
-    margin-left: 170px;
-    position:    absolute;
-}
-
-.base-form #submit {
-    position:    absolute;
-    margin-left: 410px;
-}
-
-.base-form #delete,
-.base-form #cancel,
-.base-form #submit {
-    bottom: 60px;
 }
 
 .create-apartment label,
@@ -551,9 +533,30 @@ input:disabled {
     background-position-x: 95%;
 }
 
+.base-form #delete,
+.base-form #submit,
+.base-form #cancel {
+    position: static;
+    float:    right;
+    margin:   0 0 0 100px;
+}
+
+.create-booking.base-form #submit {
+    margin-left: 30px;
+}
+
+.create-booking.base-form #cancel {
+    margin-left: 100px;
+}
+
+.create-booking.base-form #delete {
+    margin-left: 0;
+}
+
 /*Media*/
 
 @media screen and (max-width: 768px) {
+    .month,
     h1 {
         margin-bottom: 15px;
         font-size:     24px;
@@ -561,26 +564,6 @@ input:disabled {
 
     .form-input {
         margin-bottom: 10px;
-    }
-
-    .base-form #delete,
-    .base-form #submit,
-    .base-form #cancel {
-        position: static;
-        float:    right;
-        margin:   0 0 0 100px;
-    }
-
-    .create-booking.base-form #submit {
-        margin-left: 30px;
-    }
-
-    .create-booking.base-form #cancel {
-        margin-left: 100px;
-    }
-
-    .create-booking.base-form #delete {
-        margin-left: 0;
     }
 
     .search input {
@@ -593,7 +576,7 @@ input:disabled {
     }
 
     #menu-trigger-label {
-        top: 38px;
+        top: 19px;
     }
 
     .base-form input[type=text],
