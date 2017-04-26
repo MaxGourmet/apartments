@@ -24,7 +24,7 @@ $config['dev'] = 'FnSXrImUSr';
 | a PHP script and you can easily do that on your own.
 |
 */
-$config['base_url'] = 'kalender.appartements-nrw.eu';
+$config['base_url'] = 'http://kalender.appartements-nrw.eu';
 
 /*
 |--------------------------------------------------------------------------
