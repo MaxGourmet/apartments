@@ -116,6 +116,7 @@ class Apartments extends MY_Controller
         $totalPrice = 0;
         $priceText = '';
         $prices = [];
+        $bedsCount = intval($apartment['beds']);
         foreach ($dates as $date) {
             if (isset($fairs[$date])) {
                 $prices[$date] = $fairs[$date];
@@ -133,17 +134,31 @@ class Apartments extends MY_Controller
         $priceIndex = 0;
         reset($prices);
         $currentPrice = current($prices);
+        reset($prices);
         foreach ($prices as $date => $pr) {
-            $totalPrice += $pr;
             if ($pr == $currentPrice) {
                 $priceIndex++;
             } else {
-                $priceText .= "$priceIndex x $currentPrice € + ";
+                if ($priceIndex > 0) {
+                    if ($currentPrice != $price) {
+                        $priceText .= "$bedsCount x ";
+                    }
+                    $priceText .= "$priceIndex x $currentPrice € + ";
+                }
                 $priceIndex = 1;
                 $currentPrice = $pr;
             }
+            if ($currentPrice != $price) {
+                $pr *= $bedsCount;
+            }
+            $totalPrice += $pr;
         }
-        $priceText .= "$priceIndex x $currentPrice €";
+        if ($priceIndex > 0) {
+            if ($currentPrice != $price) {
+                $priceText .= "$bedsCount x ";
+            }
+            $priceText .= "$priceIndex x $currentPrice €";
+        }
         echo json_encode(['success' => 'true', 'price' => $totalPrice, 'priceText' => $priceText]);
     }
 

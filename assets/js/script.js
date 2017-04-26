@@ -78,13 +78,29 @@ $(function() {
     var bookingCreateForm = $('.create-booking');
     if (bookingCreateForm.length) {
         $(bookingCreateForm).ready(function() {
-            $(document).trigger('apartments-get-price');
+            if ($('[name="id"]').length == 0) {
+                $(document).trigger('apartments-get-price');
+            }
             $(document).trigger('apartments-get-booked-dates', [$('#apartment').val(), $('[name="id"]').val()]);
         });
         $('#apartment, #start_date, #end_date').on('change', function () {
             $(document).trigger('apartments-get-price');
             if ($(this).attr('id') == 'apartment') {
                 $(document).trigger('apartments-get-booked-dates', [$(this).val(), $('[name="id"]').val()]);
+            }
+        });
+        $(bookingCreateForm).on('click', '#payed_confirm', function () {
+            var toPay = parseFloat($('#to_pay').val()),
+                alreadyPayed = parseFloat($('#payed').val()),
+                newAlreadyPayed = 0;
+            if (toPay > alreadyPayed) {
+                newAlreadyPayed = toPay - alreadyPayed;
+                $('#payed').val(newAlreadyPayed);
+                if (confirm('Do you want to confirm payment?')) {
+                    $('#submit').click();
+                } else {
+                    $('#payed').val(alreadyPayed);
+                }
             }
         });
     }

@@ -11,9 +11,9 @@ class Calendar extends MY_Controller
 
     public function index($ym = null)
     {
-        $this->title = $this->configs->get(false, 'calendar_title');
-        $apartments = $this->apartments->get();
         $filtersDate = $ym && ($d = date('Y-m', strtotime($ym))) ? $d : date('Y-m');
+        $this->title = utf8_encode(strftime('%B', strtotime($filtersDate)));
+        $apartments = $this->apartments->get();
         $monthDays = intval(date("t", strtotime($filtersDate)));
         $monthDays = date_range("$filtersDate-01", "$filtersDate-$monthDays");
         $ym = date('Ym', strtotime($filtersDate));

@@ -59,7 +59,8 @@ class Bookings extends MY_Controller
             array_extract($data, 'submit');
             if ($this->bookings->checkFreeBooking($data)) {
                 $this->bookings->update($data);
-                redirect();
+                $m = date('Y-m', strtotime($data['start']));
+                redirect("/calendar/month/$m");
             } else {
                 $this->showView(
                     'bookings/create',

@@ -447,6 +447,12 @@ button {
     color: red;
 }
 
+.month a.little-month {
+    font-size:  15px;
+    color: black;
+    padding: 0 5px;
+}
+
 .month > *:first-child,
 .month > *:last-child {
     position: relative;
