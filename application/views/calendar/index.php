@@ -9,10 +9,25 @@
     $previousMonthText = utf8_encode(strftime('%B', strtotime($previousMonth)));
     $currentMonthText = utf8_encode(strftime('%B', strtotime($currentMonth)));
     $nextMonthText = utf8_encode(strftime('%B', strtotime($nextMonth)));
+    $prevMonthsArray = [];
+    $nextMonthsArray = [];
+    for ($i = 1; $i <= 5; $i++) {
+        $p = 6 - $i;
+        $pm = date('Y-m', strtotime($currentMonth . " -{$p} month"));
+        $nm = date('Y-m', strtotime($currentMonth . " +{$i} month"));
+        $prevMonthsArray[$pm] = utf8_encode(strftime('%b', strtotime($pm)));
+        $nextMonthsArray[$nm] = utf8_encode(strftime('%b', strtotime($nm)));
+    }
     ?>
+    <?php foreach ($prevMonthsArray as $m => $pM) : ?>
+        <a class="little-month" href="/calendar/month/<?= $m; ?>"><?= $pM; ?></a>
+    <?php endforeach; ?>
     <a id="prev_month" href="javascript:void(0)" data-attr-href="/calendar/month/<?= $previousMonth; ?>"><?//= $previousMonthText; ?>&laquo;</a>
     <span><?= $currentMonthText; ?></span>
     <a id="next_month" href="javascript:void(0)" data-attr-href="/calendar/month/<?= $nextMonth; ?>"><?//= $nextMonthText; ?>&raquo;</a>
+    <?php foreach ($nextMonthsArray as $m => $nM) : ?>
+        <a class="little-month" href="/calendar/month/<?= $m; ?>"><?= $nM; ?></a>
+    <?php endforeach; ?>
 </div>
 <table class="calendar">
     <tr>
@@ -59,6 +74,18 @@
             ?>
         </tr>
     <?php endforeach; ?>
+    <tr>
+        <th></th>
+        <?php $i = 0; ?>
+        <?php foreach ($monthDays as $date) : ?>
+            <?php
+            $i++;
+            $isWeekend = in_array(date('N', strtotime($date)), [6, 7]);
+            $isToday = $date == date('Y-m-d');
+            ?>
+            <th class="date <?= $isWeekend ? 'weekend' : '' ?> <?= $isToday ? 'today' : '' ?>"><?= $i; ?></th>
+        <?php endforeach; ?>
+    </tr>
 </table>
 <script>
     var bookingsInfo = <?= json_encode($bookingsInfo); ?>;
