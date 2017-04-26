@@ -56,6 +56,8 @@
 if (strripos($_SERVER['SERVER_NAME'], 'apartments')) {
     define('ENVIRONMENT', 'development');
 } elseif (strripos($_SERVER['SERVER_NAME'], 'nrw.ibolit.de') !== false) {
+    define('ENVIRONMENT', 'testing');
+} elseif (strripos($_SERVER['SERVER_NAME'], 'kalender.appartements-nrw.eu') !== false) {
     define('ENVIRONMENT', 'production');
 } else {
     define('ENVIRONMENT', isset($_SERVER['CI_ENV']) ? $_SERVER['CI_ENV'] : 'development');
