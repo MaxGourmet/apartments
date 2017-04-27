@@ -35,12 +35,39 @@ $(function() {
         }
     });
     //Bookings Table
-    $('.bookings').on('click', 'tr', function () {
+    $('.bookings').on('click', 'tr', function (e) {
+        if ($(e.target).hasClass('payed_confirm')) {
+            return;
+        }
         var bookingId = $(this).attr('data-attr-booking_id');
         if (!bookingId) {
             return;
         }
         location.href = '/bookings/edit/' + bookingId;
+    });
+    $('.bookings').on('click', '.payed_confirm', function () {
+        var data = $(this).data();
+        if (typeof data['id'] == 'undefined') {
+            return;
+        }
+        var el = $(this).parent(),
+            to_pay = $(el).siblings('.to_pay'),
+            payed = $(el).siblings('.payed'),
+            diff = $(el).siblings('.diff');
+        if (confirm('Do you want to confirm payment?')) {
+            $(document).trigger('show-loading');
+            $(payed).html($(to_pay).html());
+            $(diff).html("0");
+            $.post(
+                '/bookings/confirmPayment',
+                data,
+                function() {
+                    $(document).trigger('hide-loading');
+                    location.reload();
+                },
+                'json'
+            );
+        }
     });
     //Apartments Table
     $('.apartments').on('click', '.delete', function () {
