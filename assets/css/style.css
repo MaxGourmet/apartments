@@ -64,6 +64,10 @@ table {
     border:          1px solid #c9c9c9;
 }
 
+table.calendar {
+    border: none;
+}
+
 a {
     text-decoration: none;
 }
@@ -80,15 +84,40 @@ input {
     appearance:         none;
 }
 
-.calendar {
-    width:    100%;
-    position: relative;
-    overflow: hidden;
+.calendar-wrap {
+    width:          100%;
+    overflow:       hidden;
+    position:       absolute;
+    display:        block;
+    left:           0;
+    right:          0;
+    top:            66px;
+    bottom:         5px;
+    padding-bottom: 23px;
 }
 
+.calendar-wrap .inner {
+    overflow: auto;
+    height:   100%;
+}
+
+.calendar thead {
+    position:   absolute;
+    z-index:    1;
+    background: #fff;
+}
+
+.calendar tfoot {
+    bottom:     0;
+    position:   absolute;
+    background: #fff;
+}
+
+.calendar tr th:first-child,
 .calendar tr td:first-child {
     text-align:    right;
     padding-right: 3px;
+    width:         9999px;
 }
 
 .calendar tr td:nth-child(n+2) {
@@ -97,7 +126,7 @@ input {
 
 .calendar tr:nth-child(n+2) td:nth-child(n+2) {
     cursor:    pointer;
-    font-size: 10px;
+    font-size: 11px;
 }
 
 .calendar th,
@@ -131,8 +160,8 @@ input {
     z-index:        1;
     display:        block;
     pointer-events: none;
-    left:           0;
-    right:          0;
+    left:           -1px;
+    right:          -1px;
     top:            -4500px;
     background:     rgba(0, 0, 0, .2);
     height:         9999px;
@@ -630,6 +659,14 @@ input:disabled {
 
     .calendar tr td:first-child {
         white-space: nowrap;
+    }
+
+    .calendar {
+        padding-bottom: 17px;
+    }
+
+    .calendar tbody {
+        top: 20px;
     }
 }
 

@@ -1,5 +1,5 @@
 var dateArray = [];
-$(function() {
+$(function () {
     var d = new Date();
     $('#start_date').datepicker({
         dateFormat: "yy-mm-dd",
@@ -10,7 +10,7 @@ $(function() {
             endDate.datepicker('setDate', date);
             endDate.datepicker('option', 'minDate', date);
         },
-        beforeShowDay: function(date){
+        beforeShowDay: function (date) {
             var string = jQuery.datepicker.formatDate('yy-mm-dd', date);
             return [$.inArray(string, dateArray) == -1];
         }
@@ -18,7 +18,7 @@ $(function() {
     $('#end_date').datepicker({
         dateFormat: "yy-mm-dd",
         minDate: d,
-        beforeShowDay: function(date){
+        beforeShowDay: function (date) {
             var string = jQuery.datepicker.formatDate('yy-mm-dd', date);
             return [$.inArray(string, dateArray) == -1];
         }
@@ -77,7 +77,7 @@ $(function() {
     //booking create form
     var bookingCreateForm = $('.create-booking');
     if (bookingCreateForm.length) {
-        $(bookingCreateForm).ready(function() {
+        $(bookingCreateForm).ready(function () {
             if ($('[name="id"]').length == 0) {
                 $(document).trigger('apartments-get-price');
             }
@@ -121,9 +121,9 @@ $(function() {
     $(document).on('apartments-get-price', function () {
         $(document).trigger('show-loading');
         var data = {
-            'apartment_id' : $('#apartment').val(),
-            'start_date' : $('#start_date').val(),
-            'end_date' : $('#end_date').val()
+            'apartment_id': $('#apartment').val(),
+            'start_date': $('#start_date').val(),
+            'end_date': $('#end_date').val()
         };
         $.post(
             '/apartments/getPrice',
@@ -143,16 +143,16 @@ $(function() {
         );
     });
 
-    $('.search').on('click', '#search', function() {
+    $('.search').on('click', '#search', function () {
         $(document).trigger('search');
     });
 
-    $('.search').on('keyup', '[name="search"]', function(ev) {
+    $('.search').on('keyup', '[name="search"]', function (ev) {
         if (ev.keyCode == '13') {
             $(document).trigger('search');
         }
     });
-    $('.buttons').on('click', '#cancel', function() {
+    $('.buttons').on('click', '#cancel', function () {
         history.back();
     });
     $(document).on('search', function () {
@@ -162,12 +162,12 @@ $(function() {
         }
         location.href = '/bookings/search/?search=' + search;
     });
-    $(document).on('show-loading', function() {
+    $(document).on('show-loading', function () {
         if (!$("#loading").length) {
             $('body').append('<div id="loading"><div></div></div>');
         }
     });
-    $(document).on('hide-loading', function() {
+    $(document).on('hide-loading', function () {
         if ($("#loading").length) {
             $("#loading").remove();
         }
@@ -181,65 +181,65 @@ $(function() {
         e.stopPropagation();
     });
 
-    $('.month').on('click', 'a', function() {
+    $('.month').on('click', 'a', function () {
         var href = $(this).attr('data-attr-href');
-        if (href)  {
+        if (href) {
             location.href = href;
         }
     });
 
-    $('.calendar th.date').click(function () {
+    $('body').on('click', '.calendar th.date', function () {
         $('.calendar th.date').removeClass('marked');
         $(this).addClass('marked');
     });
 
-    function detectswipe(el,func) {
+    function detectswipe(el, func) {
         swipe_det = new Object();
         swipe_det.sX = 0;
         swipe_det.sY = 0;
         swipe_det.eX = 0;
         swipe_det.eY = 0;
-        var min_x = 80;  //min x swipe for horizontal swipe
+        var min_x = 150;  //min x swipe for horizontal swipe
         var max_x = 40;  //max x difference for vertical swipe
         var min_y = 40;  //min y swipe for vertical swipe
         var max_y = 30;  //max y difference for horizontal swipe
         var direc = "";
         var ele = document.getElementById(el);
-        ele.addEventListener('touchstart',function(e){
+        ele.addEventListener('touchstart', function (e) {
             //console.log(e);return;
             var t = e.touches[0];
             swipe_det.sX = t.screenX;
             swipe_det.sY = t.screenY;
-        },false);
+        }, false);
         //ele.addEventListener('touchmove',function(e){
         //    // e.preventDefault();
         //},false);
-        ele.addEventListener('touchend',function(e){
+        ele.addEventListener('touchend', function (e) {
             //console.log(e);return;
             var t = e.changedTouches[0];
             swipe_det.eX = t.screenX;
             swipe_det.eY = t.screenY;
             //horizontal detection
             if ((((swipe_det.eX - min_x > swipe_det.sX) || (swipe_det.eX + min_x < swipe_det.sX)) && ((swipe_det.eY < swipe_det.sY + max_y) && (swipe_det.sY > swipe_det.eY - max_y)))) {
-                if(swipe_det.eX > swipe_det.sX) direc = "r";
+                if (swipe_det.eX > swipe_det.sX) direc = "r";
                 else direc = "l";
             }
 
             if (direc != "") {
-                if(typeof func == 'function') func(el,direc);
+                if (typeof func == 'function') func(el, direc);
             }
             direc = "";
-        },false);
+        }, false);
     }
 
-    detectswipe('body',function (el,d) {
+    detectswipe('body', function (el, d) {
         var href = '';
-        if(d === 'l'){
+        if (d === 'l') {
             href = $('#next_month').attr('data-attr-href');
-        } else if(d === 'r'){
+        } else if (d === 'r') {
             href = $('#prev_month').attr('data-attr-href');
         }
-        if (href)  {
+        if (href) {
             location.href = href;
         }
     });
@@ -264,7 +264,7 @@ $(function() {
                 if (text == '') {
                     continue;
                 }
-                var td = $(calendarTable).find('td[data-attr-booking_id='+ bookingId +']'),
+                var td = $(calendarTable).find('td[data-attr-booking_id=' + bookingId + ']'),
                     firstPosition = false,
                     tdIndexToDelte = [];
                 for (var i = 0; i < td.length; i++) {
@@ -292,4 +292,15 @@ $(function() {
             }
         }
     }
+
+    //fix calendar layout
+    function fixCalendar() {
+        var cellWidth = $('.calendar tr td:first-child').width();
+        $('.calendar tr th:first-child').css('min-width', cellWidth + 5);
+    }
+
+    fixCalendar();
+    $(window).resize(function () {
+        fixCalendar();
+    })
 });
