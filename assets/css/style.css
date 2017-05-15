@@ -81,7 +81,9 @@ input {
 }
 
 .calendar {
-    width: 100%;
+    width:    100%;
+    position: relative;
+    overflow: hidden;
 }
 
 .calendar tr td:first-child {
@@ -118,11 +120,29 @@ input {
 }
 
 .calendar th.date {
-    background-color: #f9f9ac
+    background-color: #f9f9ac;
+    position:         relative;
+    overflow:         visible;
 }
 
-.calendar th.date.weekend, .calendar td.weekend {
-    background-color: #dfdf88
+.calendar th.date.marked:before {
+    content:        "";
+    position:       absolute;
+    z-index:        1;
+    display:        block;
+    pointer-events: none;
+    left:           0;
+    right:          0;
+    top:            -4500px;
+    background:     rgba(0, 0, 0, .2);
+    height:         9999px;
+
+}
+
+.calendar td.booked.weekend,
+.calendar th.date.weekend,
+.calendar td.weekend {
+    background-color: #dfdf88 !important;
 }
 
 .calendar th.date.today {
@@ -439,7 +459,7 @@ button {
 .month {
     text-align: center;
     color:      red;
-    margin:     0px 0 35px;
+    margin:     0px 0 13px;
     font-size:  30px;
 }
 
@@ -448,9 +468,10 @@ button {
 }
 
 .month a.little-month {
-    font-size:  15px;
-    color: black;
-    padding: 0 5px;
+    font-size:      15px;
+    color:          black;
+    padding:        0 5px;
+    vertical-align: middle;
 }
 
 .month > *:first-child,
