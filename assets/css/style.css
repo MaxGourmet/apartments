@@ -168,10 +168,13 @@ input {
 
 }
 
-.calendar td.booked.weekend,
+.calendar td.booked.weekend.last-day,
+.calendar td.booked.weekend.first-day {
+    background-color: #dfdf88 !important;
+}
 .calendar th.date.weekend,
 .calendar td.weekend {
-    background-color: #dfdf88 !important;
+    background-color: #dfdf88;
 }
 
 .calendar th.date.today {
@@ -657,12 +660,12 @@ input:disabled {
         font-size: 14px;
     }
 
-    .calendar tr td:first-child {
-        white-space: nowrap;
+    .calendar-wrap {
+        padding-bottom: 20px;
     }
 
-    .calendar {
-        padding-bottom: 17px;
+    .calendar tr td:first-child {
+        white-space: nowrap;
     }
 
     .calendar tbody {
