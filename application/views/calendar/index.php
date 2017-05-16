@@ -13,7 +13,7 @@
     $nextMonthsArray = [];
     for ($i = 1; $i <= 6; $i++) {
         if ($i < 3) {
-            $p = 6 - $i;
+            $p = 3 - $i;
             $pm = date('Y-m', strtotime($currentMonth . " -{$p} month"));
             $prevMonthsArray[$pm] = utf8_encode(strftime('%b', strtotime($pm)));
         }
