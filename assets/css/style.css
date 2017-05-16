@@ -495,7 +495,9 @@ button {
     font-size:  30px;
 }
 
-.month a {
+#prev_month,
+#next_month,
+.month {
     color: red;
 }
 
