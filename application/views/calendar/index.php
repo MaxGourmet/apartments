@@ -12,10 +12,12 @@
     $prevMonthsArray = [];
     $nextMonthsArray = [];
     for ($i = 1; $i <= 5; $i++) {
-        $p = 6 - $i;
-        $pm = date('Y-m', strtotime($currentMonth . " -{$p} month"));
+        if ($i < 3) {
+            $p = 6 - $i;
+            $pm = date('Y-m', strtotime($currentMonth . " -{$p} month"));
+            $prevMonthsArray[$pm] = utf8_encode(strftime('%b', strtotime($pm)));
+        }
         $nm = date('Y-m', strtotime($currentMonth . " +{$i} month"));
-        $prevMonthsArray[$pm] = utf8_encode(strftime('%b', strtotime($pm)));
         $nextMonthsArray[$nm] = utf8_encode(strftime('%b', strtotime($nm)));
     }
     ?>
