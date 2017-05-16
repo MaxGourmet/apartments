@@ -13,6 +13,7 @@ class Calendar extends MY_Controller
     {
         $filtersDate = $ym && ($d = date('Y-m', strtotime($ym))) ? $d : date('Y-m');
         $this->title = utf8_encode(strftime('%B', strtotime($filtersDate)));
+        $this->needTitle = false;
         $apartments = $this->apartments->get();
         $monthDays = intval(date("t", strtotime($filtersDate)));
         $monthDays = date_range("$filtersDate-01", "$filtersDate-$monthDays");

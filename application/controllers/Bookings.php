@@ -249,10 +249,22 @@ class Bookings extends MY_Controller
         }
     }
 
-    public function delete($id) {
+    public function delete($id)
+    {
         if ($id) {
             $this->bookings->delete($id);
         }
         redirect('calendar');
+    }
+
+    public function confirmPayment()
+    {
+        if (!$this->checkAjax()) {
+            return;
+        }
+        $data = $this->post('data');
+        $booking = $this->bookings->getById($data['id']);
+        $booking['payed'] = $booking['to_pay'];
+        $this->bookings->update($booking);
     }
 }

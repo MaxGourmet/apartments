@@ -35,12 +35,39 @@ $(function () {
         }
     });
     //Bookings Table
-    $('.bookings').on('click', 'tr', function () {
+    $('.bookings').on('click', 'tr', function (e) {
+        if ($(e.target).hasClass('payed_confirm')) {
+            return;
+        }
         var bookingId = $(this).attr('data-attr-booking_id');
         if (!bookingId) {
             return;
         }
         location.href = '/bookings/edit/' + bookingId;
+    });
+    $('.bookings').on('click', '.payed_confirm', function () {
+        var data = $(this).data();
+        if (typeof data['id'] == 'undefined') {
+            return;
+        }
+        var el = $(this).parent(),
+            to_pay = $(el).siblings('.to_pay'),
+            payed = $(el).siblings('.payed'),
+            diff = $(el).siblings('.diff');
+        if (confirm('Do you want to confirm payment?')) {
+            $(document).trigger('show-loading');
+            $(payed).html($(to_pay).html());
+            $(diff).html("0");
+            $.post(
+                '/bookings/confirmPayment',
+                data,
+                function() {
+                    $(document).trigger('hide-loading');
+                    location.reload();
+                },
+                'json'
+            );
+        }
     });
     //Apartments Table
     $('.apartments').on('click', '.delete', function () {
@@ -193,53 +220,53 @@ $(function () {
         $(this).addClass('marked');
     });
 
-    function detectswipe(el, func) {
+    function detectswipe(el,func) {
         swipe_det = new Object();
         swipe_det.sX = 0;
         swipe_det.sY = 0;
         swipe_det.eX = 0;
         swipe_det.eY = 0;
-        var min_x = 150;  //min x swipe for horizontal swipe
+        var min_x = 20;  //min x swipe for horizontal swipe
         var max_x = 40;  //max x difference for vertical swipe
         var min_y = 40;  //min y swipe for vertical swipe
-        var max_y = 30;  //max y difference for horizontal swipe
+        var max_y = 50;  //max y difference for horizontal swipe
         var direc = "";
         var ele = document.getElementById(el);
-        ele.addEventListener('touchstart', function (e) {
+        ele.addEventListener('touchstart',function(e){
             //console.log(e);return;
             var t = e.touches[0];
             swipe_det.sX = t.screenX;
             swipe_det.sY = t.screenY;
-        }, false);
+        },false);
         //ele.addEventListener('touchmove',function(e){
         //    // e.preventDefault();
         //},false);
-        ele.addEventListener('touchend', function (e) {
+        ele.addEventListener('touchend',function(e){
             //console.log(e);return;
             var t = e.changedTouches[0];
             swipe_det.eX = t.screenX;
             swipe_det.eY = t.screenY;
             //horizontal detection
             if ((((swipe_det.eX - min_x > swipe_det.sX) || (swipe_det.eX + min_x < swipe_det.sX)) && ((swipe_det.eY < swipe_det.sY + max_y) && (swipe_det.sY > swipe_det.eY - max_y)))) {
-                if (swipe_det.eX > swipe_det.sX) direc = "r";
+                if(swipe_det.eX > swipe_det.sX) direc = "r";
                 else direc = "l";
             }
 
             if (direc != "") {
-                if (typeof func == 'function') func(el, direc);
+                if(typeof func == 'function') func(el,direc);
             }
             direc = "";
-        }, false);
+        },false);
     }
 
-    detectswipe('body', function (el, d) {
+    detectswipe('body',function (el,d) {
         var href = '';
-        if (d === 'l') {
+        if(d === 'l'){
             href = $('#next_month').attr('data-attr-href');
-        } else if (d === 'r') {
+        } else if(d === 'r'){
             href = $('#prev_month').attr('data-attr-href');
         }
-        if (href) {
+        if (href)  {
             location.href = href;
         }
     });

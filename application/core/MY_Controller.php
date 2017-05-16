@@ -11,6 +11,7 @@ class MY_Controller extends CI_Controller {
     public $title = 'Apartments';
     public $menuLang = [];
     public $exceptions = '';
+    public $needTitle = true;
 
     public function __construct()
     {
@@ -36,11 +37,12 @@ class MY_Controller extends CI_Controller {
     public function showView($viewName, $data = [])
     {
         $title = $this->title;
+        $needTitle = $this->needTitle;
         if (isset($data['title'])) {
             $title = array_extract($data, 'title');
         }
         $content = $this->load->view($viewName, $data, true);
-        $this->load->view('layout', ['title' => $title, 'content' => $content, 'menuLang' => $this->menuLang]);
+        $this->load->view('layout', ['title' => $title, 'content' => $content, 'menuLang' => $this->menuLang, 'needTitle' => $needTitle]);
     }
 
     protected function get($parameter = '')
