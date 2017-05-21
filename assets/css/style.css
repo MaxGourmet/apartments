@@ -85,31 +85,23 @@ input {
 }
 
 .calendar-wrap {
-    width:          100%;
-    overflow:       hidden;
-    position:       absolute;
-    display:        block;
-    left:           0;
-    right:          0;
-    top:            66px;
-    bottom:         5px;
-    padding-bottom: 23px;
+    width:    100%;
+    overflow: hidden;
+    position: absolute;
+    display:  block;
+    left:     0;
+    right:    0;
+    top:      66px;
+    bottom:   5px;
 }
 
 .calendar-wrap .inner {
     overflow: auto;
     height:   100%;
+    position: relative;
 }
 
 .calendar thead {
-    position:   absolute;
-    z-index:    1;
-    background: #fff;
-}
-
-.calendar tfoot {
-    bottom:     0;
-    position:   absolute;
     background: #fff;
 }
 
@@ -150,11 +142,14 @@ input {
 
 .calendar th.date {
     background-color: #f9f9ac;
-    position:         relative;
     overflow:         visible;
 }
 
-.calendar th.date.marked:before {
+.calendar th {
+    position: relative;
+}
+
+.calendar th.marked:before {
     content:        "";
     position:       absolute;
     z-index:        1;
@@ -162,16 +157,21 @@ input {
     pointer-events: none;
     left:           -1px;
     right:          -1px;
-    top:            -4500px;
+    top:            auto;
+    bottom:         0;
     background:     rgba(0, 0, 0, .2);
     height:         9999px;
+}
 
+.floatThead-wrapper {
+    height: 100%;
 }
 
 .calendar td.booked.weekend.last-day,
 .calendar td.booked.weekend.first-day {
     background-color: #dfdf88 !important;
 }
+
 .calendar th.date.weekend,
 .calendar td.weekend {
     background-color: #dfdf88;
@@ -662,16 +662,8 @@ input:disabled {
         font-size: 14px;
     }
 
-    .calendar-wrap {
-        padding-bottom: 20px;
-    }
-
     .calendar tr td:first-child {
         white-space: nowrap;
-    }
-
-    .calendar tbody {
-        top: 20px;
     }
 }
 

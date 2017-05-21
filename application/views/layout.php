@@ -2,6 +2,7 @@
 <html>
 <head>
     <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=10; IE=9; IE=8; IE=7; IE=EDGE" />
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
     <title><?= $title ?></title>
     <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
@@ -10,6 +11,7 @@
     <link type="text/css" rel="stylesheet" href="/assets/css/style.css?v=4" />
     <script type="application/javascript" src="/assets/js/jquery-1.8.3.js"></script>
     <script type="application/javascript" src="/assets/js/jquery-ui-1.9.2.custom.min.js"></script>
+    <script type="application/javascript" src="/assets/js/jquery.floatThead.min.js"></script>
     <script type="application/javascript" src="/assets/js/script.js?v=3"></script>
 </head>
 <body id="body">

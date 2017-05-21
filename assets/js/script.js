@@ -189,8 +189,9 @@ $(function () {
     });
 
     $('body').on('click', '.calendar th.date', function () {
+        var cellIndex = $(this).index()+1;
         $('.calendar th.date').removeClass('marked');
-        $(this).addClass('marked');
+        $(this).closest('.calendar-wrap').find('tfoot th:nth-child('+cellIndex+')').addClass('marked');
     });
 
     function detectswipe(el, func) {
@@ -199,7 +200,7 @@ $(function () {
         swipe_det.sY = 0;
         swipe_det.eX = 0;
         swipe_det.eY = 0;
-        var min_x = 150;  //min x swipe for horizontal swipe
+        var min_x = 250;  //min x swipe for horizontal swipe
         var max_x = 40;  //max x difference for vertical swipe
         var min_y = 40;  //min y swipe for vertical swipe
         var max_y = 30;  //max y difference for horizontal swipe
@@ -293,14 +294,12 @@ $(function () {
         }
     }
 
-    //fix calendar layout
-    function fixCalendar() {
-        var cellWidth = $('.calendar tr td:first-child').width();
-        $('.calendar tr th:first-child').css('min-width', cellWidth + 5);
-    }
-
-    fixCalendar();
-    $(window).resize(function () {
-        fixCalendar();
-    })
+    var $table = $('table.calendar');
+    $table.floatThead({
+        top: 66,
+        scrollContainer: function($table){
+            return $table.closest('.inner');
+        },
+        position: 'absolute'
+    });
 });
