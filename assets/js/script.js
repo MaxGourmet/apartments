@@ -1,5 +1,8 @@
 var dateArray = [];
 $(function () {
+    if ($('.month').length > 0) {
+        $('.month').prev('h1').hide();
+    }
     var d = new Date();
     $('#start_date').datepicker({
         dateFormat: "yy-mm-dd",
@@ -189,9 +192,9 @@ $(function () {
     });
 
     $('body').on('click', '.calendar th.date', function () {
-        var cellIndex = $(this).index()+1;
+        var cellIndex = $(this).index() + 1;
         $('.calendar th.date').removeClass('marked');
-        $(this).closest('.calendar-wrap').find('tfoot th:nth-child('+cellIndex+')').addClass('marked');
+        $(this).closest('.calendar-wrap').find('tfoot th:nth-child(' + cellIndex + ')').addClass('marked');
     });
 
     function detectswipe(el, func) {
@@ -297,7 +300,7 @@ $(function () {
     var $table = $('table.calendar');
     $table.floatThead({
         top: 66,
-        scrollContainer: function($table){
+        scrollContainer: function ($table) {
             return $table.closest('.inner');
         },
         position: 'absolute'
