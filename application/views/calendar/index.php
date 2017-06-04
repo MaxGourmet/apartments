@@ -11,9 +11,9 @@
     $nextMonthText = utf8_encode(strftime('%B', strtotime($nextMonth)));
     $prevMonthsArray = [];
     $nextMonthsArray = [];
-    for ($i = 1; $i <= 6; $i++) {
-        if ($i <= 2) {
-            $p = 3 - $i;
+    for ($i = 1; $i <= 5; $i++) {
+        if ($i < 3) {
+            $p = 6 - $i;
             $pm = date('Y-m', strtotime($currentMonth . " -{$p} month"));
             $prevMonthsArray[$pm] = utf8_encode(strftime('%b', strtotime($pm)));
         }
@@ -31,64 +31,76 @@
         <a class="little-month" href="/calendar/month/<?= $m; ?>"><?= $nM; ?></a>
     <?php endforeach; ?>
 </div>
-<table class="calendar">
-    <tr>
-        <th></th>
-        <?php $i = 0; ?>
-        <?php foreach ($monthDays as $date) : ?>
-            <?php
-            $i++;
-            $isWeekend = in_array(date('N', strtotime($date)), [6, 7]);
-            $isToday = $date == date('Y-m-d');
-            ?>
-            <th class="date <?= $isWeekend ? 'weekend' : '' ?> <?= $isToday ? 'today' : '' ?>"><?= $i; ?></th>
-        <?php endforeach; ?>
-    </tr>
-    <?php foreach($apartments as $apartment) : ?>
-        <?php $bookingsForApartment = isset($bookings[$apartment['id']]) ? $bookings[$apartment['id']] : []; ?>
-        <tr data-attr-apartment_id="<?= $apartment['id']; ?>">
-            <td><?= $apartment['address']; ?></td>
-            <?php
-            foreach($monthDays as $date) {
-                $isWeekend = in_array(date('N', strtotime($date)), [6, 7]);
-                $defaultClass = $isWeekend ? 'weekend' : 'free';
-                $addClass = '';
-                $addAttributes = "data-attr-date='$date'";
-                if (!empty($bookingsForApartment)) {
-                    foreach ($bookingsForApartment as $bookingId => $booking) {
-                        $info = '';
-                        $colspan = 1;
-                        if (in_array($date, $booking)) {
-                            $addClass = $booking[0] == $date ? $addClass . ' first-day' : $addClass;
-                            $addClass = $booking[count($booking) - 1] == $date ? $addClass . ' last-day' : $addClass;
-                            $defaultClass = 'booked';
-                            $addAttributes .= " data-attr-booking_id='$bookingId'";
-                            if (isset($bookingsInfo[$bookingId])) {
+<div class="calendar-wrap">
+    <div class="inner">
+            <table class="calendar">
+                <thead>
+                <tr>
+                    <th></th>
+                  <?php $i = 0; ?>
+                  <?php foreach ($monthDays as $date) : ?>
+                    <?php
+                    $i++;
+                    $isWeekend = in_array(date('N', strtotime($date)), [6, 7]);
+                    $isToday = $date == date('Y-m-d');
+                    ?>
+                      <th class="date <?= $isWeekend ? 'weekend' : '' ?> <?= $isToday ? 'today' : '' ?>"><?= $i; ?></th>
+                  <?php endforeach; ?>
+                </tr>
+                </thead>
+                <tbody>
+                <?php foreach($apartments as $apartment) : ?>
+                  <?php $bookingsForApartment = isset($bookings[$apartment['id']]) ? $bookings[$apartment['id']] : []; ?>
+                    <tr data-attr-apartment_id="<?= $apartment['id']; ?>">
+                        <td><?= $apartment['address']; ?></td>
+                      <?php
+                      foreach($monthDays as $date) {
+                        $isWeekend = in_array(date('N', strtotime($date)), [6, 7]);
+                        $defaultClass = $isWeekend ? 'weekend' : 'free';
+                        $addClass = '';
+                        $addAttributes = "data-attr-date='$date'";
+                        if (!empty($bookingsForApartment)) {
+                          foreach ($bookingsForApartment as $bookingId => $booking) {
+                            $info = '';
+                            $colspan = 1;
+                            if (in_array($date, $booking)) {
+                              $addClass = $booking[0] == $date ? $addClass . ' first-day' : $addClass;
+                              $addClass = $booking[count($booking) - 1] == $date ? $addClass . ' last-day' : $addClass;
+                              $defaultClass = $defaultClass == 'weekend' ? 'weekend booked' : 'booked';
+                              $addAttributes .= " data-attr-booking_id='$bookingId'";
+                              if (isset($bookingsInfo[$bookingId])) {
                                 $info = "data-info='{$bookingsInfo[$bookingId]}'";
-//                                $info = $bookingsInfo[$bookingId];
+                                //                                $info = $bookingsInfo[$bookingId];
+                              }
+                              $colspan++;
                             }
-                            $colspan++;
+                          }
                         }
-                    }
-                }
-                echo "<td $info class='$defaultClass $addClass' $addAttributes></td>";
-            }
-            ?>
-        </tr>
-    <?php endforeach; ?>
-    <tr>
-        <th></th>
-        <?php $i = 0; ?>
-        <?php foreach ($monthDays as $date) : ?>
-            <?php
-            $i++;
-            $isWeekend = in_array(date('N', strtotime($date)), [6, 7]);
-            $isToday = $date == date('Y-m-d');
-            ?>
-            <th class="date <?= $isWeekend ? 'weekend' : '' ?> <?= $isToday ? 'today' : '' ?>"><?= $i; ?></th>
-        <?php endforeach; ?>
-    </tr>
-</table>
+                        echo "<td $info class='$defaultClass $addClass' $addAttributes></td>";
+                      }
+                      ?>
+                    </tr>
+                <?php endforeach; ?>
+                </tbody>
+                <tfoot>
+                <tr>
+                    <th></th>
+                  <?php $i = 0; ?>
+                  <?php foreach ($monthDays as $date) : ?>
+                    <?php
+                    $i++;
+                    $isWeekend = in_array(date('N', strtotime($date)), [6, 7]);
+                    $isToday = $date == date('Y-m-d');
+                    ?>
+                      <th class="date <?= $isWeekend ? 'weekend' : '' ?> <?= $isToday ? 'today' : '' ?>"><?= $i; ?></th>
+                  <?php endforeach; ?>
+                </tr>
+                </tfoot>
+
+            </table>
+    </div>
+</div>
+
 <script>
     var bookingsInfo = <?= json_encode($bookingsInfo); ?>;
 </script>
