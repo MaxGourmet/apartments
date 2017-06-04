@@ -2,18 +2,18 @@
     <?php
     $previousMonth = date('Y-m', strtotime($currentMonth . " -1month"));
     $nextMonth = date('Y-m', strtotime($currentMonth . " +1month"));
-//    $previousMonthText = date('F', strtotime($previousMonth));
-//    $currentMonthText = date('F', strtotime($currentMonth));
-//    $nextMonthText = date('F', strtotime($nextMonth));strftime('%A')
+    //    $previousMonthText = date('F', strtotime($previousMonth));
+    //    $currentMonthText = date('F', strtotime($currentMonth));
+    //    $nextMonthText = date('F', strtotime($nextMonth));strftime('%A')
     $r = setlocale(LC_ALL, 'de_DE@euro', 'de_DE', 'de', 'ge');
     $previousMonthText = utf8_encode(strftime('%B', strtotime($previousMonth)));
     $currentMonthText = utf8_encode(strftime('%B', strtotime($currentMonth)));
     $nextMonthText = utf8_encode(strftime('%B', strtotime($nextMonth)));
     $prevMonthsArray = [];
     $nextMonthsArray = [];
-    for ($i = 1; $i <= 5; $i++) {
-        if ($i < 3) {
-            $p = 6 - $i;
+    for ($i = 1; $i <= 6; $i++) {
+        if ($i <= 2) {
+            $p = 3 - $i;
             $pm = date('Y-m', strtotime($currentMonth . " -{$p} month"));
             $prevMonthsArray[$pm] = utf8_encode(strftime('%b', strtotime($pm)));
         }
