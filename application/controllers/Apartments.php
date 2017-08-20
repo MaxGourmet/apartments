@@ -99,10 +99,10 @@ class Apartments extends MY_Controller
         $priceIndex = 1;
         $daysForPrice2 = $this->configs->get(false, 'days_for_price2');
         $daysForPrice3 = $this->configs->get(false, 'days_for_price3');
-        if ($countDays >= $daysForPrice2) {
-            $priceIndex = 2;
-        } elseif ($countDays >= $daysForPrice3) {
+        if ($countDays >= $daysForPrice3) {
             $priceIndex = 3;
+        } elseif ($countDays >= $daysForPrice2) {
+            $priceIndex = 2;
         }
         $price = $apartment["price{$priceIndex}"];
         $fairsFilters = [

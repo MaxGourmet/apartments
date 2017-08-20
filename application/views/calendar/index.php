@@ -56,7 +56,7 @@
                       <?php
                       foreach($monthDays as $date) {
                         $isWeekend = in_array(date('N', strtotime($date)), [6, 7]);
-                        $defaultClass = $isWeekend ? 'weekend' : 'free';
+                        $defaultClass = $isWeekend ? 'weekend free' : 'free';
                         $addClass = '';
                         $addAttributes = "data-attr-date='$date'";
                         if (!empty($bookingsForApartment)) {
