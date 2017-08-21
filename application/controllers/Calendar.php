@@ -30,8 +30,8 @@ class Calendar extends MY_Controller
             $bookingsInfo[$booking['id']] = $preparedInfo;
         }
         $this->bookings->prepare($bookings);
-        $start = date('Y-m-01');
-        $end = date('Y-m-31');
+        $start = date('Y-m-01', strtotime($filtersDate));
+        $end = date('Y-m-31', strtotime($filtersDate));
         $fairs = $this->fairs->get([
             'filters' => [
                 "(start >= '$start' AND end <= '$end')"
