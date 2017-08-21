@@ -322,6 +322,39 @@ $(function () {
                 $(td[firstPosition]).find('.booking_info').width(width * (cnt + 1));
             }
         }
+        if (typeof fairs != undefined) {
+            for (var fairId in fairs) {
+                if (!fairs.hasOwnProperty(fairId)) {
+                    continue;
+                }
+                var text = fairs[fairId].trim();
+                if (text == '') {
+                    continue;
+                }
+                var td = $(calendarTable).find('td[data-fair-id=' + fairId + ']'),
+                    firstPosition = false,
+                    tdIndexToDelte = [];
+                for (var i = 0; i < td.length; i++) {
+                    if (firstPosition === false) {
+                        firstPosition = i;
+                    } else {
+                        tdIndexToDelte.push(i);
+                    }
+                }
+                var cnt = tdIndexToDelte.length,
+                    width = $(td[0]).width();
+                for (var k in tdIndexToDelte) {
+                    if (!tdIndexToDelte.hasOwnProperty(k)) {
+                        continue;
+                    }
+                    $(td[tdIndexToDelte[k]]).remove();
+                }
+                $(td[firstPosition]).attr('colspan', cnt + 1);
+                //text.substr(0, 4*(cnt + 1));
+                $(td[firstPosition]).html("<div class='fair_info'>" + text + "</div>");
+                $(td[firstPosition]).find('.fair_info').width(width * (cnt + 1));
+            }
+        }
     }
 
     var $table = $('table.calendar');

@@ -109,11 +109,15 @@ input {
 .calendar tr td:first-child {
     text-align:    right;
     padding-right: 3px;
-    width:         9999px;
+    width:         40%;
 }
 
 .calendar tr td:nth-child(n+2) {
     width: 23px
+}
+
+.calendar tr th:last-child, .calendar tr td:last-child {
+    width: 100px;
 }
 
 .calendar tr:nth-child(n+2) td:nth-child(n+2) {
