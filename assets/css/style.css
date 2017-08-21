@@ -124,6 +124,9 @@ input {
     cursor:    pointer;
     font-size: 11px;
 }
+.calendar tr td:last-child {
+    font-size: 14px!important;
+}
 
 .calendar th,
 .calendar td {

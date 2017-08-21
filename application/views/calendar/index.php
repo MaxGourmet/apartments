@@ -20,7 +20,7 @@
         $nm = date('Y-m', strtotime($currentMonth . " +{$i} month"));
         $nextMonthsArray[$nm] = utf8_encode(strftime('%b', strtotime($nm)));
     }
-    $year = date('y');
+    $year = date('y', strtotime($currentMonth));
     ?>
     <?php foreach ($prevMonthsArray as $m => $pM) : ?>
         <a class="little-month" href="/calendar/month/<?= $m; ?>"><?= $pM; ?></a>
