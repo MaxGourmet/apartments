@@ -34,7 +34,7 @@ class Calendar extends MY_Controller
         $end = date('Y-m-31', strtotime($filtersDate));
         $fairs = $this->fairs->get([
             'filters' => [
-                "(start >= '$start' AND end <= '$end')"
+                "(start >= '$start' OR end <= '$end')"
             ]
         ]);
         $fairRes = [];
