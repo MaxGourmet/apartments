@@ -120,10 +120,11 @@ input {
     width: 100px;
 }
 
-.calendar tr:nth-child(n+2) td:nth-child(n+2) {
+.calendar tr:nth-child(n+4) td:nth-child(n+2) {
     cursor:    pointer;
     font-size: 11px;
 }
+
 .calendar tr td:last-child {
     font-size: 16px!important;
 }
