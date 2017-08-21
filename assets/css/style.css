@@ -125,7 +125,7 @@ input {
     font-size: 11px;
 }
 .calendar tr td:last-child {
-    font-size: 14px!important;
+    font-size: 16px!important;
 }
 
 .calendar th,
