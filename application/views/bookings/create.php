@@ -47,7 +47,7 @@ echo div($input, ['class' => 'form-input half half-1']);
 
 $input = form_label('Time end', 'end_time')
     . form_input(['name' => 'end_time', 'id' => 'end_time', 'value' => $booking['end_time']]);
-echo div($input, ['class' => 'form-input half half-1']);
+echo div($input, ['class' => 'form-input half half-2']);
 
 $input = form_button(['name' => 'cancel', 'id' => 'cancel', 'content' => 'Abbrechen'])
     . form_submit(['name' => 'submit', 'id' => 'submit', 'value' => 'Speichern']);
