@@ -49,12 +49,13 @@ $input = form_label('Time end', 'end_time')
     . form_input(['name' => 'end_time', 'id' => 'end_time', 'value' => $booking['end_time']]);
 echo div($input, ['class' => 'form-input half half-2']);
 
-$input = form_button(['name' => 'cancel', 'id' => 'cancel', 'content' => 'Abbrechen'])
-    . form_submit(['name' => 'submit', 'id' => 'submit', 'value' => 'Speichern']);
-
 $input = form_label('Payment', 'payment_method')
     . form_dropdown(['name' => 'payment_method', 'id' => 'payment_method'], $payments, $booking['payment_method']);
 echo div($input, ['class' => 'form-input']);
+
+$input = form_button(['name' => 'cancel', 'id' => 'cancel', 'content' => 'Abbrechen'])
+    . form_submit(['name' => 'submit', 'id' => 'submit', 'value' => 'Speichern']);
+
 
 if (isset($booking['id'])) {
     $input .= form_button(['name' => 'delete', 'id' => 'delete', 'content' => 'Löschen']);
