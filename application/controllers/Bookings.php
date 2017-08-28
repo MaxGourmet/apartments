@@ -58,6 +58,8 @@ class Bookings extends MY_Controller
         if (($data = $this->post()) && !empty($data)) {
             array_extract($data, 'submit');
             if ($this->bookings->checkFreeBooking($data)) {
+                $data['start_time'] = date('H:i:s', strtotime($data['start_time']));
+                $data['end_time'] = date('H:i:s', strtotime($data['end_time']));
                 $this->bookings->update($data);
                 $m = date('Y-m', strtotime($data['start']));
                 redirect("/calendar/month/$m");
@@ -78,6 +80,14 @@ class Bookings extends MY_Controller
             if ($id) {
                 $this->title = $this->configs->get(false, 'bookings_edit_title');
                 $booking = $this->bookings->getById($id);
+                if (!$booking['start_time']) {
+                    $bookingStart = $this->configs->get(false, 'booking_start');
+                    $booking['start_time'] = date('H:i:s', strtotime($bookingStart));
+                }
+                if (!$booking['end_time']) {
+                    $bookingEnd = $this->configs->get(false, 'booking_end');
+                    $booking['end_time'] = date('H:i:s', strtotime($bookingEnd));
+                }
                 if (empty($booking)) {
                     redirect('bookings');
                 }
@@ -105,13 +115,19 @@ class Bookings extends MY_Controller
                 if (strtotime($startDate) > strtotime($endDate)) {
                     $endDate = $startDate;
                 }
+                $bookingStart = $this->configs->get(false, 'booking_start');
+                $bookingEnd = $this->configs->get(false, 'booking_end');
+                $startTime = date('H:i:s', strtotime($bookingStart));
+                $endTime = date('H:i:s', strtotime($bookingEnd));
                 $booking = [
                     'apartment_id' => $selectedApartment,
                     'start' => $startDate,
                     'end' => $endDate,
                     'to_pay' => 0,
                     'payed' => 0,
-                    'info' => ''
+                    'info' => '',
+                    'start_time' => $startTime,
+                    'end_time' => $endTime,
                 ];
             }
             $this->showView(

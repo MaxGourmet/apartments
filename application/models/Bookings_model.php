@@ -3,6 +3,11 @@ class Bookings_model extends MY_Model
 {
     public $table = 'bookings';
 
+    protected $payments = [
+        "bank" => "Bank",
+        "bar" => "Bar"
+    ];
+
     public function prepare(&$bookings) {
         $result = [];
         foreach ($bookings as $booking) {
