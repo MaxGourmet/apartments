@@ -30,6 +30,27 @@ class Calendar extends MY_Controller
             $bookingsInfo[$booking['id']] = $preparedInfo;
         }
         $this->bookings->prepare($bookings);
+        $start = date('Y-m-01', strtotime($filtersDate));
+        $end = date('Y-m-31', strtotime($filtersDate));
+        $fairs = $this->fairs->get([
+            'filters' => [
+                "(start >= '$start' OR end <= '$end')"
+            ]
+        ]);
+        $fairRes = [];
+        $fairForJS = [];
+        foreach ($fairs as $fair) {
+            $start = $fair['start'];
+            $end = $fair['end'];
+            $dateRange = date_range($start, $end);
+            if (!isset($fairRes[$fair['city']])) {
+                $fairRes[$fair['city']] = [];
+            }
+            foreach ($dateRange as $date) {
+                $fairRes[$fair['city']][$date] = "{$fair['id']}|||{$fair['name']}";
+            }
+            $fairForJS[$fair['id']] = $fair['name'];
+        }
         $this->showView(
             'calendar/index',
             [
@@ -38,6 +59,8 @@ class Calendar extends MY_Controller
                 'monthDays' => $monthDays,
                 'currentMonth' => $filtersDate,
                 'bookingsInfo' => $bookingsInfo,
+                'fairs' => $fairRes,
+                'fairForJS' => $fairForJS,
             ]
         );
     }
