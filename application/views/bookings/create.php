@@ -52,6 +52,10 @@ echo div($input, ['class' => 'form-input half half-2']);
 $input = form_button(['name' => 'cancel', 'id' => 'cancel', 'content' => 'Abbrechen'])
     . form_submit(['name' => 'submit', 'id' => 'submit', 'value' => 'Speichern']);
 
+$input = form_label('Appartement', 'apartment')
+    . form_dropdown(['name' => 'apartment_id', 'id' => 'apartment'], $payments, $booking['payment_method']);
+echo div($input, ['class' => 'form-input']);
+
 if (isset($booking['id'])) {
     $input .= form_button(['name' => 'delete', 'id' => 'delete', 'content' => 'Löschen']);
     $input .= form_button(['name' => 'payed_confirm', 'id' => 'payed_confirm', 'content' => 'Bezahlt']);

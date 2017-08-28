@@ -3,7 +3,7 @@ class Bookings_model extends MY_Model
 {
     public $table = 'bookings';
 
-    protected $payments = [
+    public $payments = [
         "bank" => "Bank",
         "bar" => "Bar"
     ];

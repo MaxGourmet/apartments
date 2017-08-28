@@ -55,11 +55,14 @@ class Bookings extends MY_Controller
     {
         $this->load->helper('form');
         $this->load->helper('html');
+        $payments = $this->bookings->payments;
+        reset($payments);
         if (($data = $this->post()) && !empty($data)) {
             array_extract($data, 'submit');
             if ($this->bookings->checkFreeBooking($data)) {
                 $data['start_time'] = date('H:i:s', strtotime($data['start_time']));
                 $data['end_time'] = date('H:i:s', strtotime($data['end_time']));
+                $data['payment_method'] = isset($payments[$data['payment_method']]) ? $data['payment_method'] : null;
                 $this->bookings->update($data);
                 $m = date('Y-m', strtotime($data['start']));
                 redirect("/calendar/month/$m");
@@ -87,6 +90,9 @@ class Bookings extends MY_Controller
                 if (!$booking['end_time']) {
                     $bookingEnd = $this->configs->get(false, 'booking_end');
                     $booking['end_time'] = date('H:i:s', strtotime($bookingEnd));
+                }
+                if (!$booking['payment_method']) {
+                    $booking['payment_method'] = key($payments);
                 }
                 if (empty($booking)) {
                     redirect('bookings');
@@ -128,13 +134,15 @@ class Bookings extends MY_Controller
                     'info' => '',
                     'start_time' => $startTime,
                     'end_time' => $endTime,
+                    'payment_method' => key($payments),
                 ];
             }
             $this->showView(
                 'bookings/create',
                 [
                     'apartments' => $apartments,
-                    'booking' => $booking
+                    'booking' => $booking,
+                    'payments' => $payments
                 ]
             );
         }
