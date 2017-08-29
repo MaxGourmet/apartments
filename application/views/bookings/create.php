@@ -53,9 +53,15 @@ $input = form_label('Payment', 'payment_method')
     . form_dropdown(['name' => 'payment_method', 'id' => 'payment_method'], $payments, $booking['payment_method']);
 echo div($input, ['class' => 'form-input']);
 
+$input = '';
+for ($i = 1; $i <= $maxPeopleCount; $i++) {
+    $input .= span(form_label($i, "people_count$i", ['class' => 'radio'])
+        . form_radio(['name' => 'people_count', 'id' => "people_count$i"], $i, $i == $booking['people_count']), ['class' => "people_count$i"]);
+}
+echo div($input, ['class' => 'form-input']);
+
 $input = form_button(['name' => 'cancel', 'id' => 'cancel', 'content' => 'Abbrechen'])
     . form_submit(['name' => 'submit', 'id' => 'submit', 'value' => 'Speichern']);
-
 
 if (isset($booking['id'])) {
     $input .= form_button(['name' => 'delete', 'id' => 'delete', 'content' => 'Löschen']);
@@ -66,3 +72,7 @@ echo div($input, ['class' => 'buttons']);
 echo form_close();
 ?>
 </div>
+
+<script>
+    window.totalPeopleCount = <?= json_encode($totalPeopleCount); ?>;
+</script>

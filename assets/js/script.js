@@ -153,7 +153,37 @@ $(function () {
         var data = {
             'apartment_id': $('#apartment').val(),
             'start_date': $('#start_date').val(),
-            'end_date': $('#end_date').val()
+            'end_date': $('#end_date').val(),
+            'people_count': parseInt($('[name="people_count"]:checked').val())
+        };
+        if (typeof window.totalPeopleCount[data.apartment_id] != 'undefined') {
+            var newCount = parseInt(window.totalPeopleCount[data.apartment_id]),
+                oldCount = $('[name="people_count"]').length,
+                newPeopleCount = newCount >= data.people_count ? data.people_count : 1;
+            newCount = newCount > 1 ? newCount : 1;
+            if (newCount < oldCount) {
+                for (var i = newCount + 1; i <= oldCount; i++) {
+                    $('span.people_count' + i).remove();
+                }
+            } else if (newCount > oldCount) {
+                var original = $('span.people_count1');
+                for (var i = oldCount + 1; i <= newCount; i++) {
+                    var clone = $(original).clone();
+                    $(clone).attr('class', 'people_count' + i);
+                    $(clone).find('input').attr('id', 'people_count' + i);
+                    $(clone).find('input').val(i);
+                    $(clone).find('label').attr('for', 'people_count' + i);
+                    $(clone).find('label').html(i);
+                    $(original).parent().append(clone);
+                }
+            }
+            $('#people_count' + newPeopleCount).click();
+        }
+        data = {
+            'apartment_id': $('#apartment').val(),
+            'start_date': $('#start_date').val(),
+            'end_date': $('#end_date').val(),
+            'people_count': parseInt($('[name="people_count"]:checked').val())
         };
         $.post(
             '/apartments/getPrice',

@@ -63,6 +63,7 @@ class Bookings extends MY_Controller
                 $data['start_time'] = date('H:i:s', strtotime($data['start_time']));
                 $data['end_time'] = date('H:i:s', strtotime($data['end_time']));
                 $data['payment_method'] = isset($payments[$data['payment_method']]) ? $data['payment_method'] : null;
+
                 $this->bookings->update($data);
                 $m = date('Y-m', strtotime($data['start']));
                 redirect("/calendar/month/$m");
@@ -77,7 +78,8 @@ class Bookings extends MY_Controller
                 );
             }
         } else {
-            $apartments = $this->apartments->prepare($this->apartments->get());
+            $apartmentsRes = $this->apartments->get(['index' => 'id']);
+            $apartments = $this->apartments->prepare($apartmentsRes);
             reset($apartments);
             $selectedApartment = key($apartments);
             if ($id) {
@@ -93,6 +95,9 @@ class Bookings extends MY_Controller
                 }
                 if (!$booking['payment_method']) {
                     $booking['payment_method'] = key($payments);
+                }
+                if (!$booking['people_count']) {
+                    $booking['people_count'] = 1;
                 }
                 if (empty($booking)) {
                     redirect('bookings');
@@ -135,14 +140,21 @@ class Bookings extends MY_Controller
                     'start_time' => $startTime,
                     'end_time' => $endTime,
                     'payment_method' => key($payments),
+                    'people_count' => 1,
                 ];
+            }
+            $totalPeopleCount = [];
+            foreach ($apartmentsRes as $id => $ap) {
+                $totalPeopleCount[$id] = $ap['beds'];
             }
             $this->showView(
                 'bookings/create',
                 [
                     'apartments' => $apartments,
                     'booking' => $booking,
-                    'payments' => $payments
+                    'payments' => $payments,
+                    'maxPeopleCount' => $apartmentsRes[$booking['apartment_id']]['beds'],
+                    'totalPeopleCount' => $totalPeopleCount
                 ]
             );
         }

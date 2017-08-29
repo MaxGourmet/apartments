@@ -536,6 +536,17 @@ button {
     line-height:    30px;
 }
 
+.base-form label.radio {
+    width: 10px;
+}
+.base-form input[type=radio] {
+    display:               inline-block;
+    margin-right: 15px;
+    -webkit-appearance: radio;
+    -moz-appearance:    radio;
+    appearance:         radio;
+}
+
 .base-form input[type=text],
 .base-form input[type=number],
 .base-form select,

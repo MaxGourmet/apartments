@@ -21,6 +21,7 @@ class MY_Model extends CI_Model
         $limit = isset($params['limit']) ? $params['limit'] : 0;
         $offset = isset($params['offset']) ? $params['offset'] : 0;
         $joins = isset($params['joins']) ? $params['joins'] : [];
+        $index = isset($params['index']) ? $params['index'] : false;
         $query = $this->db->select($select)->from($this->table);
         foreach ($filters as $filter) {
             if (is_array($filter)) {
@@ -54,7 +55,16 @@ class MY_Model extends CI_Model
         if ($offset) {
             $query->offset($offset);
         }
-        return $query->get()->result_array();
+        $result = $query->get()->result_array();
+        $r = [];
+        if ($index && !empty($result) && isset($result[0][$index])) {
+            foreach ($result as $res) {
+                $r[$res[$index]] = $res;
+            }
+        } else {
+            $r = $result;
+        }
+        return $r;
     }
 
     public function getById($id)
