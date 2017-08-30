@@ -603,6 +603,10 @@ button {
     padding-left: 40px;
 }
 
+.half-2-1 label {
+    padding-left: 0;
+}
+
 .half input {
     width: 140px !important;
 }
