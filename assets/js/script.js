@@ -123,7 +123,7 @@ $(function () {
             if (typeof window.totalPeopleCount[data.apartment_id] != 'undefined') {
                 var newCount = parseInt(window.totalPeopleCount[data.apartment_id]),
                     oldCount = $('[name="people_count"]').length,
-                    newPeopleCount = newCount >= data.people_count ? data.people_count : 1;
+                    newPeopleCount = newCount >= data.people_count ? data.people_count : newCount;
                 newCount = newCount > 1 ? newCount : 1;
                 if (newCount < oldCount) {
                     for (var i = newCount + 1; i <= oldCount; i++) {
