@@ -539,6 +539,9 @@ button {
 .base-form label.radio {
     width: 10px;
 }
+.base-form label.radio2 {
+    width: 40px;
+}
 .base-form input[type=radio] {
     display:               inline-block;
     margin-right: 15px;
