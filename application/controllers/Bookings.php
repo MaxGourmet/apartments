@@ -97,7 +97,7 @@ class Bookings extends MY_Controller
                     $booking['payment_method'] = key($payments);
                 }
                 if (!$booking['people_count']) {
-                    $booking['people_count'] = 1;
+                    $booking['people_count'] = $apartmentsRes[$booking['apartment_id']]['beds'];
                 }
                 if (empty($booking)) {
                     redirect('bookings');
@@ -140,7 +140,7 @@ class Bookings extends MY_Controller
                     'start_time' => $startTime,
                     'end_time' => $endTime,
                     'payment_method' => key($payments),
-                    'people_count' => 1,
+                    'people_count' => $apartmentsRes[$selectedApartment]['beds'],
                 ];
             }
             $totalPeopleCount = [];
