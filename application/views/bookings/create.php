@@ -55,7 +55,7 @@ echo div($input, ['class' => 'form-input half half-2']);
 
 $input = form_label('Zahlung');
 foreach ($payments as $paymentKey => $payment) {
-    $input .= span(form_label($i, "payment_method$i", ['class' => 'radio'])
+    $input .= span(form_label($payment, "payment_method$i", ['class' => 'radio'])
         . form_radio(['name' => 'payment_method', 'id' => "payment_method$i"], $paymentKey, $paymentKey == $booking['payment_method']));
 }
 echo div($input, ['class' => 'form-input']);
