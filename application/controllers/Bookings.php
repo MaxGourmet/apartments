@@ -260,12 +260,14 @@ class Bookings extends MY_Controller
         ];
         $bookings = $this->bookings->get($bookingsParams);
         foreach ($bookings as $booking) {
+            $tempStartRemind = $booking['start_time'] ? $booking['start_time'] : $startRemind;
+            $tempEndRemind = $booking['end_time'] ? $booking['end_time'] : $endRemind;
             if ($booking['start'] == $date) {
                 $type = 'start';
-                $bookingReminder = strtotime($booking['start'] . " $bookingStart -$startRemind minutes");
+                $bookingReminder = strtotime($booking['start'] . " $bookingStart -$tempStartRemind minutes");
             } else {
                 $type = 'end';
-                $bookingReminder = strtotime($booking['end'] . " $bookingEnd -$endRemind minutes");
+                $bookingReminder = strtotime($booking['end'] . " $bookingEnd -$tempEndRemind minutes");
             }
             if (time() >= $bookingReminder && $this->reminder->checkNeedRemind($booking['id'], $type)) {
                 $subject = ucfirst($type) . ". Booking ID: {$booking['id']}. Address: {$booking['address']}.";

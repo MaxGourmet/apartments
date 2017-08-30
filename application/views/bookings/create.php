@@ -41,19 +41,26 @@ $input = form_label('Ist', 'payed')
     . form_input(['name' => 'payed', 'id' => 'payed', 'value' => $booking['payed'], 'type' => 'number', 'step' => 0.01]);
 echo div($input, ['class' => 'form-input half half-2']);
 
-$input = form_label('Time start', 'start_time')
+$input = form_label('Check-in', 'start_time')
     . form_input(['name' => 'start_time', 'id' => 'start_time', 'value' => $booking['start_time']]);
 echo div($input, ['class' => 'form-input half half-1']);
 
-$input = form_label('Time end', 'end_time')
+$input = form_label('Check-out', 'end_time')
     . form_input(['name' => 'end_time', 'id' => 'end_time', 'value' => $booking['end_time']]);
 echo div($input, ['class' => 'form-input half half-2']);
 
-$input = form_label('Payment', 'payment_method')
-    . form_dropdown(['name' => 'payment_method', 'id' => 'payment_method'], $payments, $booking['payment_method']);
+//$input = form_label('Zahlung', 'payment_method')
+//    . form_dropdown(['name' => 'payment_method', 'id' => 'payment_method'], $payments, $booking['payment_method']);
+//echo div($input, ['class' => 'form-input']);
+
+$input = form_label('Zahlung');
+foreach ($payments as $paymentKey => $payment) {
+    $input .= span(form_label($i, "payment_method$i", ['class' => 'radio'])
+        . form_radio(['name' => 'payment_method', 'id' => "payment_method$i"], $paymentKey, $paymentKey == $booking['payment_method']));
+}
 echo div($input, ['class' => 'form-input']);
 
-$input = '';
+$input = form_label('Personen');
 for ($i = 1; $i <= $maxPeopleCount; $i++) {
     $input .= span(form_label($i, "people_count$i", ['class' => 'radio'])
         . form_radio(['name' => 'people_count', 'id' => "people_count$i"], $i, $i == $booking['people_count']), ['class' => "people_count$i"]);
