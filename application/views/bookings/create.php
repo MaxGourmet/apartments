@@ -47,7 +47,7 @@ echo div($input, ['class' => 'form-input half half-1']);
 
 $input = form_label('Check-out', 'end_time')
     . form_input(['name' => 'end_time', 'id' => 'end_time', 'value' => $booking['end_time']]);
-echo div($input, ['class' => 'form-input half half-2-1']);
+echo div($input, ['class' => 'form-input half half-2 half-2-1']);
 
 //$input = form_label('Zahlung', 'payment_method')
 //    . form_dropdown(['name' => 'payment_method', 'id' => 'payment_method'], $payments, $booking['payment_method']);
