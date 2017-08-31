@@ -148,9 +148,9 @@ $(function () {
                 $(document).trigger('apartments-get-booked-dates', [$(this).val(), $('[name="id"]').val()]);
             }
         });
-        // $(bookingCreateForm).on('click', '[name="people_count"]', function () {
-        //     $(document).trigger('apartments-get-price');
-        // });
+        $(bookingCreateForm).on('click', '[name="people_count"]', function () {
+            $(document).trigger('apartments-get-price');
+        });
         $(bookingCreateForm).on('click', '#payed_confirm', function () {
             var toPay = parseFloat($('#to_pay').val()),
                 alreadyPayed = parseFloat($('#payed').val()),
