@@ -151,12 +151,13 @@ class Apartments extends MY_Controller
             }
             if ($currentPrice != $price) {
                 $pr *= $bedsCount;
+                $pr *= $peopleCount;
             }
             $totalPrice += $pr;
         }
         if ($priceIndex > 0) {
             if ($currentPrice != $price) {
-                $priceText .= "$bedsCount x ";
+                $priceText .= "$bedsCount x $peopleCount x ";
             }
             $priceText .= "$priceIndex x $currentPrice €";
         }
