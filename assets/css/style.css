@@ -158,6 +158,8 @@ input {
     position: relative;
 }
 
+.calendar th.marked-start:before,
+.calendar th.marked-end:before,
 .calendar th.marked:before {
     content:        "";
     position:       absolute;

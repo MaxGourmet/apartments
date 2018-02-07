@@ -253,8 +253,21 @@ $(function () {
 
     $('body').on('click', '.calendar th.date', function () {
         var cellIndex = $(this).index() + 1;
-        $('.calendar th.date').removeClass('marked');
-        $(this).closest('.calendar-wrap').find('tfoot th:nth-child(' + cellIndex + ')').addClass('marked');
+        if(($('.calendar th.date.marked-start').length < 1 && $('.calendar th.date.marked-end').length < 1) || ($('.calendar th.date.marked-start').length > 0) && $('.calendar th.date.marked-end').length > 0 ) {
+            $('tfoot th').removeClass('marked-start marked-end marked');
+            $(this).closest('.calendar-wrap').find('tfoot th:nth-child(' + cellIndex + ')').addClass('marked-start');
+        } else if(($('.calendar th.date.marked-start').length > 0 && $('.calendar th.date.marked-end').length < 1)) {
+            if($('tfoot th.marked-start').index() > cellIndex) {
+                $(this).closest('.calendar-wrap').find('tfoot th.marked-start').removeClass('marked-start').addClass('marked-end');
+                $(this).closest('.calendar-wrap').find('tfoot th:nth-child(' + cellIndex + ')').addClass('marked-start');
+                $(this).closest('.calendar-wrap').find('tfoot th.marked-start').nextUntil('.marked-end').addClass('marked');
+            } else if(cellIndex === $(this).closest('.calendar-wrap').find('tfoot th.marked-start').index() + 1) {
+                $('tfoot th').removeClass('marked-start marked-end marked');
+            } else {
+                $(this).closest('.calendar-wrap').find('tfoot th:nth-child(' + cellIndex + ')').addClass('marked-end');
+                $(this).closest('.calendar-wrap').find('tfoot th.marked-start').nextUntil('.marked-end').addClass('marked');
+            }
+        }
     });
 
     function detectswipe(el,func) {
