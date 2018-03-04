@@ -49,22 +49,27 @@
                       <?php endforeach; ?>
                     <th></th>
                 </tr>
-                </thead>
-                <tbody>
                 <?php foreach($fairs as $city => $fairDates) : ?>
-                    <tr>
+                    <tr data-city="<?= $city; ?>">
                         <td><?= $city; ?></td>
                         <?php foreach ($monthDays as $date) : ?>
+                            <?php
+                            $i++;
+                            $isWeekend = in_array(date('N', strtotime($date)), [6, 7]);
+                            $isToday = $date == date('Y-m-d');
+                            ?>
                             <?php if (isset($fairDates[$date])) : ?>
                                 <?php list($id, $name) = explode('|||', $fairDates[$date]); ?>
-                                <td data-fair-id="<?= $id; ?>" data-name="<?= $name; ?>"></td>
+                                <td class="<?= $isWeekend ? 'weekend' : '' ?>" data-fair-id="<?= $id; ?>" data-name="<?= $name; ?>"></td>
                             <?php else : ?>
-                                <td></td>
+                                <td class="<?= $isWeekend ? 'weekend' : '' ?>"></td>
                             <?php endif; ?>
                         <?php endforeach; ?>
                         <td></td>
                     </tr>
                 <?php endforeach; ?>
+                </thead>
+                <tbody>
                 <?php foreach($apartments as $apartment) : ?>
                   <?php $bookingsForApartment = isset($bookings[$apartment['id']]) ? $bookings[$apartment['id']] : []; ?>
                     <tr data-attr-apartment_id="<?= $apartment['id']; ?>">
