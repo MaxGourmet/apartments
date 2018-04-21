@@ -251,7 +251,8 @@ $(function () {
         }
     });
 
-    $('body').on('click', '.calendar th.date', function () {
+    $('body').on('click touch touchstart', '.calendar tr th.date, .floatThead-table tr th', function () {
+        // alert('some text');
         var cellIndex = $(this).index() + 1;
         if(($('.calendar th.date.marked-start').length < 1 && $('.calendar th.date.marked-end').length < 1) || ($('.calendar th.date.marked-start').length > 0) && $('.calendar th.date.marked-end').length > 0 ) {
             $('tfoot th').removeClass('marked-start marked-end marked');
