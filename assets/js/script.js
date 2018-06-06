@@ -251,7 +251,14 @@ $(function () {
         }
     });
 
-    $('body').on('click touch touchstart', '.calendar tr th.date, .floatThead-table tr th', function () {
+    function do_nothing() {
+        return false;
+    }
+    $('.calendar tr th.date, .floatThead-table tr th').live('click touchstart', function(e) {
+        $(e.target).on('click touchstart',do_nothing);
+        setTimeout(function(){
+            $(e.target).unbind('click touchstart', do_nothing);
+        }, 500);
         // alert('some text');
         var cellIndex = $(this).index() + 1;
         if(($('.calendar th.date.marked-start').length < 1 && $('.calendar th.date.marked-end').length < 1) || ($('.calendar th.date.marked-start').length > 0) && $('.calendar th.date.marked-end').length > 0 ) {
@@ -271,7 +278,9 @@ $(function () {
         }
     });
 
-    $('body').on('click', '.calendar tbody tr td:first-child, .calendar tbody tr td:last-child', function () {
+
+
+    $('body').on('click touchstart', '.calendar tbody tr td:first-child, .calendar tbody tr td:last-child', function () {
         var rowIndex = $(this).closest('tr').index() + 1;
         if(($('.calendar tr.marked-start').length < 1 && $('.calendar tr.marked-end').length < 1) || ($('.calendar tr.marked-start').length > 0) && $('.calendar tr.marked-end').length > 0){
             $('tbody tr').removeClass('marked-start marked-end marked');
