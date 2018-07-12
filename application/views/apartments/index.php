@@ -8,6 +8,7 @@
         <th>Preis 3</th>
         <th></th>
         <th></th>
+        <th></th>
     </tr>
     <?php foreach($apartments as $apartment) : ?>
         <tr>
@@ -17,6 +18,9 @@
             <td class="text-right"><?= $apartment['price1']; ?></td>
             <td class="text-right"><?= $apartment['price2']; ?></td>
             <td class="text-right"><?= $apartment['price3']; ?></td>
+            <td>
+                <a title="Copy link" href="/export/calendar/<?= $apartment['id']; ?>">Export</a>
+            </td>
             <td>
                 <a class="edit" title="Bearbeiten" href="/apartments/edit/<?= $apartment['id']; ?>"><i class="fa fa-edit" aria-hidden="true"></i></a>
             </td>
