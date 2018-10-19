@@ -141,10 +141,11 @@ class Apartments extends MY_Controller
                 $priceIndex++;
             } else {
                 if ($priceIndex > 0) {
-                    if ($currentPrice != $price) {
-                        $priceText .= "$bedsCount x $peopleCount x ";
-                    }
-                    $priceText .= "$priceIndex x $currentPrice € + ";
+//                    if ($currentPrice != $price) {
+//                        $priceText .= "$bedsCount x $peopleCount x ";
+//                    }
+//                    $priceText .= "$priceIndex x $currentPrice € + ";
+                    $priceText .= "$priceIndex";
                 }
                 $priceIndex = 1;
                 $currentPrice = $pr;
@@ -156,10 +157,11 @@ class Apartments extends MY_Controller
             $totalPrice += $pr;
         }
         if ($priceIndex > 0) {
-            if ($currentPrice != $price) {
-                $priceText .= "$bedsCount x $peopleCount x ";
-            }
-            $priceText .= "$priceIndex x $currentPrice €";
+//            if ($currentPrice != $price) {
+//                $priceText .= "$bedsCount x $peopleCount x ";
+//            }
+//            $priceText .= "$priceIndex x $currentPrice €";
+            $priceText .= "$priceIndex";
         }
         echo json_encode(['success' => 'true', 'price' => $totalPrice, 'priceText' => $priceText]);
     }
