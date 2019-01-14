@@ -39,21 +39,18 @@ class Bookings_model extends MY_Model
         if (!empty($diff)) {
             $checkStart = in_array($params['start'], $diff);
             $checkEnd = in_array($params['end'], $diff);
-            echo "<pre>";
-            var_dump($checkStart, $checkEnd);
-            echo "</pre>";
             foreach ($existedBookings as $booking) {
                 if ($booking['start'] == $params['start'] && $booking['end'] == $params['end']) {
                     continue;
                 }
                 if ($booking['start'] == $params['end'] && $checkEnd) {
-                    if (in_array($params['start'], $diff)) {
-                        $diff = array_diff($diff, [$params['start']]);
+                    if (in_array($params['end'], $diff)) {
+                        $diff = array_diff($diff, [$params['end']]);
                     }
                 }
                 if ($booking['end'] == $params['start'] && $checkStart) {
-                    if (in_array($params['end'], $diff)) {
-                        $diff = array_diff($diff, [$params['end']]);
+                    if (in_array($params['start'], $diff)) {
+                        $diff = array_diff($diff, [$params['start']]);
                     }
                 }
             }
