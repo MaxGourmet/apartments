@@ -163,6 +163,7 @@ class Apartments extends MY_Controller
 //            $priceText .= "$priceIndex x $currentPrice €";
 //            $priceText .= "$priceIndex";
         }
+        var_dump(['success' => 'true', 'price' => $totalPrice, 'priceText' => $priceText]);exit;
         echo json_encode(['success' => 'true', 'price' => $totalPrice, 'priceText' => $priceText]);
     }
 
