@@ -105,7 +105,6 @@ class Apartments extends MY_Controller
         } elseif ($countDays >= $daysForPrice2) {
             $priceIndex = 2;
         }
-        var_dump($apartment);exit;
         $price = $apartment["price{$priceIndex}"];
         $fairsFilters = [
             'filters' => [
