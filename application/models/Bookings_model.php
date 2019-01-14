@@ -55,9 +55,6 @@ class Bookings_model extends MY_Model
                 }
             }
         }
-        echo "<pre>";
-        var_dump($diff);
-        echo "</pre>";exit;
         return empty($diff);
     }
 
