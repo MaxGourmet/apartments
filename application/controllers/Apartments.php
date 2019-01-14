@@ -125,12 +125,14 @@ class Apartments extends MY_Controller
                 $prices[$date] = floatval($price);
             }
         }
+        var_dump($prices);
         foreach ($prices as $date => &$pr) {
             $previousDate = date('Y-m-d', strtotime($date . " -1day"));
             if (isset($fairs[$date]) && in_array($previousDate, $dates)) {
                 $prices[$previousDate] = max($prices[$previousDate], $fairs[$date]);
             }
         }
+        var_dump($prices);exit;
         unset($pr);
         $priceIndex = 0;
         reset($prices);
