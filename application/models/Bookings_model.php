@@ -46,12 +46,12 @@ class Bookings_model extends MY_Model
                 if ($booking['start'] == $params['start'] && $booking['end'] == $params['end']) {
                     continue;
                 }
-                if ($booking['start'] == $params['start'] && $checkStart) {
+                if ($booking['start'] == $params['end'] && $checkStart) {
                     if (in_array($params['start'], $diff)) {
                         $diff = array_diff($diff, [$params['start']]);
                     }
                 }
-                if ($booking['end'] == $params['end'] && $checkEnd) {
+                if ($booking['end'] == $params['start'] && $checkEnd) {
                     if (in_array($params['end'], $diff)) {
                         $diff = array_diff($diff, [$params['end']]);
                     }
