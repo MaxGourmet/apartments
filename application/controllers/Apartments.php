@@ -94,6 +94,7 @@ class Apartments extends MY_Controller
             echo json_encode(['success' => 'false', 'error' => 'Invalid Dates']);
             return;
         }
+        var_dump($dates);
         $peopleCount = $data['people_count'];
         $countDays = count($dates) - 1;
         unset($dates[$countDays]);
