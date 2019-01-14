@@ -115,7 +115,7 @@ class Apartments extends MY_Controller
         $fairs = $this->fairs->get($fairsFilters);
         $this->fairs->prepare($fairs);
         $totalPrice = 0;
-        $priceText = '0';
+        $priceText = $countDays;
         $prices = [];
         $bedsCount = intval($apartment['beds']);
         foreach ($dates as $date) {
@@ -136,7 +136,6 @@ class Apartments extends MY_Controller
         reset($prices);
         $currentPrice = current($prices);
         reset($prices);
-        var_dump($prices);
         foreach ($prices as $date => $pr) {
             if ($pr == $currentPrice) {
                 $priceIndex++;
@@ -146,7 +145,7 @@ class Apartments extends MY_Controller
 //                        $priceText .= "$bedsCount x $peopleCount x ";
 //                    }
 //                    $priceText .= "$priceIndex x $currentPrice € + ";
-                    $priceText .= "$priceIndex";
+//                    $priceText .= "$priceIndex";
                 }
                 $priceIndex = 1;
                 $currentPrice = $pr;
@@ -162,7 +161,7 @@ class Apartments extends MY_Controller
 //                $priceText .= "$bedsCount x $peopleCount x ";
 //            }
 //            $priceText .= "$priceIndex x $currentPrice €";
-            $priceText .= "$priceIndex";
+//            $priceText .= "$priceIndex";
         }
         echo json_encode(['success' => 'true', 'price' => $totalPrice, 'priceText' => $priceText]);
     }
