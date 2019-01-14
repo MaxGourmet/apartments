@@ -94,6 +94,7 @@ class Apartments extends MY_Controller
             echo json_encode(['success' => 'false', 'error' => 'Invalid Dates']);
             return;
         }
+        var_dump($data, $apartment, $dates);exit;
         $peopleCount = $data['people_count'];
         $countDays = count($dates) - 1;
         unset($dates[$countDays]);
@@ -163,7 +164,6 @@ class Apartments extends MY_Controller
 //            $priceText .= "$priceIndex x $currentPrice €";
 //            $priceText .= "$priceIndex";
         }
-        var_dump(['success' => 'true', 'price' => $totalPrice, 'priceText' => $priceText]);exit;
         echo json_encode(['success' => 'true', 'price' => $totalPrice, 'priceText' => $priceText]);
     }
 
