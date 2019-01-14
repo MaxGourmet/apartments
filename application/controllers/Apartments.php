@@ -94,7 +94,6 @@ class Apartments extends MY_Controller
             echo json_encode(['success' => 'false', 'error' => 'Invalid Dates']);
             return;
         }
-        var_dump($dates);
         $peopleCount = $data['people_count'];
         $countDays = count($dates) - 1;
         unset($dates[$countDays]);
@@ -116,7 +115,7 @@ class Apartments extends MY_Controller
         $fairs = $this->fairs->get($fairsFilters);
         $this->fairs->prepare($fairs);
         $totalPrice = 0;
-        $priceText = '';
+        $priceText = '0';
         $prices = [];
         $bedsCount = intval($apartment['beds']);
         foreach ($dates as $date) {
@@ -137,6 +136,7 @@ class Apartments extends MY_Controller
         reset($prices);
         $currentPrice = current($prices);
         reset($prices);
+        var_dump($prices);
         foreach ($prices as $date => $pr) {
             if ($pr == $currentPrice) {
                 $priceIndex++;
