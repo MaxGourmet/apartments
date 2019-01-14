@@ -105,6 +105,7 @@ class Apartments extends MY_Controller
         } elseif ($countDays >= $daysForPrice2) {
             $priceIndex = 2;
         }
+        var_dump($apartment);exit;
         $price = $apartment["price{$priceIndex}"];
         $fairsFilters = [
             'filters' => [
@@ -125,14 +126,12 @@ class Apartments extends MY_Controller
                 $prices[$date] = floatval($price);
             }
         }
-        var_dump($prices);
         foreach ($prices as $date => &$pr) {
             $previousDate = date('Y-m-d', strtotime($date . " -1day"));
             if (isset($fairs[$date]) && in_array($previousDate, $dates)) {
                 $prices[$previousDate] = max($prices[$previousDate], $fairs[$date]);
             }
         }
-        var_dump($prices);exit;
         unset($pr);
         $priceIndex = 0;
         reset($prices);
