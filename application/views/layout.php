@@ -12,7 +12,7 @@
     <script type="application/javascript" src="/assets/js/jquery-1.8.3.js"></script>
     <script type="application/javascript" src="/assets/js/jquery-ui-1.9.2.custom.min.js"></script>
     <script type="application/javascript" src="/assets/js/jquery.floatThead.min.js"></script>
-    <script type="application/javascript" src="/assets/js/script.js?v=4"></script>
+    <script type="application/javascript" src="/assets/js/script.js?v=3"></script>
 </head>
 <body id="body">
 <div class="wrapper">

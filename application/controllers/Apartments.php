@@ -80,7 +80,6 @@ class Apartments extends MY_Controller
             return;
         }
         $data = $this->post();
-        var_dump($data);exit;
         if (empty($data)) {
             echo json_encode(['success' => 'false', 'error' => 'Invalid Data']);
             return;
