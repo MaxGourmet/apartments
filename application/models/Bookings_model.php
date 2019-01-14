@@ -34,8 +34,10 @@ class Bookings_model extends MY_Model
         }
         $existedBookings = $this->get($bookingParams);
         $existedDates = $this->getBookedDates($existedBookings);
+        var_dump($existedBookings, $existedDates);
         $newDates = date_range($params['start'], $params['end']);
         $diff = array_intersect($existedDates, $newDates);
+        var_dump($newDates, $diff);
         return empty($diff);
     }
 
