@@ -28,7 +28,7 @@ $input = form_label('Zusatzinformation', 'info')
 echo div($input, ['class' => 'form-input']);
 
 echo div(
-    span('Preis',['class' => 'label']) . " " . span('', ['id' => 'calc_text']),
+    span('Preis',['class' => 'label']) . " " . span($booking['nights'], ['id' => 'calc_text']),
   ['class' => 'form-input']
 );
 
