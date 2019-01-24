@@ -12,6 +12,7 @@ class MY_Controller extends CI_Controller {
     public $menuLang = [];
     public $exceptions = '';
     public $needTitle = true;
+    public $needCheckAuth = true;
 
     public function __construct()
     {
@@ -28,7 +29,7 @@ class MY_Controller extends CI_Controller {
         $this->load->library('authit');
         $this->load->helper('authit');
 //        $this->exceptions = new MY_Exceptions();
-        if (!$this->checkLogin()) {
+        if (!$this->checkLogin() && $this->needCheckAuth) {
             redirect('auth/login');
         }
         $this->menuLang = $this->configs->getMenuLang();

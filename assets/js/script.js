@@ -120,7 +120,7 @@ $(function () {
                 'end_date': $('#end_date').val(),
                 'people_count': parseInt($('[name="people_count"]:checked').val())
             };
-            if (typeof window.totalPeopleCount[data.apartment_id] != 'undefined') {
+            if (typeof window.totalPeopleCount != 'undefined' && typeof window.totalPeopleCount[data.apartment_id] != 'undefined') {
                 var newCount = parseInt(window.totalPeopleCount[data.apartment_id]),
                     oldCount = $('[name="people_count"]').length,
                     newPeopleCount = newCount >= data.people_count ? data.people_count : newCount;

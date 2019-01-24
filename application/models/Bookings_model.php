@@ -36,6 +36,25 @@ class Bookings_model extends MY_Model
         $existedDates = $this->getBookedDates($existedBookings);
         $newDates = date_range($params['start'], $params['end']);
         $diff = array_intersect($existedDates, $newDates);
+        if (!empty($diff)) {
+            $checkStart = in_array($params['start'], $diff);
+            $checkEnd = in_array($params['end'], $diff);
+            foreach ($existedBookings as $booking) {
+                if ($booking['start'] == $params['start'] && $booking['end'] == $params['end']) {
+                    continue;
+                }
+                if ($booking['start'] == $params['end'] && $checkEnd) {
+                    if (in_array($params['end'], $diff)) {
+                        $diff = array_diff($diff, [$params['end']]);
+                    }
+                }
+                if ($booking['end'] == $params['start'] && $checkStart) {
+                    if (in_array($params['start'], $diff)) {
+                        $diff = array_diff($diff, [$params['start']]);
+                    }
+                }
+            }
+        }
         return empty($diff);
     }
 
