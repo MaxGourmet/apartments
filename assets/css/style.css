@@ -620,6 +620,13 @@ tr[data-city*='Köln'] .fair_info {
 tr[data-city*='Düsseldorf'] .fair_info {
     background-color: #c2dcef;
 }
+.calendar tr th.date,
+.floatThead-table tr th,
+.calendar tbody tr td:first-child,
+.calendar tbody tr td:last-child {
+    cursor: pointer;
+}
+
 /*Media*/
 
 @media screen and (max-width: 768px) {
