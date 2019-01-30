@@ -99,7 +99,7 @@ class Bookings extends MY_Controller
                 if (!$booking['people_count']) {
                     $booking['people_count'] = $apartmentsRes[$booking['apartment_id']]['beds'];
                 }
-                $booking['nights'] = count(date_range(strtotime($booking['start']), strtotime($booking['end'])));
+                $booking['nights'] = count(date_range(strtotime($booking['start']), strtotime($booking['end']))) - 1;
                 if (empty($booking)) {
                     redirect('bookings');
                 }
@@ -127,7 +127,7 @@ class Bookings extends MY_Controller
                 if (strtotime($startDate) > strtotime($endDate)) {
                     $endDate = $startDate;
                 }
-                $nights = count(date_range(strtotime($startDate), strtotime($endDate)));
+                $nights = count(date_range(strtotime($startDate), strtotime($endDate))) - 1;
                 $bookingStart = $this->configs->get(false, 'booking_start');
                 $bookingEnd = $this->configs->get(false, 'booking_end');
                 $startTime = date('H:i:s', strtotime($bookingStart));
