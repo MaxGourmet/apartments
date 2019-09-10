@@ -76,7 +76,7 @@ class MY_Controller extends CI_Controller {
     {
         foreach ($params as &$item) {
             $item = trim($item);
-            $item = htmlspecialchars($item);
+//            $item = htmlspecialchars($item);
             $item = xss_clean($item);
             $item = encode_php_tags($item);
         }
