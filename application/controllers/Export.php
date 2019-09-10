@@ -24,7 +24,7 @@ class Export extends MY_Controller
             $calendar .= "BEGIN:VEVENT\r\n";
             $calendar .= "DTSTART;VALUE=DATE:{$dateStart}\r\n";
             $calendar .= "DTEND;VALUE=DATE:{$dateEnd}\r\n";
-            $calendar .= "SUMMARY:{$d['info']}\r\n";
+            $calendar .= "SUMMARY:{$dateStart}-{$dateEnd}\r\n";
             $calendar .= "UID:{$apartmentId}\r\n";
             $calendar .= "END:VEVENT\r\n";
         }
