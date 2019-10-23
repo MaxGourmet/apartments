@@ -22,8 +22,13 @@ class Bookings_model extends MY_Model
         $bookings = $result;
     }
 
-    public function checkFreeBooking($params)
+    public function checkBooking($params)
     {
+        $start = strtotime($params['start']);
+        $end = strtotime($params['end']);
+        if ($start >= $end) {
+            return false;
+        }
         $bookingParams = [
             'filters' => [
                 "`apartment_id` = {$params['apartment_id']}"

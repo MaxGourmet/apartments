@@ -59,7 +59,7 @@ class Bookings extends MY_Controller
         reset($payments);
         if (($data = $this->post()) && !empty($data)) {
             array_extract($data, 'submit');
-            if ($this->bookings->checkFreeBooking($data)) {
+            if ($this->bookings->checkBooking($data)) {
                 $data['start_time'] = date('H:i:s', strtotime($data['start_time']));
                 $data['end_time'] = date('H:i:s', strtotime($data['end_time']));
                 $data['payment_method'] = isset($payments[$data['payment_method']]) ? $data['payment_method'] : null;
