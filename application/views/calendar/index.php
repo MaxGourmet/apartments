@@ -87,6 +87,7 @@
                                 if (in_array($date, $booking)) {
                                   $addClass = $booking[0] == $date ? $addClass . ' first-day' : $addClass;
                                   $addClass = $booking[count($booking) - 1] == $date ? $addClass . ' last-day' : $addClass;
+                                  $addClass = $booking[count($booking) - 1] == $date && $bookingsData[$bookingId]['is_final_decision'] ? $addClass . ' final_decision' : $addClass;
                                   $defaultClass = $defaultClass == 'weekend free' ? 'weekend booked' : 'booked';
                                   $addAttributes .= " data-attr-booking_id='$bookingId'";
                                   if (isset($bookingsInfo[$bookingId])) {

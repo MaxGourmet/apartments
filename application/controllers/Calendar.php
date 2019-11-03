@@ -24,10 +24,12 @@ class Calendar extends MY_Controller
         ];
         $bookings = $this->bookings->get($bookingFilters);
         $bookingsInfo = [];
+		$bookingsData =[];
         foreach ($bookings as $booking) {
             $preparedInfo = trim($booking['info']);
             $preparedInfo = str_replace(["\r\n", "\r", "\n"], ' ', $preparedInfo);
             $bookingsInfo[$booking['id']] = $preparedInfo;
+            $bookingsData[$booking['id']] = $booking;
         }
         $this->bookings->prepare($bookings);
         $start = date('Y-m-01', strtotime($filtersDate));
@@ -59,6 +61,7 @@ class Calendar extends MY_Controller
                 'monthDays' => $monthDays,
                 'currentMonth' => $filtersDate,
                 'bookingsInfo' => $bookingsInfo,
+                'bookingsData' => $bookingsData,
                 'fairs' => $fairRes,
                 'fairForJS' => $fairForJS,
             ]

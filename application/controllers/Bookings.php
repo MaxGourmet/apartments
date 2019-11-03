@@ -63,6 +63,9 @@ class Bookings extends MY_Controller
                 $data['start_time'] = date('H:i:s', strtotime($data['start_time']));
                 $data['end_time'] = date('H:i:s', strtotime($data['end_time']));
                 $data['payment_method'] = isset($payments[$data['payment_method']]) ? $data['payment_method'] : null;
+                if (!isset($data['is_final_decision'])) {
+                    $data['is_final_decision'] = 0;
+                }
 
                 $this->bookings->update($data);
                 $m = date('Y-m', strtotime($data['start']));
@@ -95,6 +98,9 @@ class Bookings extends MY_Controller
                 }
                 if (!$booking['payment_method']) {
                     $booking['payment_method'] = key($payments);
+                }
+                if (!isset($booking['is_final_decision'])) {
+                    $booking['is_final_decision'] = 0;
                 }
                 if (!$booking['people_count']) {
                     $booking['people_count'] = $apartmentsRes[$booking['apartment_id']]['beds'];
@@ -143,7 +149,8 @@ class Bookings extends MY_Controller
                     'end_time' => $endTime,
                     'payment_method' => key($payments),
                     'people_count' => $apartmentsRes[$selectedApartment]['beds'],
-                    'nights' => $nights
+                    'nights' => $nights,
+					'is_final_decision' => 0
                 ];
             }
             $totalPeopleCount = [];
