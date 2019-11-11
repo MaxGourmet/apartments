@@ -26,6 +26,10 @@ $(function () {
             return [$.inArray(string, dateArray) == -1];
         }
     });
+    $('#last_clean_date').datepicker({
+        dateFormat: "yy-mm-dd",
+        maxDate: d
+    });
     //Calendar Table
     $('.calendar').on('click', 'td.free, td.booked', function () {
         var apartmentId = $(this).parents('tr').attr('data-attr-apartment_id'),
@@ -442,4 +446,14 @@ $(function () {
         },
         position: 'absolute'
     });
+
+    $('.apartments .sort').on('click', function () {
+    	var orderDirection = $(this).data('order'),
+			newDirection = orderDirection === 'asc' ? 'desc' : 'asc',
+			orderElement = $(this).data('element');
+		$(this).data('order', newDirection);
+		var rows = $('.apartment-entity');
+		rows.sort((rowA, rowB) => $(rowA).find("td[data-sort='" + orderElement + "']").innerText > $(rowB).find("td[data-sort='" + orderElement + "']").innerText ? 1 : -1);
+		$('.apartments tbody').append(rows);
+	})
 });

@@ -16,12 +16,14 @@
 </head>
 <body id="body">
 <div class="wrapper">
-    <? $this->load->view('includes/menu'); ?>
+    <? if ($needControls) {$this->load->view('includes/menu');} ?>
     <div class="content">
+		<?php if ($needControls) : ?>
         <div class="search">
             <input name="search" placeholder="Suchen" />
             <a href="javascript:void(0)" id="search"><i class="fa fa-search" aria-hidden="true"></i></a>
         </div>
+		<?php endif; ?>
         <?php if ($needTitle) : ?>
             <h1><?= $title; ?></h1>
         <?php endif; ?>

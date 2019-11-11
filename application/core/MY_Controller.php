@@ -13,6 +13,7 @@ class MY_Controller extends CI_Controller {
     public $exceptions = '';
     public $needTitle = true;
     public $needCheckAuth = true;
+    public $needControls = true;
 
     public function __construct()
     {
@@ -22,14 +23,15 @@ class MY_Controller extends CI_Controller {
         $this->load->model('bookings_model', 'bookings');
         $this->load->model('config_model', 'configs');
         $this->load->model('reminder_model', 'reminder');
+		$this->load->library('session');
         $this->load->helper('security');
         $this->load->helper('array');
         $this->load->helper('url');
         $this->load->helper('date');
         $this->load->library('authit');
         $this->load->helper('authit');
-//        $this->exceptions = new MY_Exceptions();
         if (!$this->checkLogin() && $this->needCheckAuth) {
+        	$_SESSION['redirect_route'] = current_url();
             redirect('auth/login');
         }
         $this->menuLang = $this->configs->getMenuLang();
@@ -39,11 +41,12 @@ class MY_Controller extends CI_Controller {
     {
         $title = $this->title;
         $needTitle = $this->needTitle;
+        $needControls = $this->needControls;
         if (isset($data['title'])) {
             $title = array_extract($data, 'title');
         }
         $content = $this->load->view($viewName, $data, true);
-        $this->load->view('layout', ['title' => $title, 'content' => $content, 'menuLang' => $this->menuLang, 'needTitle' => $needTitle]);
+        $this->load->view('layout', ['title' => $title, 'content' => $content, 'menuLang' => $this->menuLang, 'needTitle' => $needTitle, 'needControls' => $needControls]);
     }
 
     protected function get($parameter = '')

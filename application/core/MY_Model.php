@@ -89,9 +89,9 @@ class MY_Model extends CI_Model
     {
         if (isset($data['id'])) {
             $id = array_extract($data, 'id');
-            $this->db->update($this->table, $data, ['id' => $id]);
+            return $this->db->update($this->table, $data, ['id' => $id]);
         } else {
-            $this->db->insert($this->table, $data);
+			return $this->db->insert($this->table, $data);
         }
     }
 
@@ -125,4 +125,16 @@ class MY_Model extends CI_Model
             $this->db->query("SELECT * FROM $table INTO OUTFILE '$fileName'");
         }
     }
+
+    public function getLast()
+	{
+		$result = $this->get(['limit' => 1, 'offset' => 0, 'order' => ['orderBy' => 'id', 'direction' => 'desc']]);
+    	return !empty($result) ? $result[0] : false;
+	}
+
+    public function getLastId()
+	{
+		$result = $this->get(['select' => 'id', 'limit' => 1, 'offset' => 0, 'order' => ['orderBy' => 'id', 'direction' => 'desc']]);
+    	return !empty($result) ? $result[0]['id'] : false;
+	}
 }

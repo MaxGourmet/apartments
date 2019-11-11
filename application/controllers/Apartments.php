@@ -4,7 +4,8 @@ class Apartments extends MY_Controller
     public function __construct()
     {
         parent::__construct();
-        if (!$this->checkRole('admin')) {
+		$isNotCleaner = $this->router->fetch_method() != 'clean';
+        if (!$this->checkRole('admin') && $isNotCleaner) {
             show_404();
         }
     }
@@ -38,6 +39,8 @@ class Apartments extends MY_Controller
             if ($id) {
                 $this->title = $this->configs->get(false, 'apartments_edit_title');
                 $apartment = $this->apartments->getById($id);
+                $apartment['clean_link'] = $this->apartments->getCleanLink($id);
+                $apartment['history'] = $this->apartments->getCleanHistory($id, 10);
                 if (empty($apartment)) {
                     redirect('apartments');
                 }
@@ -50,6 +53,8 @@ class Apartments extends MY_Controller
                     'price1' => 0,
                     'price2' => 0,
                     'price3' => 0,
+                    'last_clean_date' => null,
+					'clean_link' => ''
                 ];
             }
             $this->showView('apartments/create', ['cities' => $cities, 'apartment' => $apartment]);
@@ -196,4 +201,26 @@ class Apartments extends MY_Controller
         $dateArray = $this->bookings->getBookedDates($bookings);
         echo json_encode(['success' => 'true', 'dateArray' => $dateArray]);
     }
+
+    public function clean($hashedId) {
+		if (!$this->checkRole('admin') && !$this->checkRole('cleaner')) {
+			show_404();
+		}
+		$apartment = $this->apartments->getByHash($hashedId);
+		if (!$apartment) {
+			show_404();
+		}
+
+		if (($data = $this->post()) && !empty($data)) {
+			array_extract($data, 'submit');
+			$this->apartments->updateLastCleanDate($data['id'], user('id'), date('Y-m-d H:i:s'));
+			redirect('');
+		} else {
+			$this->load->helper('form');
+			$this->load->helper('html');
+			$this->title = "Objekt '" . $apartment['address'] . "' gereinigt?";
+			$this->needControls = false;
+			$this->showView('apartments/clean', ['apartment' => $apartment]);
+		}
+	}
 }

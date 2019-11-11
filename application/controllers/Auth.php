@@ -19,6 +19,9 @@ class Auth extends CI_Controller {
         if (user('role') == 'dev') {
             redirect('configs');
         }
+        if (user('role') == 'cleaner') {
+			redirect(isset($_SESSION['redirect_route']) ? $_SESSION['redirect_route'] : 'https://google.com');
+		}
 		redirect('');
 	}
 	
@@ -31,6 +34,9 @@ class Auth extends CI_Controller {
             if (user('role') == 'dev') {
                 redirect('configs');
             }
+			if (user('role') == 'cleaner') {
+				redirect(isset($_SESSION['redirect_route']) ? $_SESSION['redirect_route'] : 'https://google.com');
+			}
             redirect('');
         }
 		 
@@ -46,6 +52,9 @@ class Auth extends CI_Controller {
                 if (user('role') == 'dev') {
                     redirect('configs');
                 }
+				if (user('role') == 'cleaner') {
+					redirect(isset($_SESSION['redirect_route']) ? $_SESSION['redirect_route'] : 'https://google.com');
+				}
 				redirect('');
 			} else {
 				$data['error'] = 'Your username and/or password is incorrect.';

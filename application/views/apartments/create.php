@@ -31,6 +31,14 @@ $input = form_label('Preis 3', 'price3')
     . form_input(['name' => 'price3', 'id' => 'price3', 'value' => $apartment['price3'], 'type' => 'number', 'step' => 0.01]);
 echo div($input, ['class' => 'form-input']);
 
+$input = form_label('Last clean date', 'last_clean_date')
+    . form_input(['name' => 'last_clean_date', 'id' => 'last_clean_date', 'value' => $apartment['last_clean_date']]);
+echo div($input, ['class' => 'form-input']);
+
+$input = form_label('Clean url', 'clean_link')
+	. form_input(['name' => 'clean_link', 'id' => 'clean_link', 'value' => $apartment['clean_link'], 'readonly' => 'readonly']);
+echo div($input, ['class' => 'form-input']);
+
 $input = form_button(['name' => 'cancel', 'id' => 'cancel', 'content' => 'Abbrechen'])
     . form_submit(['name' => 'submit', 'id' => 'submit', 'value' => 'Speichern']);
 echo div($input, ['class' => 'buttons']);
@@ -38,3 +46,14 @@ echo div($input, ['class' => 'buttons']);
 echo form_close();
 ?>
 </div>
+<?php if ($apartment['history']) : ?>
+	<div>
+		<div style="text-align: center; margin: 35px; font-size: 30px;">Clean history</div>
+		<table class="apartments">
+			<tr><td>Date</td></tr>
+			<?php foreach ($apartment['history'] as $date) : ?>
+				<tr><td><?= $date['date']; ?></td></tr>
+			<?php endforeach; ?>
+		</table>
+	</div>
+<?php endif; ?>

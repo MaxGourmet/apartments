@@ -1,23 +1,31 @@
 <table class="apartments">
-    <tr>
-        <th>Appartement</th>
-        <th>Ort</th>
-        <th>Schlafplätze</th>
-        <th>Preis 1</th>
-        <th>Preis 2</th>
-        <th>Preis 3</th>
-        <th></th>
-        <th></th>
-        <th></th>
-    </tr>
+	<thead>
+	<tr>
+		<th class="sort" data-element="name" data-order="desc" style="cursor: pointer">Appartement</th>
+		<th>Ort</th>
+		<th>Schlafplätze</th>
+		<th>Preis 1</th>
+		<th>Preis 2</th>
+		<th>Preis 3</th>
+		<th>Last clean date</th>
+		<th class="sort" data-element="days" data-order="asc" style="cursor: pointer">Days after clean</th>
+		<th></th>
+		<th></th>
+		<th></th>
+	</tr>
+	</thead>
+	<?php $now = time(); ?>
+	<tbody>
     <?php foreach($apartments as $apartment) : ?>
-        <tr>
-            <td><?= $apartment['address']; ?></td>
+        <tr class="apartment-entity">
+            <td data-sort="name"><?= $apartment['address']; ?></td>
             <td><?= $apartment['city']; ?></td>
             <td class="text-center"><?= $apartment['beds']; ?></td>
             <td class="text-right"><?= $apartment['price1']; ?></td>
             <td class="text-right"><?= $apartment['price2']; ?></td>
             <td class="text-right"><?= $apartment['price3']; ?></td>
+            <td class="text-right"><?= $apartment['last_clean_date']; ?></td>
+            <td data-sort="days" class="text-right"><?= $apartment['last_clean_date'] ? floor(($now - strtotime($apartment['last_clean_date'])) / (60 * 60 * 24)) : ''; ?></td>
             <td>
                 <a title="Copy link" href="/export/calendar/<?= $apartment['id']; ?>">Export</a>
             </td>
@@ -29,4 +37,5 @@
             </td>
         </tr>
     <?php endforeach; ?>
+	</tbody>
 </table>

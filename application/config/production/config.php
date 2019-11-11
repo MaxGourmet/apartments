@@ -2,6 +2,7 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 $config['admin'] = 'ZVQRfoe7C8';
 $config['dev'] = 'FnSXrImUSr';
+$config['cleaner'] = 'sF55Opyi03';
 /*
 |--------------------------------------------------------------------------
 | Base Site URL
@@ -380,7 +381,7 @@ $config['encryption_key'] = '';
 */
 $config['sess_driver'] = 'files';
 $config['sess_cookie_name'] = 'ci_session';
-$config['sess_expiration'] = 48*60*60;
+$config['sess_expiration'] = 30*24*60*60;
 $config['sess_save_path'] = BASEPATH . '../' .'application/ci_sessions';
 $config['sess_match_ip'] = false;
 $config['sess_time_to_update'] = 0;
