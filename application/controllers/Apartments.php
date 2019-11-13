@@ -214,7 +214,7 @@ class Apartments extends MY_Controller
 		if (($data = $this->post()) && !empty($data)) {
 			array_extract($data, 'submit');
 			$this->apartments->updateLastCleanDate($data['id'], user('id'), date('Y-m-d H:i:s'));
-			redirect('');
+			redirect('apartments/clean_success');
 		} else {
 			$this->load->helper('form');
 			$this->load->helper('html');
@@ -222,5 +222,12 @@ class Apartments extends MY_Controller
 			$this->needControls = false;
 			$this->showView('apartments/clean', ['apartment' => $apartment]);
 		}
+	}
+
+	public function clean_success()
+	{
+		$this->title = "Objekt gereinigt!";
+		$this->needControls = false;
+		$this->showView('apartments/clean_success');
 	}
 }

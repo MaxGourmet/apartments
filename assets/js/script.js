@@ -450,10 +450,13 @@ $(function () {
     $('.apartments .sort').on('click', function () {
     	var orderDirection = $(this).data('order'),
 			newDirection = orderDirection === 'asc' ? 'desc' : 'asc',
-			orderElement = $(this).data('element');
+			orderElement = $(this).data('element'),
+			sign = orderDirection === 'asc' ? 1 : -1;
 		$(this).data('order', newDirection);
 		var rows = $('.apartment-entity');
-		rows.sort((rowA, rowB) => $(rowA).find("td[data-sort='" + orderElement + "']").innerText > $(rowB).find("td[data-sort='" + orderElement + "']").innerText ? 1 : -1);
+		rows.sort(function (rowA, rowB) {
+			return $(rowA).find("td[data-sort='" + orderElement + "']")[0].innerText > $(rowB).find("td[data-sort='" + orderElement + "']")[0].innerText ? sign :  sign * (-1);
+		});
 		$('.apartments tbody').append(rows);
 	})
 });
