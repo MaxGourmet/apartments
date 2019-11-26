@@ -17,7 +17,7 @@ class Bookings_model extends MY_Model
             if (!isset($result[$booking['apartment_id']])) {
                 $result[$booking['apartment_id']] = [];
             }
-            $result[$booking['apartment_id']][$booking['id']] = $dateRange;
+            $result[$booking['apartment_id']][$booking['id']] = is_array($dateRange) ? $dateRange : [];
         }
         $bookings = $result;
     }
