@@ -3,9 +3,10 @@ class Bookings_model extends MY_Model
 {
     public $table = 'bookings';
 
-    public $payments = [
-        "bank" => "Bank",
-        "bar" => "Bar"
+    public $paymentStatus = [
+        "unpaid" => "Unbezahlt",
+        "prepaid" => "Vorausbezahlt",
+        "paid" => "Bezahlt",
     ];
 
     public function prepare(&$bookings) {

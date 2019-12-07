@@ -57,10 +57,10 @@ echo div($input, ['class' => 'form-input half half-2 half-2-1']);
 //    . form_dropdown(['name' => 'payment_method', 'id' => 'payment_method'], $payments, $booking['payment_method']);
 //echo div($input, ['class' => 'form-input']);
 
-$input = form_label('Zahlung');
+$input = form_label('Zahlungsstatus');
 foreach ($payments as $paymentKey => $payment) {
-    $input .= span(form_label($payment, "payment_method$paymentKey", ['class' => 'radio2'])
-        . form_radio(['name' => 'payment_method', 'id' => "payment_method$paymentKey"], $paymentKey, $paymentKey == $booking['payment_method']));
+    $input .= span(form_label($payment, "payment_status$paymentKey", ['class' => 'radio3'])
+        . form_radio(['name' => 'payment_status', 'id' => "payment_status$paymentKey"], $paymentKey, $paymentKey == $booking['payment_status']));
 }
 echo div($input, ['class' => 'form-input']);
 

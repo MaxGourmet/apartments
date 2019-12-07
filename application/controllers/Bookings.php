@@ -55,14 +55,14 @@ class Bookings extends MY_Controller
     {
         $this->load->helper('form');
         $this->load->helper('html');
-        $payments = $this->bookings->payments;
+        $payments = $this->bookings->paymentStatus;
         reset($payments);
         if (($data = $this->post()) && !empty($data)) {
             array_extract($data, 'submit');
             if ($this->bookings->checkBooking($data)) {
                 $data['start_time'] = date('H:i:s', strtotime($data['start_time']));
                 $data['end_time'] = date('H:i:s', strtotime($data['end_time']));
-                $data['payment_method'] = isset($payments[$data['payment_method']]) ? $data['payment_method'] : null;
+                $data['payment_status'] = isset($payments[$data['payment_status']]) ? $data['payment_status'] : null;
                 if (!isset($data['is_final_decision'])) {
                     $data['is_final_decision'] = 0;
                 }
@@ -96,8 +96,8 @@ class Bookings extends MY_Controller
                     $bookingEnd = $this->configs->get(false, 'booking_end');
                     $booking['end_time'] = date('H:i:s', strtotime($bookingEnd));
                 }
-                if (!$booking['payment_method']) {
-                    $booking['payment_method'] = key($payments);
+                if (!$booking['payment_status']) {
+                    $booking['payment_status'] = key($payments);
                 }
                 if (!isset($booking['is_final_decision'])) {
                     $booking['is_final_decision'] = 0;
@@ -147,7 +147,7 @@ class Bookings extends MY_Controller
                     'info' => '',
                     'start_time' => $startTime,
                     'end_time' => $endTime,
-                    'payment_method' => key($payments),
+                    'payment_status' => key($payments),
                     'people_count' => $apartmentsRes[$selectedApartment]['beds'],
                     'nights' => $nights,
 					'is_final_decision' => 0
