@@ -57,7 +57,7 @@ echo div($input, ['class' => 'form-input half half-2 half-2-1']);
 //    . form_dropdown(['name' => 'payment_method', 'id' => 'payment_method'], $payments, $booking['payment_method']);
 //echo div($input, ['class' => 'form-input']);
 
-$input = form_label('Zahlungsstatus');
+$input = form_label('ohne Verlängerungsoption');
 foreach ($payments as $paymentKey => $payment) {
     $input .= span(form_label($payment, "payment_status$paymentKey", ['class' => 'radio3'])
         . form_radio(['name' => 'payment_status', 'id' => "payment_status$paymentKey"], $paymentKey, $paymentKey == $booking['payment_status']));

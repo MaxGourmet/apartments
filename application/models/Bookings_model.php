@@ -4,8 +4,8 @@ class Bookings_model extends MY_Model
     public $table = 'bookings';
 
     public $paymentStatus = [
-        "unpaid" => "Unbezahlt",
-        "prepaid" => "Vorausbezahlt",
+        "unpaid" => "Bank",
+        "prepaid" => "Bar",
         "paid" => "Bezahlt",
     ];
 

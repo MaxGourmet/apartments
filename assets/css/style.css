@@ -198,13 +198,13 @@ input {
     background-position: 22px top;
 }
 .calendar td.booked.paid {
-	background-color: #3deb3c;
+	background-color: #99ff99;
 }
 .calendar td.booked.prepaid {
 	background-color: #ebeb00;
 }
 .calendar td.booked.unpaid {
-	background-color: #eb00b4;
+	background-color: #ff9933;
 }
 .calendar td.booked.first-day {
     background: #e9e9e9;
