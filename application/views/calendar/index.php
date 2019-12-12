@@ -1,3 +1,10 @@
+<style>
+    <?php foreach ($colors as $color) : ?>
+    .calendar td.booked.<?= $color['name']; ?> {
+        background-color: <?= $color['value']; ?>;
+    }
+    <?php endforeach; ?>
+</style>
 <div class="month">
     <?php
     $previousMonth = date('Y-m', strtotime($currentMonth . " -1month"));

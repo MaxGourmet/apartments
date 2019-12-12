@@ -54,7 +54,6 @@ class Calendar extends MY_Controller
             $fairForJS[$fair['id']] = $fair['name'];
         }
         $colors = $this->configs->get('colors');
-        var_dump($colors);exit;
         $this->showView(
             'calendar/index',
             [
@@ -66,6 +65,7 @@ class Calendar extends MY_Controller
                 'bookingsData' => $bookingsData,
                 'fairs' => $fairRes,
                 'fairForJS' => $fairForJS,
+                'colors' => $colors
             ]
         );
     }
