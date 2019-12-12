@@ -23,7 +23,7 @@ $input = form_label('bis', 'end_date')
     . form_input(['name' => 'end', 'value' => $booking['end'], 'id' => 'end_date']);
 echo div($input, ['class' => 'form-input half half-2']);
 
-$input = form_label('ohne Verlängerungsoption', 'is_final_decision')
+$input = form_label($is_final_decision, 'is_final_decision')
     . form_checkbox(['name' => 'is_final_decision', 'id' => 'is_final_decision'], 1, $booking['is_final_decision'] == 1);
 echo div($input, ['class' => 'form-input']);
 
@@ -57,7 +57,7 @@ echo div($input, ['class' => 'form-input half half-2 half-2-1']);
 //    . form_dropdown(['name' => 'payment_method', 'id' => 'payment_method'], $payments, $booking['payment_method']);
 //echo div($input, ['class' => 'form-input']);
 
-$input = form_label('ohne Verlängerungsoption');
+$input = form_label('Zahlung');
 foreach ($payments as $paymentKey => $payment) {
     $input .= span(form_label($payment, "payment_status$paymentKey", ['class' => 'radio3'])
         . form_radio(['name' => 'payment_status', 'id' => "payment_status$paymentKey"], $paymentKey, $paymentKey == $booking['payment_status']));

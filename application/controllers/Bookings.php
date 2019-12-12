@@ -56,6 +56,7 @@ class Bookings extends MY_Controller
         $this->load->helper('form');
         $this->load->helper('html');
         $payments = $this->bookings->paymentStatus;
+        $is_final_decision = $this->configs->get(false, 'is_final_decision', 'ohne Verlängerungsoption');
         reset($payments);
         if (($data = $this->post()) && !empty($data)) {
             array_extract($data, 'submit');
@@ -164,7 +165,8 @@ class Bookings extends MY_Controller
                     'booking' => $booking,
                     'payments' => $payments,
                     'maxPeopleCount' => $apartmentsRes[$booking['apartment_id']]['beds'],
-                    'totalPeopleCount' => $totalPeopleCount
+                    'totalPeopleCount' => $totalPeopleCount,
+                    'is_final_decision' => $is_final_decision
                 ]
             );
         }
