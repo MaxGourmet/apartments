@@ -508,6 +508,7 @@ button {
 }
 .base-form label.radio3 {
     width: 90px;
+    vertical-align: middle;
 }
 .base-form input[type=radio] {
     display: inline-block;
@@ -515,6 +516,9 @@ button {
     -webkit-appearance: radio;
     -moz-appearance: radio;
     appearance: radio;
+}
+.base-form input[name="payment_status"] {
+    vertical-align: middle;
 }
 .base-form input[type=checkbox] {
     display: inline-block;
