@@ -181,6 +181,7 @@ input {
 .calendar td.booked.weekend.last-day,
 .calendar td.booked.weekend.first-day {
     background-color: #dfdf88 !important;
+	background: linear-gradient( 90deg, #c9c9c9 0px, #dfdf88 0px, #dfdf88 22px, #e9e9e9 23px ) !important;
 }
 .calendar th.date.weekend,
 .calendar td.weekend {
@@ -192,7 +193,6 @@ input {
 }
 .calendar td.booked {
     background-color: #3deb3c;
-
     background-image: linear-gradient(90deg, #c9c9c9 1px, transparent 0px);
     background-size: 23px 20px;
     background-position: 22px top;
@@ -208,6 +208,7 @@ input {
 }
 .calendar td.booked.first-day {
     background: #e9e9e9!important;
+	background: linear-gradient( 90deg, #e9e9e9, #c9c9c9 0px, #e9e9e9 0px, #e9e9e9 22px, #c9c9c9 23px ) !important;
 }
 .calendar td.booked.first-day:before {
     content: " ";
@@ -223,7 +224,8 @@ input {
     background: #f48687;
 }
 .calendar td.booked.last-day {
-    background: #e9e9e9!important;
+    background: #e9e9e9 !important;
+	background: linear-gradient( 90deg, #e9e9e9, #c9c9c9 0px, #c9c9c9 1px, #e9e9e9 2px, #e9e9e9 20px ) !important;
 }
 .calendar td.booked.last-day:after {
     content: " ";
