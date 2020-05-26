@@ -1,3 +1,4 @@
+<?php $isViewer = user('role') == 'viewer'; ?>
 <table class="apartments">
 	<thead>
 	<tr>
@@ -9,8 +10,10 @@
 		<th>Preis 3</th>
 		<th>Last clean date</th>
 		<th class="sort" data-element="days" data-order="asc" style="cursor: pointer">Days after clean</th>
-		<th></th>
-		<th></th>
+		<?php if (!$isViewer) : ?>
+			<th></th>
+			<th></th>
+		<?php endif; ?>
 		<th></th>
 	</tr>
 	</thead>
@@ -26,15 +29,19 @@
             <td class="text-right"><?= $apartment['price3']; ?></td>
             <td class="text-right"><?= $apartment['last_clean_date']; ?></td>
             <td data-sort="days" class="text-right"><?= $apartment['last_clean_date'] ? floor(($now - strtotime($apartment['last_clean_date'])) / (60 * 60 * 24)) : ''; ?></td>
-            <td>
-                <a title="Copy link" href="/export/calendar/<?= $apartment['id']; ?>">Export</a>
-            </td>
+			<?php if (!$isViewer) : ?>
+				<td>
+					<a title="Copy link" href="/export/calendar/<?= $apartment['id']; ?>">Export</a>
+				</td>
+			<?php endif; ?>
             <td>
                 <a class="edit" title="Bearbeiten" href="/apartments/edit/<?= $apartment['id']; ?>"><i class="fa fa-edit" aria-hidden="true"></i></a>
             </td>
-            <td>
-                <a class="delete" title="Löschen" href="javascript:void(0)" data-attr-apartment_id="<?= $apartment['id']; ?>"><i class="fa fa-window-close-o" aria-hidden="true"></i></a>
-            </td>
+			<?php if (!$isViewer) : ?>
+				<td>
+					<a class="delete" title="Löschen" href="javascript:void(0)" data-attr-apartment_id="<?= $apartment['id']; ?>"><i class="fa fa-window-close-o" aria-hidden="true"></i></a>
+				</td>
+			<?php endif; ?>
         </tr>
     <?php endforeach; ?>
 	</tbody>
