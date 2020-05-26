@@ -3,8 +3,8 @@
     <i class="fa fa-bars" aria-hidden="true"></i>
     <i class="fa fa-window-close" aria-hidden="true"></i>
 </label>
-<div class="menu">
-    <?php if (user('role') == 'admin') : ?>
+<div class="menu"> && !$this->checkRole('viewer')
+    <?php if (in_array(user('role'), ['admin', 'viewer'])) : ?>
         <div>
             <a href="<?= site_url(''); ?>"><?= $menuLang['calendar'] ?></a>
         </div>
