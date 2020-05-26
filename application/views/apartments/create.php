@@ -1,5 +1,6 @@
 <div>
 <?php
+$isViewer = user('role') == 'viewer';
 echo form_open('apartments/create', ['class' => 'create-apartment base-form']);
 
 if (isset($apartment['id'])) {
@@ -57,3 +58,12 @@ echo form_close();
 		</table>
 	</div>
 <?php endif; ?>
+<script>
+	window.viewer = <?= $isViewer ? 1 : 0; ?>;
+	$(document).ready(function () {
+		if (window.viewer) {
+			$('input, select').attr('disabled', 'disabled');
+			$('.buttons').remove();
+		}
+	});
+</script>
