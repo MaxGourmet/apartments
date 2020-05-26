@@ -4,7 +4,7 @@ class Calendar extends MY_Controller
     public function __construct()
     {
         parent::__construct();
-        if (!$this->checkRole('admin')) {
+        if (!$this->checkRole('admin') && !$this->checkRole('viewer')) {
             show_404();
         }
     }

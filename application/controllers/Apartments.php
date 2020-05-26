@@ -5,7 +5,7 @@ class Apartments extends MY_Controller
     {
         parent::__construct();
 		$isNotCleaner = !in_array($this->router->fetch_method(), ['clean', 'clean_success']);
-        if (!$this->checkRole('admin') && $isNotCleaner) {
+        if (!$this->checkRole('admin') && $isNotCleaner && !$this->checkRole('viewer')) {
             show_404();
         }
     }
