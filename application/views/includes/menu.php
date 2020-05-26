@@ -3,14 +3,16 @@
     <i class="fa fa-bars" aria-hidden="true"></i>
     <i class="fa fa-window-close" aria-hidden="true"></i>
 </label>
-<div class="menu"> && !$this->checkRole('viewer')
+<div class="menu">
     <?php if (in_array(user('role'), ['admin', 'viewer'])) : ?>
         <div>
             <a href="<?= site_url(''); ?>"><?= $menuLang['calendar'] ?></a>
         </div>
-        <div>
-            <a href="<?= site_url('bookings'); ?>"><?= $menuLang['debtors'] ?></a>
-        </div>
+		<?php if (in_array(user('role'), ['admin'])) : ?>
+			<div>
+				<a href="<?= site_url('bookings'); ?>"><?= $menuLang['debtors'] ?></a>
+			</div>
+		<?php endif; ?>
         <div>
             <a href="<?= site_url('bookings/create'); ?>"><?= $menuLang['new_booking'] ?></a>
         </div>

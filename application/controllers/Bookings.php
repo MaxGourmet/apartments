@@ -11,6 +11,9 @@ class Bookings extends MY_Controller
 
     public function index()
     {
+		if ($this->checkRole('viewer')) {
+			show_404();
+		}
         $this->title = $this->configs->get(false, 'bookings_title');
         $params = [
             'filters' => [
@@ -26,6 +29,9 @@ class Bookings extends MY_Controller
 
     protected function indexView($additionalParams = [])
     {
+		if ($this->checkRole('viewer')) {
+			show_404();
+		}
         $params = [
             'filters' => [],
             'joins' => [
@@ -59,6 +65,9 @@ class Bookings extends MY_Controller
         $is_final_decision = $this->configs->get(false, 'is_final_decision', 'ohne Verlängerungsoption');
         reset($payments);
         if (($data = $this->post()) && !empty($data)) {
+			if ($this->checkRole('viewer')) {
+				show_404();
+			}
             array_extract($data, 'submit');
             if ($this->bookings->checkBooking($data)) {
                 $data['start_time'] = date('H:i:s', strtotime($data['start_time']));
@@ -114,6 +123,9 @@ class Bookings extends MY_Controller
                     redirect('bookings');
                 }
             } else {
+				if ($this->checkRole('viewer')) {
+					show_404();
+				}
                 $this->title = $this->configs->get(false, 'bookings_create_title');
                 if ($apartmentId && isset($apartments[$apartmentId])) {
                     $selectedApartment = $apartmentId;
@@ -305,6 +317,9 @@ class Bookings extends MY_Controller
 
     public function delete($id)
     {
+		if ($this->checkRole('viewer')) {
+			show_404();
+		}
         if ($id) {
             $this->bookings->delete($id);
         }
@@ -313,6 +328,9 @@ class Bookings extends MY_Controller
 
     public function confirmPayment()
     {
+		if ($this->checkRole('viewer')) {
+			show_404();
+		}
         if (!$this->checkAjax()) {
             return;
         }
