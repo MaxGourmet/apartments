@@ -12,25 +12,29 @@
 			<div>
 				<a href="<?= site_url('bookings'); ?>"><?= $menuLang['debtors'] ?></a>
 			</div>
+			<div>
+				<a href="<?= site_url('bookings/create'); ?>"><?= $menuLang['new_booking'] ?></a>
+			</div>
 		<?php endif; ?>
-        <div>
-            <a href="<?= site_url('bookings/create'); ?>"><?= $menuLang['new_booking'] ?></a>
-        </div>
         <div>
             <a href="<?= site_url('apartments'); ?>"><?= $menuLang['apartments'] ?></a>
         </div>
-        <div>
-            <a href="<?= site_url('apartments/create'); ?>"><?= $menuLang['new_apartment'] ?></a>
-        </div>
+		<?php if (in_array(user('role'), ['admin'])) : ?>
+			<div>
+				<a href="<?= site_url('apartments/create'); ?>"><?= $menuLang['new_apartment'] ?></a>
+			</div>
+		<?php endif; ?>
         <div>
             <a href="<?= site_url('fairs'); ?>"><?= $menuLang['fairs'] ?></a>
         </div>
-        <div>
-            <a href="<?= site_url('fairs/create'); ?>"><?= $menuLang['new_fair'] ?></a>
-        </div>
-        <div>
-            <a href="<?= site_url('bookings/reminder'); ?>"><?= $menuLang['reminder'] ?></a>
-        </div>
+		<?php if (in_array(user('role'), ['admin'])) : ?>
+			<div>
+				<a href="<?= site_url('fairs/create'); ?>"><?= $menuLang['new_fair'] ?></a>
+			</div>
+			<div>
+				<a href="<?= site_url('bookings/reminder'); ?>"><?= $menuLang['reminder'] ?></a>
+			</div>
+		<?php endif; ?>
     <?php endif; ?>
     <div class="logout">
         <a href="/auth/logout"><i class="fa fa-toggle-left" aria-hidden="true"></i> Ausloggen</a>

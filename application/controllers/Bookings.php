@@ -217,6 +217,9 @@ class Bookings extends MY_Controller
 
     public function reminder()
     {
+		if ($this->checkRole('viewer')) {
+			show_404();
+		}
         $this->title = $this->configs->get(false, 'reminder');
         $this->load->helper('form');
         $this->load->helper('html');

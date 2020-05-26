@@ -25,6 +25,9 @@ class Apartments extends MY_Controller
     public function create($id = null)
     {
         if (($data = $this->post()) && !empty($data)) {
+			if ($this->checkRole('viewer')) {
+				show_404();
+			}
             array_extract($data, 'submit');
             $this->apartments->update($data);
             redirect('apartments');
@@ -45,6 +48,9 @@ class Apartments extends MY_Controller
                     redirect('apartments');
                 }
             } else {
+				if ($this->checkRole('viewer')) {
+					show_404();
+				}
                 $this->title = $this->configs->get(false, 'apartments_create_title');
                 $apartment = [
                     'address' => '',
