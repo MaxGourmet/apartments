@@ -96,7 +96,7 @@ echo form_close();
 	window.viewer = <?= $isViewer ? 1 : 0; ?>;
 	$(document).ready(function () {
 		if (window.viewer) {
-			$('.save-form input, .save-form select').attr('disabled', 'disabled');
+			$('.save-form input, .save-form select, .save-form textarea').attr('disabled', 'disabled');
 			$('.buttons').remove();
 		}
 	});
