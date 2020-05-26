@@ -30,7 +30,6 @@ class Auth extends CI_Controller {
 	 */
 	public function login()
 	{
-		var_dump($this->authit->hashPassword('faS41kfAwq'));exit;
 		if (logged_in()) {
             if (user('role') == 'dev') {
                 redirect('configs');
