@@ -8,3 +8,7 @@ $db['default']['database'] = 'ibolit_nrw';
 //$db['default']['username'] = 'ibolit_nrw';
 //$db['default']['password'] = 'LnnDcGTXHp';
 //$db['default']['database'] = 'ibolit_nrw';
+//$db['default']['hostname'] = 'sql488.your-server.de';
+//$db['default']['username'] = 'appartr_2';
+//$db['default']['password'] = 'M5XBwYnscpxYQnSG';
+//$db['default']['database'] = 'appartr_kalender';
