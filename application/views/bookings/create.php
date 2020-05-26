@@ -1,5 +1,6 @@
-<div>
+<div class="save-form">
 <?php
+$isViewer = user('role') == 'viewer';
 if (isset($error)) {
     echo div($error, ['class' => 'error']);
 }
@@ -31,9 +32,11 @@ $input = form_label('Zusatzinformation', 'info')
     . form_textarea(['name' => 'info', 'value' => $booking['info'], 'id' => 'info']);
 echo div($input, ['class' => 'form-input']);
 
-$input = form_label('Zahlunginformation', 'payment_info')
-    . form_textarea(['name' => 'payment_info', 'value' => $booking['payment_info'], 'id' => 'payment_info']);
-echo div($input, ['class' => 'form-input']);
+if (!$isViewer) {
+	$input = form_label('Zahlunginformation', 'payment_info')
+		. form_textarea(['name' => 'payment_info', 'value' => $booking['payment_info'], 'id' => 'payment_info']);
+	echo div($input, ['class' => 'form-input']);
+}
 
 echo div(
     span('Übernachtungen',['class' => 'label']) . " " . span($booking['nights'], ['id' => 'calc_text']),
@@ -90,4 +93,11 @@ echo form_close();
 
 <script>
     window.totalPeopleCount = <?= json_encode($totalPeopleCount); ?>;
+	window.viewer = <?= $isViewer ? 1 : 0; ?>;
+	$(document).ready(function () {
+		if (window.viewer) {
+			$('.save-form input, .save-form select').attr('disabled', 'disabled');
+			$('.buttons').remove();
+		}
+	});
 </script>
