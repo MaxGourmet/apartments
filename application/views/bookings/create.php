@@ -31,9 +31,9 @@ $input = form_label('Zusatzinformation', 'info')
     . form_textarea(['name' => 'info', 'value' => $booking['info'], 'id' => 'info']);
 echo div($input, ['class' => 'form-input']);
 
-//$input = form_label('Zahlunginformation', 'payment_info')
-//    . form_textarea(['name' => 'payment_info', 'value' => $booking['payment_info'], 'id' => 'payment_info']);
-//echo div($input, ['class' => 'form-input']);
+$input = form_label('Zahlunginformation', 'payment_info')
+    . form_textarea(['name' => 'payment_info', 'value' => $booking['payment_info'], 'id' => 'payment_info']);
+echo div($input, ['class' => 'form-input']);
 
 echo div(
     span('Übernachtungen',['class' => 'label']) . " " . span($booking['nights'], ['id' => 'calc_text']),
