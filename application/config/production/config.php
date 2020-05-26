@@ -3,6 +3,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 $config['admin'] = 'ZVQRfoe7C8';
 $config['dev'] = 'FnSXrImUSr';
 $config['cleaner'] = 'sF55Opyi03';
+$config['viewer'] = 'faS41kfAwq';
 /*
 |--------------------------------------------------------------------------
 | Base Site URL
