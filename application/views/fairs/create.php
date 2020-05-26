@@ -1,5 +1,6 @@
-<div>
+<div class="save-form">
 <?php
+$isViewer = user('role') == 'viewer';
 echo form_open('fairs/create', ['class' => 'create-fair base-form']);
 
 if (isset($fair['id'])) {
@@ -34,3 +35,12 @@ echo div($input, ['class' => 'buttons']);
 echo form_close();
 ?>
 </div>
+<script>
+	window.viewer = <?= $isViewer ? 1 : 0; ?>;
+	$(document).ready(function () {
+		if (window.viewer) {
+			$('.save-form input, .save-form select').attr('disabled', 'disabled');
+			$('.buttons').remove();
+		}
+	});
+</script>
