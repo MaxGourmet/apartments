@@ -1,4 +1,4 @@
-<div>
+<div class="save-form">
 <?php
 $isViewer = user('role') == 'viewer';
 echo form_open('apartments/create', ['class' => 'create-apartment base-form']);
@@ -62,7 +62,7 @@ echo form_close();
 	window.viewer = <?= $isViewer ? 1 : 0; ?>;
 	$(document).ready(function () {
 		if (window.viewer) {
-			$('input, select').attr('disabled', 'disabled');
+			$('.save-form input, .save-form select').attr('disabled', 'disabled');
 			$('.buttons').remove();
 		}
 	});
