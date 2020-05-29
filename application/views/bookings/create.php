@@ -33,7 +33,7 @@ $input = form_label('Zusatzinformation', 'info')
 echo div($input, ['class' => 'form-input']);
 
 if (!$isViewer) {
-	$input = form_label('Zahlunginformation', 'payment_info')
+	$input = form_label('Zahlungsinformation', 'payment_info')
 		. form_textarea(['name' => 'payment_info', 'value' => $booking['payment_info'], 'id' => 'payment_info']);
 	echo div($input, ['class' => 'form-input']);
 }
