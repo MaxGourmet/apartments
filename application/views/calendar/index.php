@@ -100,7 +100,7 @@
                                   $defaultClass = $defaultClass == 'weekend free' ? 'weekend booked' : 'booked';
                                   $defaultClass .= " {$bookingsData[$bookingId]['payment_status']}";
 
-								  $bookingIdForDate = max($bookingIdForDate, $bookingId);
+								  $bookingIdForDate = $bookingId;
                                   if (isset($bookingsInfo[$bookingId])) {
                                     $info = "data-info='{$bookingsInfo[$bookingId]}'";
                                     //                                $info = $bookingsInfo[$bookingId];
