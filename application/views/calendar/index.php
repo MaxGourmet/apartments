@@ -10,6 +10,9 @@
 		background-color: <?= $color['value']; ?>;
 	}
     <?php endforeach; ?>
+	.calendar td.booked.one-day {
+		background: #ff0000 !important;
+	}
 </style>
 <div class="month">
     <?php
