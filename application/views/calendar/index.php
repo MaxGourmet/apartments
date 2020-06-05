@@ -88,15 +88,15 @@
                             $addClass = '';
                             $addAttributes = "data-attr-date='$date'";
                             $bookingIdForDate = 0;
+							  $bookingsForThisDay = [
+									  'fd' => 0,
+									  'ld' => 0,
+									  'od' => 0
+							  ];
                             if (!empty($bookingsForApartment)) {
                               foreach ($bookingsForApartment as $bookingId => $booking) {
                                 $info = '';
                                 $colspan = 1;
-                                $bookingsForThisDay = [
-									'fd' => 0,
-									'ld' => 0,
-									'od' => 0
-								];
                                 if (in_array($date, $booking)) {
                                   $addClass = $booking[0] == $date ? $addClass . ' first-day' : $addClass;
                                   $addClass = $booking[count($booking) - 1] == $date ? $addClass . ' last-day' : $addClass;
