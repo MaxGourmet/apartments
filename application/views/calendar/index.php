@@ -13,6 +13,9 @@
 	.calendar td.booked.one-day {
 		background: #ff0000 !important;
 	}
+	.calendar td.booked.weekend.one-day {
+		background: #ff0000 !important;
+	}
 </style>
 <div class="month">
     <?php
