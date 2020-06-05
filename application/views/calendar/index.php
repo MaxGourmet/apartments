@@ -3,6 +3,12 @@
     .calendar td.booked.<?= $color['name']; ?> {
         background-color: <?= $color['value']; ?>;
     }
+	.calendar td.booked.<?= $color['name']; ?>.one-day:before {
+		background-color: <?= $color['value']; ?>;
+	}
+	.calendar td.booked.<?= $color['name']; ?>.one-day:after {
+		background-color: <?= $color['value']; ?>;
+	}
     <?php endforeach; ?>
 </style>
 <div class="month">
