@@ -79,6 +79,7 @@
                 <tbody>
                 <?php foreach($apartments as $apartment) : ?>
                   <?php $bookingsForApartment = isset($bookings[$apartment['id']]) ? $bookings[$apartment['id']] : []; ?>
+				  <input type="hidden" value="<?php echo json_encode($bookingsForApartment); ?>">
                     <tr data-attr-apartment_id="<?= $apartment['id']; ?>">
                         <td><?= $apartment['address']; ?></td>
                           <?php
