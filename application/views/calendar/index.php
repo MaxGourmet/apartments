@@ -88,11 +88,11 @@
                             $addClass = '';
                             $addAttributes = "data-attr-date='$date'";
                             $bookingIdForDate = 0;
-							  $bookingsForThisDay = [
-									  'fd' => 0,
-									  'ld' => 0,
-									  'od' => 0
-							  ];
+                            $bookingsForThisDay = [
+								'fd' => 0,
+								'ld' => 0,
+								'od' => 0
+							];
                             if (!empty($bookingsForApartment)) {
                               foreach ($bookingsForApartment as $bookingId => $booking) {
                                 $info = '';
@@ -111,7 +111,6 @@
 								  }
                                   $bookingsForThisDay['od'] = $bookingId;
 
-								  $bookingIdForDate = $bookingId;
                                   if (isset($bookingsInfo[$bookingId])) {
                                     $info = "data-info='{$bookingsInfo[$bookingId]}'";
                                     //                                $info = $bookingsInfo[$bookingId];
@@ -120,10 +119,16 @@
                                 }
                               }
                             }
+                            if ($bookingsForThisDay['fd'] != 0) {
+								$bookingIdForDate = $bookingsForThisDay['fd'];
+							} elseif ($bookingsForThisDay['ld'] != 0) {
+								$bookingIdForDate = $bookingsForThisDay['ld'];
+							} elseif ($bookingsForThisDay['od'] != 0) {
+								$bookingIdForDate = $bookingsForThisDay['od'];
+							}
                             if ($bookingIdForDate != 0) {
 								$addAttributes .= " data-attr-booking_id='$bookingIdForDate'";
 							}
-                            $addAttributes .= " data-attr-bid='" . json_encode($bookingsForThisDay) . "'";
                             echo "<td $info class='$defaultClass $addClass' $addAttributes></td>";
                           }
                           ?>
