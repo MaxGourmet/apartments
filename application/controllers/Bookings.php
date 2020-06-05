@@ -211,7 +211,13 @@ class Bookings extends MY_Controller
                         'field' => 'info',
                         'operand' => 'like',
                         'value' => "%$searchQuery%"
-                    ]
+                    ],
+					[
+						'or' => 'or',
+						'field' => 'payment_info',
+						'operand' => 'like',
+						'value' => "%$searchQuery%"
+					]
                 ]
             ];
             $this->indexView($params);

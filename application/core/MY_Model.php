@@ -27,7 +27,11 @@ class MY_Model extends CI_Model
             if (is_array($filter)) {
                 $key = "{$filter['field']} {$filter['operand']}";
                 $value = $filter['value'];
-                $query->where($key, $value);
+                if (isset($filter['or'])) {
+					$query->or_where($key, $value);
+				} else {
+					$query->where($key, $value);
+				}
             } else {
                 $query->where($filter);
             }
