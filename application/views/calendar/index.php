@@ -101,6 +101,9 @@
                                   $addClass = $booking[0] == $date ? $addClass . ' first-day' : $addClass;
                                   $addClass = $booking[count($booking) - 1] == $date ? $addClass . ' last-day' : $addClass;
                                   $addClass = ($booking[count($booking) - 1] == $date) && $bookingsData[$bookingId]['is_final_decision'] ? $addClass . ' final_decision' : $addClass;
+                                  if (count($booking) == 2) {
+                                  	$addClass .= ' one-day';
+								  }
                                   $defaultClass = $defaultClass == 'weekend free' ? 'weekend booked' : 'booked';
                                   $defaultClass .= " {$bookingsData[$bookingId]['payment_status']}";
                                   if ($booking[0] == $date) {
