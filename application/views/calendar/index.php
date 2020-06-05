@@ -88,6 +88,7 @@
                             $defaultClass = $isWeekend ? 'weekend free' : 'free';
                             $addClass = '';
                             $addAttributes = "data-attr-date='$date'";
+                            $bookingIdForDate = 0;
                             if (!empty($bookingsForApartment)) {
                               foreach ($bookingsForApartment as $bookingId => $booking) {
                                 $info = '';
@@ -98,7 +99,8 @@
                                   $addClass = ($booking[count($booking) - 1] == $date) && $bookingsData[$bookingId]['is_final_decision'] ? $addClass . ' final_decision' : $addClass;
                                   $defaultClass = $defaultClass == 'weekend free' ? 'weekend booked' : 'booked';
                                   $defaultClass .= " {$bookingsData[$bookingId]['payment_status']}";
-                                  $addAttributes .= " data-attr-booking_id='$bookingId'";
+
+								  $bookingIdForDate = max($bookingIdForDate, $bookingId);
                                   if (isset($bookingsInfo[$bookingId])) {
                                     $info = "data-info='{$bookingsInfo[$bookingId]}'";
                                     //                                $info = $bookingsInfo[$bookingId];
@@ -107,6 +109,9 @@
                                 }
                               }
                             }
+                            if ($bookingIdForDate != 0) {
+								$addAttributes .= " data-attr-booking_id='$bookingIdForDate'";
+							}
                             echo "<td $info class='$defaultClass $addClass' $addAttributes></td>";
                           }
                           ?>
