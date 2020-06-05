@@ -79,7 +79,6 @@
                 <tbody>
                 <?php foreach($apartments as $apartment) : ?>
                   <?php $bookingsForApartment = isset($bookings[$apartment['id']]) ? $bookings[$apartment['id']] : []; ?>
-				  <input type="hidden" value="<?php echo json_encode($bookingsForApartment); ?>">
                     <tr data-attr-apartment_id="<?= $apartment['id']; ?>">
                         <td><?= $apartment['address']; ?></td>
                           <?php
@@ -93,12 +92,24 @@
                               foreach ($bookingsForApartment as $bookingId => $booking) {
                                 $info = '';
                                 $colspan = 1;
+                                $bookingsForThisDay = [
+									'fd' => 0,
+									'ld' => 0,
+									'od' => 0
+								];
                                 if (in_array($date, $booking)) {
                                   $addClass = $booking[0] == $date ? $addClass . ' first-day' : $addClass;
                                   $addClass = $booking[count($booking) - 1] == $date ? $addClass . ' last-day' : $addClass;
                                   $addClass = ($booking[count($booking) - 1] == $date) && $bookingsData[$bookingId]['is_final_decision'] ? $addClass . ' final_decision' : $addClass;
                                   $defaultClass = $defaultClass == 'weekend free' ? 'weekend booked' : 'booked';
                                   $defaultClass .= " {$bookingsData[$bookingId]['payment_status']}";
+                                  if ($booking[0] == $date) {
+									  $bookingsForThisDay['fd'] = $bookingId;
+								  }
+                                  if ($booking[count($booking) - 1] == $date) {
+									  $bookingsForThisDay['ld'] = $bookingId;
+								  }
+                                  $bookingsForThisDay['od'] = $bookingId;
 
 								  $bookingIdForDate = $bookingId;
                                   if (isset($bookingsInfo[$bookingId])) {
@@ -112,6 +123,7 @@
                             if ($bookingIdForDate != 0) {
 								$addAttributes .= " data-attr-booking_id='$bookingIdForDate'";
 							}
+                            $addAttributes .= " data-attr-bid='" . json_encode($bookingsForThisDay) . "'";
                             echo "<td $info class='$defaultClass $addClass' $addAttributes></td>";
                           }
                           ?>
