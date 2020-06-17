@@ -455,7 +455,15 @@ $(function () {
 		$(this).data('order', newDirection);
 		var rows = $('.apartment-entity');
 		rows.sort(function (rowA, rowB) {
-			return $(rowA).find("td[data-sort='" + orderElement + "']")[0].innerText > $(rowB).find("td[data-sort='" + orderElement + "']")[0].innerText ? sign :  sign * (-1);
+			var v1 = $(rowA).find("td[data-sort='" + orderElement + "']")[0].innerText,
+				v2 = $(rowB).find("td[data-sort='" + orderElement + "']")[0].innerText;
+
+			if (orderElement == 'days') {
+				v1 = parseInt(v1);
+				v2 = parseInt(v2);
+			}
+
+			return v1 > v2 ? sign : sign * (-1);
 		});
 		$('.apartments tbody').append(rows);
 	})
