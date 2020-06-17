@@ -459,8 +459,8 @@ $(function () {
 				v2 = $(rowB).find("td[data-sort='" + orderElement + "']")[0].innerText;
 
 			if (orderElement == 'days') {
-				v1 = parseInt(v1);
-				v2 = parseInt(v2);
+				v1 = v1 == '' ? 0 : parseInt(v1);
+				v2 = v2 == '' ? 0 : parseInt(v2);
 			}
 
 			return v1 > v2 ? sign : sign * (-1);
