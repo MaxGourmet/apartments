@@ -9,7 +9,7 @@ class Calendar extends MY_Controller
         }
     }
 
-    public function index($ym = null)
+    public function index($ym = null, $test = null)
     {
         $filtersDate = $ym && ($d = date('Y-m', strtotime($ym))) ? $d : date('Y-m');
         $this->title = utf8_encode(strftime('%B', strtotime($filtersDate)));
@@ -54,8 +54,12 @@ class Calendar extends MY_Controller
             $fairForJS[$fair['id']] = $fair['name'];
         }
         $colors = $this->configs->get('colors');
+        $viewName = 'calendar/index';
+        if ($test) {
+			$viewName = 'calendar/index2';
+		}
         $this->showView(
-            'calendar/index',
+			$viewName,
             [
                 'apartments' => $apartments,
                 'bookings' =>  $bookings,
@@ -78,4 +82,9 @@ class Calendar extends MY_Controller
             redirect();
         }
     }
+
+    public function test($ym)
+	{
+		$this->index($ym, 1);
+	}
 }
