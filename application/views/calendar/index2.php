@@ -79,11 +79,9 @@
                             ?>
                             <?php if (isset($fairDates[$date])) : ?>
                                 <?php list($id, $name) = explode('|||', $fairDates[$date]); ?>
-                                <td class="<?= $isWeekend ? 'weekend' : '' ?>" data-fair-id="<?= $id; ?>" data-name="<?= $name; ?>"></td>
-                                <td class="<?= $isWeekend ? 'weekend' : '' ?>" data-fair-id="<?= $id; ?>" data-name="<?= $name; ?>"></td>
+                                <td colspan="2" class="<?= $isWeekend ? 'weekend' : '' ?>" data-fair-id="<?= $id; ?>" data-name="<?= $name; ?>"></td>
                             <?php else : ?>
-                                <td class="<?= $isWeekend ? 'weekend' : '' ?>"></td>
-                                <td class="<?= $isWeekend ? 'weekend' : '' ?>"></td>
+                                <td colspan="2" class="<?= $isWeekend ? 'weekend' : '' ?>"></td>
                             <?php endif; ?>
                         <?php endforeach; ?>
                         <td></td>
@@ -112,18 +110,20 @@
                                 $info = '';
                                 $colspan = 1;
                                 if (in_array($date, $booking)) {
-                                  $addClass = $booking[0] == $date ? $addClass . ' first-day' : $addClass;
-                                  $addClass = $booking[count($booking) - 1] == $date ? $addClass . ' last-day' : $addClass;
-                                  $addClass = ($booking[count($booking) - 1] == $date) && $bookingsData[$bookingId]['is_final_decision'] ? $addClass . ' final_decision' : $addClass;
+								  $isFirstDay = $booking[0] == $date;
+								  $isLastDay = $booking[count($booking) - 1] == $date;
+                                  $addClass = $isFirstDay ? $addClass . ' first-day' : $addClass;
+                                  $addClass = $isLastDay ? $addClass . ' last-day' : $addClass;
+                                  $addClass = $isLastDay && $bookingsData[$bookingId]['is_final_decision'] ? $addClass . ' final_decision' : $addClass;
                                   if (count($booking) == 2) {
                                   	$addClass .= ' one-day';
 								  }
                                   $defaultClass = $defaultClass == 'weekend free' ? 'weekend booked' : 'booked';
                                   $defaultClass .= " {$bookingsData[$bookingId]['payment_status']}";
-                                  if ($booking[0] == $date) {
+                                  if ($isFirstDay) {
 									  $bookingsForThisDay['fd'] = $bookingId;
 								  }
-                                  if ($booking[count($booking) - 1] == $date) {
+                                  if ($isLastDay) {
 									  $bookingsForThisDay['ld'] = $bookingId;
 								  }
                                   $bookingsForThisDay['od'] = $bookingId;
@@ -146,8 +146,15 @@
                             if ($bookingIdForDate != 0) {
 								$addAttributes .= " data-attr-booking_id='$bookingIdForDate'";
 							}
-                            echo "<td $info class='$defaultClass $addClass' $addAttributes></td>";
-                            echo "<td $info class='$defaultClass $addClass' $addAttributes></td>";
+                            $addClass1 = $addClass2 = $addClass;
+                            if ($isFirstDay) {
+                            	$addClass1 = '';
+							}
+                            if ($isLastDay) {
+                            	$addClass2 = '';
+							}
+                            echo "<td $info class='$defaultClass $addClass1' $addAttributes></td>";
+                            echo "<td $info class='$defaultClass $addClass2' $addAttributes></td>";
                           }
                           ?>
                         <td><?= $apartment['address']; ?></td>
