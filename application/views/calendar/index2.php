@@ -65,7 +65,6 @@
                         $isToday = $date == date('Y-m-d');
                         ?>
                           <th class="date <?= $isWeekend ? 'weekend' : '' ?> <?= $isToday ? 'today' : '' ?>"><?= $i; ?></th>
-                          <th class="date <?= $isWeekend ? 'weekend' : '' ?> <?= $isToday ? 'today' : '' ?>"><?= $i; ?></th>
                       <?php endforeach; ?>
                     <th></th>
                 </tr>
