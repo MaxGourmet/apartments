@@ -149,12 +149,13 @@
                             $addClass1 = $addClass2 = $addClass;
                             $defaultClass1 = $defaultClass2 = $defaultClass;
                             $addAttributes1 = $addAttributes2 = $addAttributes;
-                            if ($isFirstDay) {
+                            $oneDay = $isFirstDay && $isLastDay;
+                            if ($isFirstDay && !$oneDay) {
                             	$addClass1 = '';
 								$defaultClass1 = $isWeekend ? 'weekend free' : 'free';
 								$addAttributes1 = '';
 							}
-                            if ($isLastDay) {
+                            if ($isLastDay && !$oneDay) {
                             	$addClass2 = '';
 								$defaultClass2 = $isWeekend ? 'weekend free' : 'free';
 								$addAttributes2 = '';
