@@ -147,14 +147,20 @@
 								$addAttributes .= " data-attr-booking_id='$bookingIdForDate'";
 							}
                             $addClass1 = $addClass2 = $addClass;
+                            $defaultClass1 = $defaultClass2 = $defaultClass;
+                            $addAttributes1 = $addAttributes2 = $addAttributes;
                             if ($isFirstDay) {
                             	$addClass1 = '';
+								$defaultClass1 = $isWeekend ? 'weekend free' : 'free';
+								$addAttributes1 = '';
 							}
                             if ($isLastDay) {
                             	$addClass2 = '';
+								$defaultClass2 = $isWeekend ? 'weekend free' : 'free';
+								$addAttributes2 = '';
 							}
-                            echo "<td $info class='$defaultClass $addClass1' $addAttributes></td>";
-                            echo "<td $info class='$defaultClass $addClass2' $addAttributes></td>";
+                            echo "<td $info class='$defaultClass1 $addClass1' $addAttributes1></td>";
+                            echo "<td $info class='$defaultClass2 $addClass2' $addAttributes2></td>";
                           }
                           ?>
                         <td><?= $apartment['address']; ?></td>
