@@ -97,6 +97,7 @@
                           foreach($monthDays as $date) {
                             $isWeekend = in_array(date('N', strtotime($date)), [6, 7]);
                             $defaultClass = $isWeekend ? 'weekend free' : 'free';
+							$defaultClass1 = $defaultClass2 = $defaultClass;
                             $addClass = '';
 							$addClass1 = $addClass2 = $addClass;
                             $addAttributes = "data-attr-date='$date'";
@@ -126,9 +127,11 @@
                                   $defaultClass .= " {$bookingsData[$bookingId]['payment_status']}";
                                   if ($isFirstDay) {
 									  $bookingsForThisDay['fd'] = $bookingId;
+									  $defaultClass2 = $defaultClass;
 								  }
                                   if ($isLastDay) {
 									  $bookingsForThisDay['ld'] = $bookingId;
+									  $defaultClass1 = $defaultClass;
 								  }
                                   $bookingsForThisDay['od'] = $bookingId;
 
@@ -150,16 +153,15 @@
                             if ($bookingIdForDate != 0) {
 								$addAttributes .= " data-attr-booking_id='$bookingIdForDate'";
 							}
-                            $defaultClass1 = $defaultClass2 = $defaultClass;
                             $addAttributes1 = $addAttributes2 = $addAttributes;
                             if ($isFirstDay && !$oneDay) {
-                            	$addClass1 = '';
-								$defaultClass1 = $isWeekend ? 'weekend free' : 'free';
+//                            	$addClass1 = '';
+//								$defaultClass1 = $isWeekend ? 'weekend free' : 'free';
 								$addAttributes1 = '';
 							}
                             if ($isLastDay && !$oneDay) {
-                            	$addClass2 = '';
-								$defaultClass2 = $isWeekend ? 'weekend free' : 'free';
+//                            	$addClass2 = '';
+//								$defaultClass2 = $isWeekend ? 'weekend free' : 'free';
 								$addAttributes2 = '';
 							}
                             echo "<td $info class='$defaultClass1 $addClass1' $addAttributes1></td>";
