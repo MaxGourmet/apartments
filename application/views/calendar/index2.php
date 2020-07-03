@@ -98,6 +98,7 @@
                             $isWeekend = in_array(date('N', strtotime($date)), [6, 7]);
                             $defaultClass = $isWeekend ? 'weekend free' : 'free';
                             $addClass = '';
+							$addClass1 = $addClass2 = $addClass;
                             $addAttributes = "data-attr-date='$date'";
                             $bookingIdForDate = 0;
                             $bookingsForThisDay = [
@@ -112,11 +113,14 @@
                                 if (in_array($date, $booking)) {
 								  $isFirstDay = $booking[0] == $date;
 								  $isLastDay = $booking[count($booking) - 1] == $date;
-                                  $addClass = $isFirstDay ? $addClass . ' first-day' : $addClass;
-                                  $addClass = $isLastDay ? $addClass . ' last-day' : $addClass;
-                                  $addClass = $isLastDay && $bookingsData[$bookingId]['is_final_decision'] ? $addClass . ' final_decision' : $addClass;
-                                  if (count($booking) == 2) {
-                                  	$addClass .= ' one-day';
+								  $oneDay = count($booking) == 2;
+
+                                  $addClass2 = $isFirstDay ? $addClass2 . ' first-day' : $addClass2;
+                                  $addClass1 = $isLastDay ? $addClass1 . ' last-day' : $addClass1;
+                                  $addClass1 = $isLastDay && $bookingsData[$bookingId]['is_final_decision'] ? $addClass1 . ' final_decision' : $addClass1;
+                                  if ($oneDay) {
+                                  	$addClass1 .= ' one-day';
+                                  	$addClass2 .= ' one-day';
 								  }
                                   $defaultClass = $defaultClass == 'weekend free' ? 'weekend booked' : 'booked';
                                   $defaultClass .= " {$bookingsData[$bookingId]['payment_status']}";
@@ -146,10 +150,8 @@
                             if ($bookingIdForDate != 0) {
 								$addAttributes .= " data-attr-booking_id='$bookingIdForDate'";
 							}
-                            $addClass1 = $addClass2 = $addClass;
                             $defaultClass1 = $defaultClass2 = $defaultClass;
                             $addAttributes1 = $addAttributes2 = $addAttributes;
-                            $oneDay = $isFirstDay && $isLastDay;
                             if ($isFirstDay && !$oneDay) {
                             	$addClass1 = '';
 								$defaultClass1 = $isWeekend ? 'weekend free' : 'free';
