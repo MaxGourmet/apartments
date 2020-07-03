@@ -125,16 +125,16 @@
 								  }
                                   if ($isFirstDay) {
 									  $bookingsForThisDay['fd'] = $bookingId;
-									  $defaultClass2 = $defaultClass == 'weekend free' ? 'weekend booked' : 'booked';
+									  $defaultClass2 = $isWeekend ? 'weekend booked' : 'booked';
 									  $defaultClass2 .= " {$bookingsData[$bookingId]['payment_status']}";
 								  }
                                   if ($isLastDay) {
 									  $bookingsForThisDay['ld'] = $bookingId;
-									  $defaultClass1 = $defaultClass == 'weekend free' ? 'weekend booked' : 'booked';
+									  $defaultClass1 = $isWeekend ? 'weekend booked' : 'booked';
 									  $defaultClass1 .= " {$bookingsData[$bookingId]['payment_status']}";
 								  }
                                   if (!$isFirstDay && !$isLastDay) {
-									  $defaultClass = $defaultClass == 'weekend free' ? 'weekend booked' : 'booked';
+									  $defaultClass = $isWeekend ? 'weekend booked' : 'booked';
 									  $defaultClass .= " {$bookingsData[$bookingId]['payment_status']}";
 									  $defaultClass1 = $defaultClass2 = $defaultClass;
 								  }
