@@ -123,17 +123,19 @@
                                   	$addClass1 .= ' one-day';
                                   	$addClass2 .= ' one-day';
 								  }
-                                  $defaultClass = $defaultClass == 'weekend free' ? 'weekend booked' : 'booked';
-                                  $defaultClass .= " {$bookingsData[$bookingId]['payment_status']}";
                                   if ($isFirstDay) {
 									  $bookingsForThisDay['fd'] = $bookingId;
-									  $defaultClass2 = $defaultClass;
+									  $defaultClass2 = $defaultClass2 == 'weekend free' ? 'weekend booked' : 'booked';
+									  $defaultClass2 .= " {$bookingsData[$bookingId]['payment_status']}";
 								  }
                                   if ($isLastDay) {
 									  $bookingsForThisDay['ld'] = $bookingId;
-									  $defaultClass1 = $defaultClass;
+									  $defaultClass1 = $defaultClass1 == 'weekend free' ? 'weekend booked' : 'booked';
+									  $defaultClass1 .= " {$bookingsData[$bookingId]['payment_status']}";
 								  }
                                   if (!$isFirstDay && !$isLastDay) {
+									  $defaultClass = $defaultClass == 'weekend free' ? 'weekend booked' : 'booked';
+									  $defaultClass .= " {$bookingsData[$bookingId]['payment_status']}";
 									  $defaultClass1 = $defaultClass2 = $defaultClass;
 								  }
                                   $bookingsForThisDay['od'] = $bookingId;
@@ -160,12 +162,12 @@
                             if ($isFirstDay && !$oneDay) {
 //                            	$addClass1 = '';
 //								$defaultClass1 = $isWeekend ? 'weekend free' : 'free';
-								$addAttributes1 = '';
+//								$addAttributes1 = '';
 							}
                             if ($isLastDay && !$oneDay) {
 //                            	$addClass2 = '';
 //								$defaultClass2 = $isWeekend ? 'weekend free' : 'free';
-								$addAttributes2 = '';
+//								$addAttributes2 = '';
 							}
                             echo "<td $info class='$defaultClass1 $addClass1' $addAttributes1></td>";
                             echo "<td $info class='$defaultClass2 $addClass2' $addAttributes2></td>";
