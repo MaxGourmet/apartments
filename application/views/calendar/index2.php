@@ -116,22 +116,26 @@
 								  $isLastDay = $booking[count($booking) - 1] == $date;
 								  $oneDay = count($booking) == 2;
 
-                                  $addClass2 = $isFirstDay ? $addClass2 . ' first-day' : $addClass2;
-                                  $addClass1 = $isLastDay ? $addClass1 . ' last-day' : $addClass1;
-                                  $addClass1 = $isLastDay && $bookingsData[$bookingId]['is_final_decision'] ? $addClass1 . ' final_decision' : $addClass1;
-                                  if ($oneDay) {
-                                  	$addClass1 .= ' one-day';
-                                  	$addClass2 .= ' one-day';
-								  }
                                   if ($isFirstDay) {
 									  $bookingsForThisDay['fd'] = $bookingId;
 									  $defaultClass2 = $isWeekend ? 'weekend booked' : 'booked';
 									  $defaultClass2 .= " {$bookingsData[$bookingId]['payment_status']}";
+									  $addClass2 .= ' first-day';
+									  if ($oneDay) {
+										  $addClass2 .= ' one-day';
+									  }
 								  }
                                   if ($isLastDay) {
 									  $bookingsForThisDay['ld'] = $bookingId;
 									  $defaultClass1 = $isWeekend ? 'weekend booked' : 'booked';
 									  $defaultClass1 .= " {$bookingsData[$bookingId]['payment_status']}";
+									  $addClass1 .= ' last-day';
+									  if ($bookingsData[$bookingId]['is_final_decision']) {
+										  $addClass1 .= ' final_decision';
+									  }
+									  if ($oneDay) {
+										  $addClass1 .= ' one-day';
+									  }
 								  }
                                   if (!$isFirstDay && !$isLastDay) {
 									  $defaultClass = $isWeekend ? 'weekend booked' : 'booked';
