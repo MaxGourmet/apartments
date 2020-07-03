@@ -133,6 +133,9 @@
 									  $bookingsForThisDay['ld'] = $bookingId;
 									  $defaultClass1 = $defaultClass;
 								  }
+                                  if (!$isFirstDay && !$isLastDay) {
+									  $defaultClass1 = $defaultClass2 = $defaultClass;
+								  }
                                   $bookingsForThisDay['od'] = $bookingId;
 
                                   if (isset($bookingsInfo[$bookingId])) {
