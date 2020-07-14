@@ -25,9 +25,6 @@
 	<?php
 	$previousMonth = date('Y-m', strtotime($currentMonth . " -1month"));
 	$nextMonth = date('Y-m', strtotime($currentMonth . " +1month"));
-	//    $previousMonthText = date('F', strtotime($previousMonth));
-	//    $currentMonthText = date('F', strtotime($currentMonth));
-	//    $nextMonthText = date('F', strtotime($nextMonth));strftime('%A')
 	$r = setlocale(LC_ALL, 'de_DE@euro', 'de_DE', 'de', 'ge');
 	$previousMonthText = utf8_encode(strftime('%B', strtotime($previousMonth)));
 	$currentMonthText = utf8_encode(strftime('%B', strtotime($currentMonth)));
