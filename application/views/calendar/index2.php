@@ -176,21 +176,23 @@
 							$bookingIdForDate = $bookingsForThisDay['fd'];
 							$isFD = true;
 							$isOD = false;
-						} elseif ($bookingsForThisDay['ld'] != 0) {
+						}
+						if ($bookingsForThisDay['ld'] != 0) {
 							$bookingIdForDate = $bookingsForThisDay['ld'];
 							$isLD = true;
 							$isOD = false;
-						} elseif ($bookingsForThisDay['od'] != 0) {
+						}
+						if ($bookingsForThisDay['od'] != 0) {
 							$bookingIdForDate = $bookingsForThisDay['od'];
 						}
 
 						$addAttributes1 = $addAttributes2 = $addAttributes;
 						if ($bookingIdForDate != 0) {
 							if ($isFD) {
-								$addAttributes2 .= " data-attr-booking_id='$bookingIdForDate'";
+								$addAttributes2 .= " data-attr-booking_id='{$bookingsForThisDay['fd']}'";
 							}
 							if ($isLD) {
-								$addAttributes1 .= " data-attr-booking_id='$bookingIdForDate'";
+								$addAttributes1 .= " data-attr-booking_id='{$bookingsForThisDay['ld']}'";
 							}
 							if ($isOD) {
 								$addAttributes1 .= " data-attr-booking_id='$bookingIdForDate'";
