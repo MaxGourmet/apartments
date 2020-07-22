@@ -7,9 +7,9 @@
 		<th>Schlafplätze</th>
 		<th>Last clean</th>
 		<th class="sort" data-element="days" data-order="asc" style="cursor: pointer">Days after</th>
-		<th class="sort" data-element="days" data-order="asc" style="cursor: pointer">3</th>
-		<th class="sort" data-element="days" data-order="asc" style="cursor: pointer">7</th>
-		<th class="sort" data-element="days" data-order="asc" style="cursor: pointer">14</th>
+		<th class="sort" data-element="days" data-order="asc" style="cursor: pointer">Clean+3</th>
+		<th class="sort" data-element="days" data-order="asc" style="cursor: pointer">Clean+7</th>
+		<th class="sort" data-element="days" data-order="asc" style="cursor: pointer">Clean+14</th>
 		<?php if (!$isViewer) : ?>
 			<th></th>
 			<th></th>
