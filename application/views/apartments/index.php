@@ -7,9 +7,9 @@
 		<th>Schlafplätze</th>
 		<th>Last clean</th>
 		<th class="sort" data-element="days" data-order="asc" style="cursor: pointer">Days after</th>
-<!--		<th class="sort" data-element="days" data-order="asc" style="cursor: pointer">3</th>-->
-<!--		<th class="sort" data-element="days" data-order="asc" style="cursor: pointer">7</th>-->
-<!--		<th class="sort" data-element="days" data-order="asc" style="cursor: pointer">14</th>-->
+		<th class="sort" data-element="days" data-order="asc" style="cursor: pointer">3</th>
+		<th class="sort" data-element="days" data-order="asc" style="cursor: pointer">7</th>
+		<th class="sort" data-element="days" data-order="asc" style="cursor: pointer">14</th>
 		<?php if (!$isViewer) : ?>
 			<th></th>
 			<th></th>
@@ -25,11 +25,11 @@
             <td data-sort="name"><?= $apartment['address']; ?></td>
             <td><?= $apartment['city']; ?></td>
             <td class="text-center"><?= $apartment['beds']; ?></td>
-            <td class="text-right"><?= $lcd; ?></td>
+            <td class="text-right"><?= date('Y-m-d', strtotime($lcd)); ?></td>
             <td data-sort="days" class="text-right"><?= $lcd ? floor(($now - strtotime($lcd)) / (60 * 60 * 24)) : ''; ?></td>
-<!--            <td data-sort="days" class="text-right">--><?//= $lcd ? date('Y-m-d', strtotime($lcd . " + 3 days")) : ''; ?><!--</td>-->
-<!--            <td data-sort="days" class="text-right">--><?//= $lcd ? date('Y-m-d', strtotime($lcd . " + 7 days")) : ''; ?><!--</td>-->
-<!--            <td data-sort="days" class="text-right">--><?//= $lcd ? date('Y-m-d', strtotime($lcd . " + 14 days")) : ''; ?><!--</td>-->
+            <td data-sort="days" class="text-right"><?= $lcd ? date('Y-m-d', strtotime($lcd . " + 3 days")) : ''; ?></td>
+            <td data-sort="days" class="text-right"><?= $lcd ? date('Y-m-d', strtotime($lcd . " + 7 days")) : ''; ?></td>
+            <td data-sort="days" class="text-right"><?= $lcd ? date('Y-m-d', strtotime($lcd . " + 14 days")) : ''; ?></td>
 			<?php if (!$isViewer) : ?>
 				<td>
 					<a title="Copy link" href="/export/calendar/<?= $apartment['id']; ?>">Export</a>
