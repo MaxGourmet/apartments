@@ -27,9 +27,9 @@
             <td class="text-center"><?= $apartment['beds']; ?></td>
             <td class="text-right"><?= $lcd; ?></td>
             <td data-sort="days" class="text-right"><?= $lcd ? floor(($now - strtotime($lcd)) / (60 * 60 * 24)) : ''; ?></td>
-            <td data-sort="days" class="text-right"><?= date('Y-m-d', strtotime($lcd) . " + 3d"); ?></td>
-            <td data-sort="days" class="text-right"><?= date('Y-m-d', strtotime($lcd) . " + 7d"); ?></td>
-            <td data-sort="days" class="text-right"><?= date('Y-m-d', strtotime($lcd) . " + 14d"); ?></td>
+            <td data-sort="days" class="text-right"><?= date('Y-m-d', strtotime($lcd . " + 3d")); ?></td>
+            <td data-sort="days" class="text-right"><?= date('Y-m-d', strtotime($lcd . " + 7d")); ?></td>
+            <td data-sort="days" class="text-right"><?= date('Y-m-d', strtotime($lcd . " + 14d")); ?></td>
 			<?php if (!$isViewer) : ?>
 				<td>
 					<a title="Copy link" href="/export/calendar/<?= $apartment['id']; ?>">Export</a>
