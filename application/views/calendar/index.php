@@ -12,7 +12,7 @@
 		background-color: <?= $color['value']; ?>;
 	}
 	<?php endforeach; ?>
-	calendar td.booked.final_decision:after {
+	.calendar td.booked.final_decision:after {
 		background-color: #ff0000;
 	}
 	/*.calendar td.booked.one-day {*/
