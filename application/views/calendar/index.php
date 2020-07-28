@@ -214,8 +214,7 @@
 					$isWeekend = in_array(date('N', strtotime($date)), [6, 7]);
 					$isToday = $date == date('Y-m-d');
 					?>
-					<th class="date <?= $isWeekend ? 'weekend' : '' ?> <?= $isToday ? 'today' : '' ?>"><?= $i; ?></th>
-					<th class="date <?= $isWeekend ? 'weekend' : '' ?> <?= $isToday ? 'today' : '' ?>"><?= $i; ?></th>
+					<th colspan="2" class="date <?= $isWeekend ? 'weekend' : '' ?> <?= $isToday ? 'today' : '' ?>"><?= $i; ?></th>
 				<?php endforeach; ?>
 				<td></td>
 			</tr>
