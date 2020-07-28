@@ -11,15 +11,17 @@
 	.calendar td.booked.<?= $color['name']; ?>.one-day:after {
 		background-color: <?= $color['value']; ?>;
 	}
-
 	<?php endforeach; ?>
-	.calendar td.booked.one-day {
-		background: #ff0000 !important;
+	calendar td.booked.final_decision:after {
+		background: #ff0000;
 	}
+	/*.calendar td.booked.one-day {*/
+	/*	background: #ff0000 !important;*/
+	/*}*/
 
-	.calendar td.booked.weekend.one-day {
-		background: #ff0000 !important;
-	}
+	/*.calendar td.booked.weekend.one-day {*/
+	/*	background: #ff0000 !important;*/
+	/*}*/
 </style>
 <div class="month">
 	<?php
