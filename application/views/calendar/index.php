@@ -2,6 +2,9 @@
 	.calendar td.booked.final_decision:after {
 		background-color: #f80002 !important;
 	}
+	.calendar td.booked.final_decision:after {
+		background-color: #f80002 !important;
+	}
 	<?php foreach ($colors as $color) : ?>
 	.calendar td.booked.<?= $color['name']; ?> {
 		background-color: <?= $color['value']; ?>;
