@@ -264,7 +264,7 @@ $(function () {
             $(e.target).unbind('click touchstart', do_nothing);
         }, 500);
         // alert('some text');
-        var cellIndex = $(this).index() * 2;
+        var cellIndex = $(this).index() + 1;
         if(($('.calendar th.date.marked-start').length < 1 && $('.calendar th.date.marked-end').length < 1) || ($('.calendar th.date.marked-start').length > 0) && $('.calendar th.date.marked-end').length > 0 ) {
             $('tfoot th').removeClass('marked-start marked-end marked');
             $(this).closest('.calendar-wrap').find('tfoot th:nth-child(' + cellIndex + ')').addClass('marked-start');
