@@ -13,7 +13,7 @@
 	}
 	<?php endforeach; ?>
 	calendar td.booked.final_decision:after {
-		background: #ff0000;
+		background-color: #ff0000;
 	}
 	/*.calendar td.booked.one-day {*/
 	/*	background: #ff0000 !important;*/
