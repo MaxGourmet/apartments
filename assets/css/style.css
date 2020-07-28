@@ -99,16 +99,16 @@ input {
 .calendar tr td:first-child {
     text-align: right;
     padding-right: 3px;
-    width: 40%;
+    width: 20%;
 }
 .calendar tr td:first-child {
     overflow: visible;
 }
 .calendar tr td:nth-child(n+2) {
-    width: 23px
+    width: 12px
 }
 .calendar tr th:last-child, .calendar tr td:last-child {
-    width: 100px;
+    width: 50px;
 }
 .calendar tr:nth-child(n+4) td:nth-child(n+2) {
     cursor: pointer;
@@ -124,7 +124,7 @@ input {
     position: relative;
     overflow: hidden;
     background-clip: padding-box !important;
-    min-width: 23px;
+    min-width: 12px;
     font-size: 100%;
 }
 .calendar td.free {
@@ -181,7 +181,7 @@ input {
 .calendar td.booked.weekend.last-day,
 .calendar td.booked.weekend.first-day {
     background-color: #dfdf88 !important;
-	background: linear-gradient( 90deg, #c9c9c9 0px, #dfdf88 0px, #dfdf88 22px, #e9e9e9 23px ) !important;
+	background: linear-gradient( 90deg, #c9c9c9 0px, #dfdf88 0px, #dfdf88 11px, #e9e9e9 12px ) !important;
 }
 .calendar th.date.weekend,
 .calendar td.weekend {
@@ -194,8 +194,8 @@ input {
 .calendar td.booked {
     background-color: #3deb3c;
     background-image: linear-gradient(90deg, #c9c9c9 1px, transparent 0px);
-    background-size: 23px 20px;
-    background-position: 22px top;
+    background-size: 12px 10px;
+    background-position: 11px top;
 }
 .calendar td.booked.paid {
 	background-color: #99ff99;
@@ -208,7 +208,7 @@ input {
 }
 .calendar td.booked.first-day {
     background: #e9e9e9!important;
-	background: linear-gradient( 90deg, #e9e9e9, #c9c9c9 0px, #e9e9e9 0px, #e9e9e9 22px, #c9c9c9 23px ) !important;
+	background: linear-gradient( 90deg, #e9e9e9, #c9c9c9 0px, #e9e9e9 0px, #e9e9e9 11px, #c9c9c9 12px ) !important;
 }
 .calendar td.booked.first-day:before {
     content: " ";
@@ -225,7 +225,7 @@ input {
 }
 .calendar td.booked.last-day {
     background: #e9e9e9 !important;
-	background: linear-gradient( 90deg, #e9e9e9, #c9c9c9 0px, #c9c9c9 1px, #e9e9e9 2px, #e9e9e9 20px ) !important;
+	background: linear-gradient( 90deg, #e9e9e9, #c9c9c9 0px, #c9c9c9 1px, #e9e9e9 2px, #e9e9e9 10px ) !important;
 }
 .calendar td.booked.last-day:after {
     content: " ";
@@ -234,7 +234,7 @@ input {
     top: 0;
     left: -8px;
     bottom: 0;
-    width: 18px;
+    width: 9px;
     -webkit-border-radius: 50%;
     -moz-border-radius: 50%;
     border-radius: 50%;
