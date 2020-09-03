@@ -26,6 +26,7 @@ class Apartments extends MY_Controller
     {
         if (($data = $this->post()) && !empty($data)) {
             array_extract($data, 'submit');
+            var_dump($data);exit;
             $this->apartments->update($data);
             redirect('apartments');
         } else {
