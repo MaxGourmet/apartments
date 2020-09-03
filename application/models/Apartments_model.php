@@ -53,13 +53,20 @@ class Apartments_model extends MY_Model
     	array_extract($data, 'clean_link');
 		$id = isset($data['id']) ? $data['id'] : null;
 		$lastCleanDateToUpdate = null;
+		$result = true;
+
 		if (isset($data['last_clean_date'])) {
 			$lastCleanDateToUpdate = array_extract($data, 'last_clean_date');
 		}
-		$result = parent::update($data);
+
+		if (!empty($data)) {
+			$result = parent::update($data);
+		}
+
 		if (!$id) {
 			$id = $this->getLastId();
 		}
+
 		if ($result && $id && $lastCleanDateToUpdate) {
 			$this->updateLastCleanDate($id, user('id'), $lastCleanDateToUpdate);
 		}
