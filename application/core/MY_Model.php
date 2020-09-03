@@ -93,6 +93,7 @@ class MY_Model extends CI_Model
     {
         if (isset($data['id'])) {
             $id = array_extract($data, 'id');
+            var_dump($this->table, $data, ['id' => $id]);exit;
             return $this->db->update($this->table, $data, ['id' => $id]);
         } else {
 			return $this->db->insert($this->table, $data);
