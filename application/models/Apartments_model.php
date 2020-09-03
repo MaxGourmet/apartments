@@ -59,7 +59,7 @@ class Apartments_model extends MY_Model
 			$lastCleanDateToUpdate = array_extract($data, 'last_clean_date');
 		}
 
-		if (!empty($data)) {
+		if (!empty($data) && !(count($data) == 1 && isset($data['id']))) {
 			$result = parent::update($data);
 		}
 
