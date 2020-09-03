@@ -184,6 +184,7 @@ class Apartments extends MY_Controller
             return;
         }
         $apartmentId = $this->get('apartmentId');
+
         if (!$apartmentId) {
             echo json_encode(['success' => 'false', 'error' => 'Invalid apartmentId']);
             return;
@@ -196,23 +197,28 @@ class Apartments extends MY_Controller
                 ['field' => 'apartment_id', 'operand' => '=', 'value' => $apartmentId]
             ]
         ];
+
         if ($bookingId) {
             $bookingsFilters['filters'][] = ['field' => 'id', 'operand' => '!=', 'value' => $bookingId];
         }
         $bookings = $this->bookings->get($bookingsFilters);
+
         if (empty($bookings)) {
             echo json_encode(['success' => 'true', 'dateArray' => []]);
             return;
         }
         $dateArray = $this->bookings->getBookedDates($bookings);
+
         echo json_encode(['success' => 'true', 'dateArray' => $dateArray]);
     }
 
-    public function clean($hashedId) {
-		if (!$this->checkRole('admin') && !$this->checkRole('cleaner')) {
+    public function clean($hashedId)
+	{
+		if (!$this->checkRole(['admin', 'cleaner', 'viewer'])) {
 			show_404();
 		}
 		$apartment = $this->apartments->getByHash($hashedId);
+
 		if (!$apartment) {
 			show_404();
 		}

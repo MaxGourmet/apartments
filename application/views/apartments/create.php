@@ -63,7 +63,8 @@ echo form_close();
 	$(document).ready(function () {
 		if (window.viewer) {
 			$('.save-form input, .save-form select').attr('disabled', 'disabled');
-			$('.buttons').remove();
+			$('#last_clean_date').attr('disabled', false);
+			// $('.buttons').remove();
 		}
 	});
 </script>

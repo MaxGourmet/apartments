@@ -97,6 +97,12 @@ class MY_Controller extends CI_Controller {
 
     protected function checkRole($role)
     {
-        return logged_in() && user('role') == $role;
+    	if (is_array($role)) {
+    		$checkRole = in_array(user('role'), $role);
+		} else {
+    		$checkRole = user('role') == $role;
+		}
+
+        return logged_in() && $checkRole;
     }
 }
