@@ -3,10 +3,12 @@ class Bookings extends MY_Controller
 {
     public function __construct()
     {
-//    	if (1) {
+    	$path = $_SERVER['PATH_INFO'];
+    	$isReminder = strpos($path, 'remind');
+    	if ($isReminder) {
 			$this->needCheckAuth = false;
-//		}
-		var_dump($_SERVER);exit();
+		}
+		var_dump($isReminder);exit();
         parent::__construct();
         if (!$this->checkRole('admin') && !$this->checkRole('viewser')) {
             show_404();
