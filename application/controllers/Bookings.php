@@ -3,7 +3,7 @@ class Bookings extends MY_Controller
 {
     public function __construct()
     {
-    	var_dump($this->uri->segment('last_segment'));exit();
+    	var_dump('yo');exit();
     	if (1) {
 			$this->needCheckAuth = false;
 		}
