@@ -4,7 +4,7 @@ class Bookings extends MY_Controller
     public function __construct()
     {
     	$path = $_SERVER['PATH_INFO'];
-    	$isReminder = strpos($path, 'remind');
+    	$isReminder = strpos($path, 'remind') !== false;
     	if ($isReminder) {
 			$this->needCheckAuth = false;
 		}
