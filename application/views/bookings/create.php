@@ -97,7 +97,7 @@ echo form_close();
 	$(document).ready(function () {
 		if (window.viewer) {
 			$('.save-form input, .save-form select, .save-form textarea').attr('disabled', 'disabled');
-			$('#info, #submit, #cancel, [name="id"]').attr('disabled', false);
+			$('#info, #submit, #cancel, [name="id"], #start_date, #end_date').attr('disabled', false);
 			$('#delete').remove();
 			$('#payed_confirm').remove();
 			// $('.buttons').remove();
