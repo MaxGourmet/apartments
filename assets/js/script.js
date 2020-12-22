@@ -5,7 +5,7 @@ $(function () {
     }
     var d = new Date();
     $('#start_date').datepicker({
-        dateFormat: "yy-mm-dd",
+        dateFormat: "dd.mm.yy",
         minDate: d,
 		firstDay: 1,
         onSelect: function () {
