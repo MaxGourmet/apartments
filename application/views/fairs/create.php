@@ -17,11 +17,11 @@ $input = form_label('Ort', 'city')
 echo div($input, ['class' => 'form-input']);
 
 $input = form_label('Datum von', 'start_date')
-    . form_input(['name' => 'start', 'value' => $fair['start'], 'id' => 'start_date']);
+    . form_input(['name' => 'start', 'value' => date('d.m.Y', strtotime($fair['start'])), 'id' => 'start_date']);
 echo div($input, ['class' => 'form-input']);
 
 $input = form_label('Datum bis', 'end_date')
-    . form_input(['name' => 'end', 'value' => $fair['end'], 'id' => 'end_date']);
+    . form_input(['name' => 'end', 'value' => date('d.m.Y', strtotime($fair['end'])), 'id' => 'end_date']);
 echo div($input, ['class' => 'form-input']);
 
 $input = form_label('Preis', 'price')

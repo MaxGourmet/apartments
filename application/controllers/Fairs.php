@@ -28,7 +28,9 @@ class Fairs extends MY_Controller
 				show_404();
 			}
             array_extract($data, 'submit');
-            $this->fairs->update($data);
+			$data['start'] = date('Y-m-d', strtotime($data['start']));
+			$data['end'] = date('Y-m-d', strtotime($data['end']));
+			$this->fairs->update($data);
             redirect('fairs');
         } else {
             $this->load->helper('form');

@@ -33,7 +33,7 @@ $input = form_label('Preis 3', 'price3')
 echo div($input, ['class' => 'form-input']);
 
 $input = form_label('Last clean date', 'last_clean_date')
-    . form_input(['name' => 'last_clean_date', 'id' => 'last_clean_date', 'value' => $apartment['last_clean_date']]);
+    . form_input(['name' => 'last_clean_date', 'id' => 'last_clean_date', 'value' => date('d.m.Y', strtotime($apartment['last_clean_date']))]);
 echo div($input, ['class' => 'form-input']);
 
 $input = form_label('Clean url', 'clean_link')
