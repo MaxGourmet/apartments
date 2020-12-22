@@ -25,11 +25,11 @@
             <td data-sort="name"><?= $apartment['address']; ?></td>
             <td><?= $apartment['city']; ?></td>
             <td class="text-center"><?= $apartment['beds']; ?></td>
-            <td class="text-right"><?= date('Y-m-d', strtotime($lcd)); ?></td>
+            <td class="text-right"><?= date('d.m.Y', strtotime($lcd)); ?></td>
             <td data-sort="days" class="text-right"><?= $lcd ? floor(($now - strtotime($lcd)) / (60 * 60 * 24)) : ''; ?></td>
-            <td data-sort="days" class="text-right"><?= $lcd ? date('Y-m-d', strtotime($lcd . " + 3 days")) : ''; ?></td>
-            <td data-sort="days" class="text-right"><?= $lcd ? date('Y-m-d', strtotime($lcd . " + 7 days")) : ''; ?></td>
-            <td data-sort="days" class="text-right"><?= $lcd ? date('Y-m-d', strtotime($lcd . " + 14 days")) : ''; ?></td>
+            <td data-sort="days" class="text-right"><?= $lcd ? date('d.m.Y', strtotime($lcd . " + 3 days")) : ''; ?></td>
+            <td data-sort="days" class="text-right"><?= $lcd ? date('d.m.Y', strtotime($lcd . " + 7 days")) : ''; ?></td>
+            <td data-sort="days" class="text-right"><?= $lcd ? date('d.m.Y', strtotime($lcd . " + 14 days")) : ''; ?></td>
 			<?php if (!$isViewer) : ?>
 				<td>
 					<a title="Copy link" href="/export/calendar/<?= $apartment['id']; ?>">Export</a>
