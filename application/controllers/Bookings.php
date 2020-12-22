@@ -77,6 +77,8 @@ class Bookings extends MY_Controller
             if ($this->bookings->checkBooking($data)) {
                 $data['start_time'] = date('H:i:s', strtotime($data['start_time']));
                 $data['end_time'] = date('H:i:s', strtotime($data['end_time']));
+                $data['start'] = date('Y-m-d', strtotime($data['start']));
+                $data['end'] = date('Y-m-d', strtotime($data['end']));
                 $data['payment_status'] = isset($payments[$data['payment_status']]) ? $data['payment_status'] : null;
                 if (!isset($data['is_final_decision'])) {
                     $data['is_final_decision'] = 0;
