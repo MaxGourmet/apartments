@@ -15,8 +15,8 @@
         <tr>
             <td><?= $fair['name'] ?></td>
             <td><?= $fair['city'] ?></td>
-            <td class="text-right"><?= $fair['start'] ?></td>
-            <td class="text-right"><?= $fair['end'] ?></td>
+			<td class="text-right"><?= date('d.m.Y', strtotime($fair['start'])) ?></td>
+            <td class="text-right"><?= date('d.m.Y', strtotime($fair['end'])) ?></td>
             <td class="text-right"><?= $fair['price'] . " €" ?></td>
             <td>
                 <a class="edit" href="/fairs/edit/<?= $fair['id']; ?>"><i class="fa fa-edit" aria-hidden="true"></i></a>
