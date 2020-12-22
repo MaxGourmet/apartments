@@ -9,7 +9,7 @@ class Bookings extends MY_Controller
 			$this->needCheckAuth = false;
 		}
         parent::__construct();
-        if (!$this->checkRole('admin') && !$this->checkRole('viewser')) {
+        if (!$this->checkRole('admin') && !$this->checkRole('viewer')) {
             show_404();
         }
     }

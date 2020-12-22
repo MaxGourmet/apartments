@@ -7,6 +7,7 @@ $(function () {
     $('#start_date').datepicker({
         dateFormat: "yy-mm-dd",
         minDate: d,
+		firstDay: 1,
         onSelect: function () {
             var endDate = $('#end_date');
             var date = $(this).datepicker('getDate');
@@ -21,6 +22,7 @@ $(function () {
     $('#end_date').datepicker({
         dateFormat: "yy-mm-dd",
         minDate: d,
+		firstDay: 1,
         beforeShowDay: function (date) {
             var string = jQuery.datepicker.formatDate('yy-mm-dd', date);
             return [$.inArray(string, dateArray) == -1];
@@ -28,6 +30,7 @@ $(function () {
     });
     $('#last_clean_date').datepicker({
         dateFormat: "yy-mm-dd",
+		firstDay: 1,
         maxDate: d
     });
     //Calendar Table
