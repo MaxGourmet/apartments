@@ -70,9 +70,9 @@ class Bookings extends MY_Controller
         $is_final_decision = $this->configs->get(false, 'is_final_decision', 'ohne Verlängerungsoption');
         reset($payments);
         if (($data = $this->post()) && !empty($data)) {
-			if ($this->checkRole('viewer')) {
-				show_404();
-			}
+//			if ($this->checkRole('viewer')) {
+//				show_404();
+//			}
             array_extract($data, 'submit');
             if ($this->bookings->checkBooking($data)) {
                 $data['start_time'] = date('H:i:s', strtotime($data['start_time']));
