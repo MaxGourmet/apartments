@@ -21,7 +21,7 @@ $input = form_label('Datum von', 'start_date')
 echo div($input, ['class' => 'form-input half half-1']);
 
 $input = form_label('bis', 'end_date')
-    . form_input(['name' => 'end', 'value' => $booking['end'], 'id' => 'end_date']);
+    . form_input(['name' => 'end', 'value' => date('d.m.Y', strtotime($booking['end'])), 'id' => 'end_date']);
 echo div($input, ['class' => 'form-input half half-2']);
 
 $input = form_label($is_final_decision, 'is_final_decision')
