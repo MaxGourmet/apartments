@@ -103,9 +103,6 @@ echo form_close();
 			// $('.buttons').remove();
 			$(document).on('submit', '.create-booking', function (ev) {
 				$('.save-form input, .save-form select, .save-form textarea').attr('disabled', false);
-				console.log('yo');
-				return false;
-
 			})
 		}
 	});
