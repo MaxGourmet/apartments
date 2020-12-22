@@ -12,7 +12,9 @@
         <tr data-attr-booking_id="<?= $booking['id'] ?>">
             <td><?= $booking['address'] ?></td>
             <td class="text-center"><?= $booking['id'] ?></td>
-            <td class="text-right"><?= "{$booking['start']} - {$booking['end']}" ?></td>
+			$data['start'] = date('Y-m-d', strtotime($data['start']));
+			$data['end'] = date('Y-m-d', strtotime($data['end']));
+            <td class="text-right"><?= date('Y-m-d', strtotime($booking['start'])) . " - " . date('Y-m-d', strtotime($booking['end'])) ?></td>
             <td class="text-right to_pay"><?= $booking['to_pay'] . " €" ?></td>
             <td class="text-right payed"><?= $booking['payed'] . " €" ?></td>
             <td class="text-right diff"><?= $booking['diff'] . " €" ?></td>
