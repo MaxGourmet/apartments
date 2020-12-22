@@ -20,7 +20,7 @@ $(function () {
         }
     });
     $('#end_date').datepicker({
-        dateFormat: "yy-mm-dd",
+        dateFormat: "dd.mm.yy",
         minDate: d,
 		firstDay: 1,
         beforeShowDay: function (date) {
@@ -29,7 +29,7 @@ $(function () {
         }
     });
     $('#last_clean_date').datepicker({
-        dateFormat: "yy-mm-dd",
+        dateFormat: "dd.mm.yy",
 		firstDay: 1,
         maxDate: d
     });
