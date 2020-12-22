@@ -17,7 +17,7 @@ $input = form_label('Appartement', 'apartment')
 echo div($input, ['class' => 'form-input']);
 
 $input = form_label('Datum von', 'start_date')
-    . form_input(['name' => 'start', 'value' => $booking['start'], 'id' => 'start_date']);
+    . form_input(['name' => 'start', 'value' => date('d.m.Y', strtotime($booking['start'])), 'id' => 'start_date']);
 echo div($input, ['class' => 'form-input half half-1']);
 
 $input = form_label('bis', 'end_date')
