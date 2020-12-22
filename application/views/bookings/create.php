@@ -102,8 +102,8 @@ echo form_close();
 			$('#payed_confirm').remove();
 			// $('.buttons').remove();
 			$(document).on('submit', '.create-booking', function (ev) {
-				$('#to_pay_show').attr('disabled', 'disabled');
 				$('.save-form input, .save-form select, .save-form textarea').attr('disabled', false);
+				$('#to_pay_show').attr('disabled', 'disabled');
 			})
 		}
 	});
