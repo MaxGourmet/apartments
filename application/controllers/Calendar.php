@@ -20,7 +20,7 @@ class Calendar extends MY_Controller
         $ym = date('Ym', strtotime($filtersDate));
         $bookingFilters = [
             'select' => "*, DATE_FORMAT(`start`, '%Y%m') AS start_month, DATE_FORMAT(`end`, '%Y%m') AS end_month",
-            'having' => ["(start_month <= '$ym' OR end_month >= '$ym')"]
+            'having' => ["(start_month = '$ym' AND start_month >= '$ym') OR (start_month <= '$ym' AND end_month = '$ym') OR (start_month < '$ym' AND end_month > '$ym')"]
         ];
         $bookings = $this->bookings->get($bookingFilters);
         $bookingsInfo = [];
