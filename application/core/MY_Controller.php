@@ -23,6 +23,7 @@ class MY_Controller extends CI_Controller {
         $this->load->model('bookings_model', 'bookings');
         $this->load->model('config_model', 'configs');
         $this->load->model('reminder_model', 'reminder');
+        $this->load->model('customers_model', 'customers');
 		$this->load->library('session');
         $this->load->helper('security');
         $this->load->helper('array');
