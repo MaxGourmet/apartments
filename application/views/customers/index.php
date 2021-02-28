@@ -1,5 +1,15 @@
+<style>
+	.customers [name="c"] {
+		display: inline-block;
+		margin-right: 15px;
+		margin-left: 15px;
+		-webkit-appearance: checkbox;
+		-moz-appearance: checkbox;
+		appearance: checkbox;
+	}
+</style>
 <?php $isViewer = user('role') == 'viewer'; ?>
-<table class="apartments">
+<table class="apartments customers">
 	<thead>
 	<tr>
 		<th class="sort" data-element="name" data-order="desc" style="cursor: pointer">Customer</th>
@@ -17,7 +27,7 @@
         <tr class="apartment-entity">
             <td data-sort="name"><?= $customer['users_name']; ?></td>
             <td class="text-center">
-				<input type="checkbox" name="c" value="<?= $customer['is_company']; ?>" disabled />
+				<input type="checkbox" name="c" value="0" <?= $customer['is_company'] ? "checked" : ""; ?> disabled />
 			</td>
             <td class="text-center"><?= $customer['is_company'] ? $customer['company_name'] : ''; ?></td>
             <td>
