@@ -16,8 +16,8 @@ $input = form_label('Firmaname', 'company_name')
     . form_input(['name' => 'company_name', 'value' => $customer['company_name'], 'id' => 'company_name']);
 echo div($input, ['class' => 'form-input']);
 
-$input = form_label('Kundenname', 'users_name')
-    . form_input(['name' => 'users_name', 'value' => $customer['users_name'], 'id' => 'users_name']);
+$input = form_label('Kundenname', 'full_name')
+    . form_input(['name' => 'full_name', 'value' => $customer['full_name'], 'id' => 'full_name']);
 echo div($input, ['class' => 'form-input']);
 
 $input = form_label('Telefon', 'phone')

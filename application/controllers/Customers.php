@@ -43,7 +43,7 @@ class Customers extends MY_Controller
                     'address' => '',
 					'is_company' => '',
 					'company_name' => '',
-					'users_name' => '',
+					'full_name' => '',
 					'phone' => '',
 					'email' => '',
 					'personal_discount' => '',
