@@ -7,11 +7,11 @@ class Customers extends MY_Controller
 		if (!$this->checkRole('admin')/* && !$this->checkRole('viewer')*/) {
 			show_404();
 		}
+		$this->title = "Customers";
     }
 
     public function index()
     {
-        $this->title = "Customers";
         $customers = $this->customers->get();
         $this->showView(
             'customers/index',
@@ -25,42 +25,31 @@ class Customers extends MY_Controller
     {
         if (($data = $this->post()) && !empty($data)) {
             array_extract($data, 'submit');
-			$data['last_clean_date'] = date('Y-m-d', strtotime($data['last_clean_date']));
-            $this->apartments->update($data);
-            redirect('apartments');
+            $this->customers->update($data);
+            redirect('customers');
         } else {
             $this->load->helper('form');
             $this->load->helper('html');
-            $citiesResult = $this->configs->get('city', false, []);
-            $cities = [];
-            foreach ($citiesResult as $city) {
-                $cities[$city['value']] = $city['value'];
-            }
             if ($id) {
-                $this->title = $this->configs->get(false, 'apartments_edit_title');
-                $apartment = $this->apartments->getById($id);
-                $apartment['clean_link'] = $this->apartments->getCleanLink($id);
-                $apartment['history'] = $this->apartments->getCleanHistory($id, 10);
-                if (empty($apartment)) {
-                    redirect('apartments');
+                $customer = $this->customers->getById($id);
+                if (empty($customer)) {
+                    redirect('customers');
                 }
             } else {
 				if ($this->checkRole('viewer')) {
 					show_404();
 				}
-                $this->title = $this->configs->get(false, 'apartments_create_title');
-                $apartment = [
+				$customer = [
                     'address' => '',
-                    'city' => $citiesResult[0]['value'],
-                    'beds' => 0,
-                    'price1' => 0,
-                    'price2' => 0,
-                    'price3' => 0,
-                    'last_clean_date' => null,
-					'clean_link' => ''
+					'is_company' => '',
+					'company_name' => '',
+					'users_name' => '',
+					'phone' => '',
+					'email' => '',
+					'personal_discount' => '',
                 ];
             }
-            $this->showView('apartments/create', ['cities' => $cities, 'apartment' => $apartment]);
+            $this->showView('customers/create', ['customer' => $customer]);
         }
     }
 
@@ -69,15 +58,15 @@ class Customers extends MY_Controller
         if ($id) {
             $this->create($id);
         } else {
-            redirect('apartments');
+            redirect('customers');
         }
     }
 
     public function delete($id)
     {
         if ($id) {
-            $this->apartments->delete($id);
+            $this->customers->delete($id);
         }
-        redirect('apartments');
+        redirect('customers');
     }
 }
