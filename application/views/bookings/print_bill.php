@@ -4,9 +4,9 @@
 	</div>
 	<table>
 		<tr>
-			<td>1</td>
-			<td>2</td>
-			<td>3</td>
+			<td style="border: 1px solid ">1</td>
+			<td style="border: 1px solid ">2</td>
+			<td style="border: 1px solid ">3</td>
 		</tr>
 	</table>
 </div>
