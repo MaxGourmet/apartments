@@ -16,8 +16,10 @@
     <?php foreach($customers as $customer) : ?>
         <tr class="apartment-entity">
             <td data-sort="name"><?= $customer['users_name']; ?></td>
-            <td><?= $customer['is_company']; ?></td>
-            <td class="text-center"><?= $customer['company_name']; ?></td>
+            <td class="text-center">
+				<input type="checkbox" name="c" value="<?= $customer['is_company']; ?>" disabled />
+			</td>
+            <td class="text-center"><?= $customer['is_company'] ? $customer['company_name'] : ''; ?></td>
             <td>
                 <a class="edit" title="Bearbeiten" href="/customers/edit/<?= $customer['id']; ?>"><i class="fa fa-edit" aria-hidden="true"></i></a>
             </td>
