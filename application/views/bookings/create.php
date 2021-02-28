@@ -24,6 +24,10 @@ $input = form_label('bis', 'end_date')
     . form_input(['name' => 'end', 'value' => date('d.m.Y', strtotime($booking['end'])), 'id' => 'end_date']);
 echo div($input, ['class' => 'form-input half half-2']);
 
+$input = form_label('Kunden', 'customer_id')
+	. form_dropdown(['name' => 'customer_id', 'id' => 'customer_id'], $customers, $booking['customer_id']);
+echo div($input, ['class' => 'form-input']);
+
 $input = form_label($is_final_decision, 'is_final_decision')
     . form_checkbox(['name' => 'is_final_decision', 'id' => 'is_final_decision'], 1, $booking['is_final_decision'] == 1);
 echo div($input, ['class' => 'form-input']);

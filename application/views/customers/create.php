@@ -36,6 +36,9 @@ $input = form_button(['name' => 'cancel', 'id' => 'cancel', 'content' => 'Abbrec
     . form_submit(['name' => 'submit', 'id' => 'submit', 'value' => 'Speichern']);
 echo div($input, ['class' => 'buttons']);
 
+if (isset($booking['id'])) {
+	$input .= form_button(['name' => 'delete', 'id' => 'delete', 'content' => 'Löschen']);
+}
 echo form_close();
 ?>
 </div>

@@ -102,6 +102,7 @@ class Bookings extends MY_Controller
             $apartments = $this->apartments->prepare($apartmentsRes);
             reset($apartments);
             $selectedApartment = key($apartments);
+            $customers = $this->customers->get();
             if ($id) {
                 $this->title = $this->configs->get(false, 'bookings_edit_title');
                 $booking = $this->bookings->getById($id);
@@ -177,7 +178,8 @@ class Bookings extends MY_Controller
                     'people_count' => $apartmentsRes[$selectedApartment]['beds'],
                     'nights' => $nights,
 					'is_final_decision' => 0,
-					'payment_info' => ''
+					'payment_info' => '',
+					'customer_id' => null
                 ];
             }
             $totalPeopleCount = [];
@@ -192,7 +194,8 @@ class Bookings extends MY_Controller
                     'payments' => $payments,
                     'maxPeopleCount' => $apartmentsRes[$booking['apartment_id']]['beds'],
                     'totalPeopleCount' => $totalPeopleCount,
-                    'is_final_decision' => $is_final_decision
+                    'is_final_decision' => $is_final_decision,
+					'customers' => $customers
                 ]
             );
         }
