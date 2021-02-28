@@ -88,6 +88,15 @@ $(function () {
             }
         }
     });
+    //Customers Table
+    $('.customers').on('click', '.delete', function () {
+        var customer_id = $(this).attr('data-attr-customer_id');
+        if (customer_id) {
+            if (confirm("Do you want to delete this customer?")) {
+                location.href = '/customers/delete/' + customer_id;
+            }
+        }
+    });
     //Fairs Table
     $('.fairs').on('click', '.delete', function () {
         var fairId = $(this).attr('data-attr-fair_id');

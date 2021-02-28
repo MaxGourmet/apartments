@@ -35,7 +35,7 @@
             </td>
 			<?php if (!$isViewer) : ?>
 				<td>
-					<a class="delete" title="Löschen" href="javascript:void(0)" data-attr-apartment_id="<?= $customer['id']; ?>"><i class="fa fa-window-close-o" aria-hidden="true"></i></a>
+					<a class="delete" title="Löschen" href="javascript:void(0)" data-attr-customer_id="<?= $customer['id']; ?>"><i class="fa fa-window-close-o" aria-hidden="true"></i></a>
 				</td>
 			<?php endif; ?>
         </tr>
