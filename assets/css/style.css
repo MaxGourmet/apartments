@@ -303,7 +303,8 @@ input {
 }
 .fairs,
 .bookings,
-.apartments {
+.apartments,
+.customers {
     margin: 0 auto;
 }
 .fairs th,
@@ -311,7 +312,9 @@ input {
 .bookings th,
 .bookings td,
 .apartments th,
-.apartments td {
+.apartments td,
+.customers th,
+.customers td {
     border: 1px solid #c9c9c9;
     padding: 1px 3px;
 }
@@ -321,6 +324,7 @@ input {
 }
 .fairs th,
 .bookings th,
+.customers th,
 .apartments th {
     font-weight: bold;
     padding-top: 2px;
@@ -712,6 +716,7 @@ tr[data-city*='Düsseldorf'] .fair_info {
     }
     .fairs,
     .bookings,
+    .customers,
     .apartments {
         font-size: 15px;
         width: 100%;
