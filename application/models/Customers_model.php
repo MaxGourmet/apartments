@@ -6,7 +6,7 @@ class Customers_model extends MY_Model
     public function getForDropdown()
     {
     	$customers = $this->get();
-        $result = [];
+        $result = [null => 'Wählen Sie den Kunden'];
         foreach ($customers as $customer) {
             $result[$customer['id']] = $customer['full_name'];
         }
