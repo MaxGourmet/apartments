@@ -34,6 +34,12 @@
 			<div>
 				<a href="<?= site_url('bookings/reminder'); ?>"><?= $menuLang['reminder'] ?></a>
 			</div>
+			<div>
+				<a href="<?= site_url('customers'); ?>">Kunden</a>
+			</div>
+			<div>
+				<a href="<?= site_url('customers/create'); ?>">Kunden erstellen</a>
+			</div>
 		<?php endif; ?>
     <?php endif; ?>
     <div class="logout">
