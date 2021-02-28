@@ -8,7 +8,7 @@ if (isset($customer['id'])) {
     echo $input;
 }
 
-$input = form_label('Ist firma', 'is_company')
+$input = form_label('Ist firma?', 'is_company')
 	. form_checkbox(['name' => 'is_company', 'id' => 'is_company'], 1, $customer['is_company'] == 1);
 echo div($input, ['class' => 'form-input']);
 

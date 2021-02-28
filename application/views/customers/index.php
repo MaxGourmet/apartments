@@ -12,9 +12,9 @@
 <table class="customers">
 	<thead>
 	<tr>
-		<th class="sort" data-element="name" data-order="desc" style="cursor: pointer">Customer</th>
-		<th>Is company?</th>
-		<th>Company name</th>
+		<th class="sort" data-element="name" data-order="desc" style="cursor: pointer">Kunden</th>
+		<th>Ist firma?</th>
+		<th>Firmaname</th>
 		<?php if (!$isViewer) : ?>
 			<th></th>
 		<?php endif; ?>

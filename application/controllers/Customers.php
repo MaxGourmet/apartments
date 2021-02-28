@@ -7,7 +7,7 @@ class Customers extends MY_Controller
 		if (!$this->checkRole('admin')/* && !$this->checkRole('viewer')*/) {
 			show_404();
 		}
-		$this->title = "Customers";
+		$this->title = "Kunden";
     }
 
     public function index()
