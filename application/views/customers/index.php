@@ -9,7 +9,7 @@
 	}
 </style>
 <?php $isViewer = user('role') == 'viewer'; ?>
-<table class="apartments customers">
+<table class="customers">
 	<thead>
 	<tr>
 		<th class="sort" data-element="name" data-order="desc" style="cursor: pointer">Customer</th>
