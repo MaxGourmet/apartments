@@ -361,4 +361,16 @@ class Bookings extends MY_Controller
         $booking['payed'] = $booking['to_pay'];
         $this->bookings->update($booking);
     }
+
+    public function print_bill($id)
+	{
+		$this->showView(
+			'bookings/print_bill',
+			[
+//				'email' => $email,
+//				'startRemind' => $startRemind,
+//				'endRemind' => $endRemind,
+			]
+		);
+	}
 }
