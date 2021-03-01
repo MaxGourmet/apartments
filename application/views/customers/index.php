@@ -9,6 +9,9 @@
 	}
 </style>
 <?php $isViewer = user('role') == 'viewer'; ?>
+<div class="buttons">
+	<a class="link-as-button" href="<?= site_url('customers/create'); ?>">Neuer Kunde</a>
+</div>
 <table class="customers">
 	<thead>
 	<tr>

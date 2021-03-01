@@ -727,3 +727,17 @@ tr[data-city*='Düsseldorf'] .fair_info {
         white-space: nowrap;
     }
 }
+.link-as-button {
+	height: 30px;
+	background: #fff !important;
+	color: #717171 !important;
+	line-height: 24px;
+	border: 2px solid #6f6f6f !important;
+	width: 140px;
+	text-align: center;
+	font-size: 16px;
+	-webkit-border-radius: 0;
+	-moz-border-radius: 0;
+	border-radius: 0;
+	padding: 2px;
+}
