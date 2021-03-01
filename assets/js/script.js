@@ -488,7 +488,11 @@ $(function () {
 				$(document).trigger('hide-loading');
 				if (response.success) {
 					$('#customer_id').empty();
+					$('#customer_id').append($("<option></option>").attr("value", "").text(response.customers[""]));
 					$.each(response.customers, function(key,value) {
+						if (key == "") {
+							return;
+						}
 						$('#customer_id').append($("<option></option>")
 							.attr("value", key).text(value));
 					});
