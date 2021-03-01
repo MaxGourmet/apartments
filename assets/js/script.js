@@ -490,7 +490,7 @@ $(function () {
 					$('#customer_id').empty();
 					$.each(response.customers, function(key,value) {
 						$('#customer_id').append($("<option></option>")
-							.attr("value", value).text(key));
+							.attr("value", key).text(value));
 					});
 				}
 			},
