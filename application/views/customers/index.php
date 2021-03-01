@@ -25,7 +25,7 @@
 	<tbody>
     <?php foreach($customers as $customer) : ?>
         <tr class="apartment-entity">
-            <td data-sort="name"><?= $customer['full_name']; ?></td>
+            <td data-sort="name"><?= $customer['first_name'] . " " . $customer['last_name'] ?></td>
             <td class="text-center">
 				<input type="checkbox" name="c" value="0" <?= $customer['is_company'] ? "checked" : ""; ?> disabled />
 			</td>
