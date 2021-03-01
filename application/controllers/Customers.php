@@ -40,7 +40,13 @@ class Customers extends MY_Controller
 					show_404();
 				}
 				$customer = [
-                    'address' => '',
+                    'salutation' => 1,
+					'first_name' => '',
+					'last_name' => '',
+					'country' => '',
+					'city' => '',
+					'street' => '',
+					'postcode' => '',
 					'is_company' => '',
 					'company_name' => '',
 					'full_name' => '',

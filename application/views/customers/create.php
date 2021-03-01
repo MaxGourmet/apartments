@@ -1,5 +1,6 @@
 <div class="save-form">
 <?php
+
 $isViewer = user('role') == 'viewer';
 echo form_open('customers/create', ['class' => 'create-apartment base-form']);
 
@@ -8,16 +9,43 @@ if (isset($customer['id'])) {
     echo $input;
 }
 
-$input = form_label('Ist firma?', 'is_company')
+$input = form_label('Geschäftskunde', 'is_company')
 	. form_checkbox(['name' => 'is_company', 'id' => 'is_company'], 1, $customer['is_company'] == 1);
 echo div($input, ['class' => 'form-input']);
 
-$input = form_label('Firmaname', 'company_name')
+$input = form_label('Firmenname', 'company_name')
     . form_input(['name' => 'company_name', 'value' => $customer['company_name'], 'id' => 'company_name']);
 echo div($input, ['class' => 'form-input']);
 
-$input = form_label('Kundenname', 'full_name')
-    . form_input(['name' => 'full_name', 'value' => $customer['full_name'], 'id' => 'full_name']);
+$input = form_label('Anrede');
+foreach ([1 => 'Herr', 2 => 'Frau'] as $salutationKey => $salutationValue) {
+	$input .= span(form_label($salutationValue, "salutation$salutationKey", ['class' => 'radio3'])
+		. form_radio(['name' => 'salutation', 'id' => "salutation$salutationKey"], $salutationKey, $salutationKey == $customer['salutation']));
+}
+echo div($input, ['class' => 'form-input']);
+
+$input = form_label('Vorname', 'first_name')
+    . form_input(['name' => 'first_name', 'value' => $customer['first_name'], 'id' => 'first_name']);
+echo div($input, ['class' => 'form-input']);
+
+$input = form_label('Name', 'last_name')
+    . form_input(['name' => 'last_name', 'value' => $customer['last_name'], 'id' => 'last_name']);
+echo div($input, ['class' => 'form-input']);
+
+$input = form_label('Land', 'country')
+    . form_input(['name' => 'country', 'value' => $customer['country'], 'id' => 'country']);
+echo div($input, ['class' => 'form-input']);
+
+$input = form_label('Ort', 'city')
+    . form_input(['name' => 'city', 'value' => $customer['city'], 'id' => 'city']);
+echo div($input, ['class' => 'form-input']);
+
+$input = form_label('Strasse', 'street')
+    . form_input(['name' => 'street', 'value' => $customer['street'], 'id' => 'street']);
+echo div($input, ['class' => 'form-input']);
+
+$input = form_label('Plz', 'postcode')
+    . form_input(['name' => 'postcode', 'value' => $customer['postcode'], 'id' => 'postcode']);
 echo div($input, ['class' => 'form-input']);
 
 $input = form_label('Telefon', 'phone')

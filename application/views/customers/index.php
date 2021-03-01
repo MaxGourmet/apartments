@@ -13,8 +13,8 @@
 	<thead>
 	<tr>
 		<th class="sort" data-element="name" data-order="desc" style="cursor: pointer">Kunden</th>
-		<th>Ist firma?</th>
-		<th>Firmaname</th>
+		<th>Geschäftskunde</th>
+		<th>Firmenname</th>
 		<?php if (!$isViewer) : ?>
 			<th></th>
 		<?php endif; ?>

@@ -8,7 +8,7 @@ class Customers_model extends MY_Model
     	$customers = $this->get();
         $result = [null => 'Wählen Sie den Kunden'];
         foreach ($customers as $customer) {
-            $result[$customer['id']] = $customer['full_name'];
+            $result[$customer['id']] = "{$customer['first_name']} {$customer['last_name']} ({$customer['company_name']})";
         }
         return $result;
     }
