@@ -487,7 +487,12 @@ $(function () {
 			function (response) {
 				$(document).trigger('hide-loading');
 				if (response.success) {
-					console.log(response.customers)
+					$('#customer_id').empty();
+					$each(response.customers, function(value) {
+						new Element('option')
+							.set('text', value)
+							.inject($('#customer_id'));
+					});
 				}
 			},
 			'json'
