@@ -741,3 +741,10 @@ tr[data-city*='Düsseldorf'] .fair_info {
 	border-radius: 0;
 	padding: 2px;
 }
+.customers-buttons {
+	margin-left: 170px;
+	font-size: 12px;
+}
+.customers-buttons .update-customer-list {
+	margin-left: 10px;
+}

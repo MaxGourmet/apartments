@@ -27,7 +27,7 @@ echo div($input, ['class' => 'form-input half half-2']);
 $input = form_label('Kunden', 'customer_id')
 	. form_dropdown(['name' => 'customer_id', 'id' => 'customer_id'], $customers, $booking['customer_id']);
 $input .= "<div class='customers-buttons'>
-<a class='create-customer' href='" . site_url('customers/create') . "'>Neuer Kunde</a>
+<a target='_blank' class='create-customer' href='" . site_url('customers/create') . "'>Neuer Kunde</a>
 <a class='update-customer-list' href='javascript:void(0)'>Aktualisieren Sie die Liste</a>
 </div>";
 echo div($input, ['class' => 'form-input']);
