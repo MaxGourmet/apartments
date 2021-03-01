@@ -75,4 +75,13 @@ class Customers extends MY_Controller
         }
         redirect('customers');
     }
+
+	public function updateCustomersList()
+	{
+		if (!$this->checkAjax()) {
+			return;
+		}
+		$customers = $this->customers->getForDropdown();
+		echo json_encode(['success' => 'true', 'customers' => $customers]);
+	}
 }

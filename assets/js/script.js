@@ -478,5 +478,19 @@ $(function () {
 			return v1 > v2 ? sign : sign * (-1);
 		});
 		$('.apartments tbody').append(rows);
-	})
+	});
+	$(document).on('click', '.update-customer-list', function (ev) {
+		$(document).trigger('show-loading');
+		$.get(
+			'/customers/updateCustomersList',
+			{},
+			function (response) {
+				$(document).trigger('hide-loading');
+				if (response.success) {
+					console.log(response.customers)
+				}
+			},
+			'json'
+		);
+	});
 });
