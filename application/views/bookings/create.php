@@ -99,6 +99,27 @@ echo form_close();
 ?>
 </div>
 
+<div class="customer-popup" style="display: none">
+<?php
+	$customer = [
+		'salutation' => 1,
+		'first_name' => '',
+		'last_name' => '',
+		'country' => '',
+		'city' => '',
+		'street' => '',
+		'postcode' => '',
+		'is_company' => '',
+		'company_name' => '',
+		'full_name' => '',
+		'phone' => '',
+		'email' => '',
+		'personal_discount' => '',
+	];
+	echo $this->showView('customers/create', ['customer' => $customer]);
+?>
+</div>
+
 <script>
     window.totalPeopleCount = <?= json_encode($totalPeopleCount); ?>;
 	window.viewer = <?= $isViewer ? 1 : 0; ?>;
