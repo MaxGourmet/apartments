@@ -748,7 +748,6 @@ tr[data-city*='Düsseldorf'] .fair_info {
 .customers-buttons .update-customer-list {
 	margin-left: 10px;
 }
-
 .customer-popup {
 	width:100%;
 	background-color: rgba(0,0,0,0.5);
@@ -756,7 +755,6 @@ tr[data-city*='Düsseldorf'] .fair_info {
 	position:fixed;
 	top:0px;
 }
-
 .customer-popup-content {
 	margin:40px auto 0px auto;
 	width:600px;
