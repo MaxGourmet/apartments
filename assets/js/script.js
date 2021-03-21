@@ -501,4 +501,14 @@ $(function () {
 			'json'
 		);
 	});
+	$(document).on('click', '.create-customer', function() {
+		$('.customer-popup').show();
+	});
+	$(document).on('click', '.customer-popup', function(ev) {
+		console.log($(this));return;
+		if ($(this).hasClass('customer-popup-content')) {
+			return;
+		}
+		$('.customer-popup').hide();
+	});
 });
