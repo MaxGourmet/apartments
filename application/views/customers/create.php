@@ -65,6 +65,12 @@ $input = form_button(['name' => 'cancel', 'id' => 'cancel', 'content' => 'Abbrec
     . form_submit(['name' => 'submit', 'id' => 'submit', 'value' => 'Speichern']);
 echo div($input, ['class' => 'buttons', 'style' => $isPopup ? 'display:none' : '']);
 
+if ($isPopup) {
+	$input = form_button(['name' => 'pcancel', 'id' => 'pcancel', 'content' => 'Abbrechen'])
+		. form_button(['name' => 'psubmit', 'id' => 'psubmit', 'value' => 'Speichern']);
+	echo div($input, ['class' => 'buttons']);
+}
+
 if (isset($booking['id'])) {
 	$input .= form_button(['name' => 'delete', 'id' => 'delete', 'content' => 'Löschen']);
 }
