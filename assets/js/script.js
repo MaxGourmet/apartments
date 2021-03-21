@@ -505,8 +505,7 @@ $(function () {
 		$('.customer-popup').show();
 	});
 	$(document).on('click', '.customer-popup', function(ev) {
-		console.log(ev);return;
-		if ($(this).hasClass('customer-popup-content')) {
+		if ($(ev.target).hasClass('customer-popup-content') || $(ev.target).parents().hasClass('customer-popup-content')) {
 			return;
 		}
 		$('.customer-popup').hide();
