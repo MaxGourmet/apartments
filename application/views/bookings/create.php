@@ -116,7 +116,7 @@ echo form_close();
 		'email' => '',
 		'personal_discount' => '',
 	];
-	echo $this->showView('customers/create', ['customer' => $customer]);
+	$this->load->view('customers/create', ['customer' => $customer]);
 ?>
 </div>
 
