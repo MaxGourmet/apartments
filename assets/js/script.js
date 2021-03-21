@@ -522,6 +522,7 @@ $(function () {
 				$('#customer_id').append($("<option></option>").attr("value", response.id).text(response.name));
 				$('#customer_id').val(response.id);
 				$('.customer-popup').hide();
+				$('.customer-popup form')[0].reset();
 			},
 			'json'
 		);
