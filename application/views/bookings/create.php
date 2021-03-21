@@ -100,24 +100,26 @@ echo form_close();
 </div>
 
 <div class="customer-popup" style="display: none">
-<?php
-	$customer = [
-		'salutation' => 1,
-		'first_name' => '',
-		'last_name' => '',
-		'country' => '',
-		'city' => '',
-		'street' => '',
-		'postcode' => '',
-		'is_company' => '',
-		'company_name' => '',
-		'full_name' => '',
-		'phone' => '',
-		'email' => '',
-		'personal_discount' => '',
-	];
-	$this->load->view('customers/create', ['customer' => $customer]);
-?>
+	<div class="customer-popup-content">
+	<?php
+		$customer = [
+			'salutation' => 1,
+			'first_name' => '',
+			'last_name' => '',
+			'country' => '',
+			'city' => '',
+			'street' => '',
+			'postcode' => '',
+			'is_company' => '',
+			'company_name' => '',
+			'full_name' => '',
+			'phone' => '',
+			'email' => '',
+			'personal_discount' => '',
+		];
+		$this->load->view('customers/create', ['customer' => $customer]);
+	?>
+	</div>
 </div>
 
 <script>
