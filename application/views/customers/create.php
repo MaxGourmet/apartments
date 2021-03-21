@@ -1,3 +1,4 @@
+<?php $isPopup = !isset($isPopup) ? false : $isPopup; ?>
 <div class="save-form">
 <?php
 
@@ -62,7 +63,7 @@ echo div($input, ['class' => 'form-input']);
 
 $input = form_button(['name' => 'cancel', 'id' => 'cancel', 'content' => 'Abbrechen'])
     . form_submit(['name' => 'submit', 'id' => 'submit', 'value' => 'Speichern']);
-echo div($input, ['class' => 'buttons']);
+echo div($input, ['class' => 'buttons', 'style' => $isPopup ? 'display:none' : '']);
 
 if (isset($booking['id'])) {
 	$input .= form_button(['name' => 'delete', 'id' => 'delete', 'content' => 'Löschen']);

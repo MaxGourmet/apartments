@@ -117,7 +117,7 @@ echo form_close();
 			'email' => '',
 			'personal_discount' => '',
 		];
-		$this->load->view('customers/create', ['customer' => $customer]);
+		$this->load->view('customers/create', ['customer' => $customer, 'isPopup' => true]);
 	?>
 	</div>
 </div>
