@@ -91,6 +91,7 @@ class MY_Model extends CI_Model
 
     public function update($data)
     {
+    	$this->db->result_id;
         if (isset($data['id'])) {
             $id = array_extract($data, 'id');
             return $this->db->update($this->table, $data, ['id' => $id]);

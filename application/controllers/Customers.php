@@ -100,7 +100,8 @@ class Customers extends MY_Controller
 		if (!isset($data['is_company'])) {
 			$data['is_company'] = 0;
 		}
-		$id = $this->customers->update($data);
+		$this->customers->update($data);
+		$id = $this->customers->getLastId();
 		$name = "{$data['first_name']} {$data['last_name']} ({$data['company_name']})";
 
 		echo json_encode(['success' => 'true', 'id' => $id, 'name' => $name]);
