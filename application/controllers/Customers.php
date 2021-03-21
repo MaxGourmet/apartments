@@ -25,6 +25,10 @@ class Customers extends MY_Controller
     {
         if (($data = $this->post()) && !empty($data)) {
             array_extract($data, 'submit');
+
+			if (!isset($data['is_company'])) {
+				$data['is_company'] = 0;
+			}
             $this->customers->update($data);
             redirect('customers');
         } else {
@@ -83,5 +87,21 @@ class Customers extends MY_Controller
 		}
 		$customers = $this->customers->getForDropdown();
 		echo json_encode(['success' => 'true', 'customers' => $customers]);
+	}
+
+	public function saveCustomerAjax()
+	{
+		if (!$this->checkAjax()) {
+			return;
+		}
+		array_extract($data, 'submit');
+
+		if (!isset($data['is_company'])) {
+			$data['is_company'] = 0;
+		}
+		$id = $this->customers->update($data);
+		$name = "{$data['first_name']} {$data['last_name']} ({$data['company_name']})";
+
+		echo json_encode(['success' => 'true', 'id' => $id, 'name' => $name]);
 	}
 }

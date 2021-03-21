@@ -505,7 +505,7 @@ $(function () {
 		$('.customer-popup').show();
 	});
 	$(document).on('click', '.customer-popup, #pcancel', function(ev) {
-		if ($(ev.target).hasClass('pcancel')) {
+		if (ev.target.id == 'pcancel') {
 			$('.customer-popup').hide();
 			return;
 		}
@@ -513,5 +513,17 @@ $(function () {
 			return;
 		}
 		$('.customer-popup').hide();
+	});
+	$(document).on('click', '.customer-popup #psubmit', function() {
+		$.post(
+			'/customers/saveCustomerAjax',
+			$('.customer-popup form').serialize(),
+			function(response) {
+				$('#customer_id').append($("<option></option>").attr("value", response.id).text(response.name));
+				$('#customer_id').val(response.id);
+				$('.customer-popup').hide();
+			},
+			'json'
+		);
 	});
 });
