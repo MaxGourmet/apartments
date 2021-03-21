@@ -94,6 +94,7 @@ class Customers extends MY_Controller
 		if (!$this->checkAjax()) {
 			return;
 		}
+		$data = $this->post();
 		array_extract($data, 'submit');
 
 		if (!isset($data['is_company'])) {
