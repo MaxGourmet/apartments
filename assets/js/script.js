@@ -505,6 +505,10 @@ $(function () {
 		$('.customer-popup').show();
 	});
 	$(document).on('click', '.customer-popup, #pcancel', function(ev) {
+		if ($(ev.target).hasClass('pcancel')) {
+			$('.customer-popup').hide();
+			return;
+		}
 		if ($(ev.target).hasClass('customer-popup-content') || $(ev.target).parents().hasClass('customer-popup-content')) {
 			return;
 		}

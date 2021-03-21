@@ -67,7 +67,7 @@ echo div($input, ['class' => 'buttons', 'style' => $isPopup ? 'display:none' : '
 
 if ($isPopup) {
 	$input = form_button(['name' => 'pcancel', 'id' => 'pcancel', 'content' => 'Abbrechen'])
-		. form_button(['name' => 'psubmit', 'id' => 'psubmit', 'value' => 'Speichern']);
+		. form_button(['name' => 'psubmit', 'id' => 'psubmit', 'content' => 'Speichern']);
 	echo div($input, ['class' => 'buttons']);
 }
 
