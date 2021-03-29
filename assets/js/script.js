@@ -115,6 +115,12 @@ $(function () {
             }
         }
     });
+    $('.create-booking').on('click', '#print_bill', function () {
+        var bookingId = $('[name="id"]').val();
+        if (bookingId) {
+			location.href = '/bookings/print_bill/' + bookingId;
+        }
+    });
     //fair create form
     var fairCreateForm = $('.create-fair');
     if (fairCreateForm.length) {
