@@ -113,6 +113,7 @@ class Bookings extends MY_Controller
             reset($apartments);
             $selectedApartment = key($apartments);
             $customers = $this->customers->getForDropdown();
+
             if ($id) {
                 $this->title = $this->configs->get(false, 'bookings_edit_title');
                 $booking = $this->bookings->getById($id);
