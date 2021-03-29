@@ -91,7 +91,7 @@ class Bookings extends MY_Controller
 
                 if (!empty($servicesToSave)) {
                 	$bookingId = isset($data['id']) ? $data['id'] : $this->bookings->getLastId();
-                	$this->services_to_booking->save($bookingId, $services);
+                	$this->services_to_booking->save($bookingId, $servicesToSave);
 				}
                 $m = date('Y-m', strtotime($data['start']));
                 redirect("/calendar/month/$m");
