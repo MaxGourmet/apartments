@@ -88,7 +88,10 @@ echo div($input, ['class' => 'form-input']);
 
 $input = "<h2>Zusatzleistungen</h2>";
 foreach ($services as $service) {
-	$input .= form_label($service['name'] . "({$service['price']} €)", 'service' . $service['id'])
+	$input .= form_label(
+		$service['name'] . "({$service['price']} € / {$vatRates[$service['vat_rate']]} %)",
+		'service' . $service['id']
+		)
 		. form_checkbox(['name' => 'services[]', 'id' => 'service' . $service['id']], $service['id'], 0);
 }
 echo div($input, ['class' => 'form-input']);

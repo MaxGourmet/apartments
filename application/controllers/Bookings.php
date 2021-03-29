@@ -70,6 +70,7 @@ class Bookings extends MY_Controller
         $is_final_decision = $this->configs->get(false, 'is_final_decision', 'ohne Verlängerungsoption');
         reset($payments);
         $services = $this->services->get();
+		$vatRates = $this->configs->getPrepared('vat_rate', false, []);
         if (($data = $this->post()) && !empty($data)) {
 //			if ($this->checkRole('viewer')) {
 //				show_404();
@@ -95,7 +96,8 @@ class Bookings extends MY_Controller
                         'apartments' => $this->apartments->prepare($this->apartments->get()),
                         'booking' => $data,
                         'error' => 'Sorry, but this dates are booked now. Please check another.',
-						'services'=> $services
+						'services' => $services,
+						'vatRates' => $vatRates
                     ]
                 );
             }
@@ -198,7 +200,8 @@ class Bookings extends MY_Controller
                     'totalPeopleCount' => $totalPeopleCount,
                     'is_final_decision' => $is_final_decision,
 					'customers' => $customers,
-					'services'=> $services
+					'services'=> $services,
+					'vatRates' => $vatRates
                 ]
             );
         }
