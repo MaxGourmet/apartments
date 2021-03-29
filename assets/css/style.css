@@ -302,6 +302,7 @@ input {
     padding-top: 13px;
 }
 .fairs,
+.services,
 .bookings,
 .apartments,
 .customers {
@@ -309,6 +310,8 @@ input {
 }
 .fairs th,
 .fairs td,
+.services th,
+.services td,
 .bookings th,
 .bookings td,
 .apartments th,
@@ -325,6 +328,7 @@ input {
 .fairs th,
 .bookings th,
 .customers th,
+.services th,
 .apartments th {
     font-weight: bold;
     padding-top: 2px;
@@ -717,6 +721,7 @@ tr[data-city*='Düsseldorf'] .fair_info {
     .fairs,
     .bookings,
     .customers,
+    .services,
     .apartments {
         font-size: 15px;
         width: 100%;
