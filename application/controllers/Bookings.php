@@ -117,6 +117,7 @@ class Bookings extends MY_Controller
                 $this->title = $this->configs->get(false, 'bookings_edit_title');
                 $booking = $this->bookings->getById($id);
                 $booking['services'] = $this->services_to_booking->getById($id);
+                var_dump($booking['services']);exit;
 				if ($this->checkRole('viewer') && strtotime($booking['start']) < strtotime("2020-06-01")) {
 					show_404();
 				}
