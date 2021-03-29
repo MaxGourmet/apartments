@@ -72,7 +72,7 @@ class Bookings extends MY_Controller
         $services = $this->services->get();
 		$vatRates = $this->configs->getPrepared('vat_rate', false, []);
         if (($data = $this->post()) && !empty($data)) {
-			var_dump($this->post());exit;
+			var_dump($this->post(), $_POST);exit;
 //			if ($this->checkRole('viewer')) {
 //				show_404();
 //			}
