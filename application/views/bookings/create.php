@@ -88,11 +88,16 @@ echo div($input, ['class' => 'form-input']);
 
 $input = "<h2>Zusatzleistungen</h2>";
 foreach ($services as $service) {
-	$input .= form_label(
+	$input .=
+		form_label(
 		$service['name'] . "({$service['price']}€ / {$vatRates[$service['vat_rate']]}%)",
 		'service' . $service['id']
 		)
-		. form_checkbox(['name' => 'services[]', 'id' => 'service' . $service['id']], $service['id'], 0);
+		.
+		form_checkbox(
+			['name' => 'services[]', 'id' => 'service' . $service['id']],
+			$service['id'],
+			in_array($service['id'], $booking['services']));
 }
 echo div($input, ['class' => 'form-input']);
 

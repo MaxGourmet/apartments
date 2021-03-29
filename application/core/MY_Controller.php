@@ -5,6 +5,7 @@
  * @property Bookings_model $bookings
  * @property Customers_model $customers
  * @property Services_model $services
+ * @property ServicesToBooking_model $services_to_booking
  * @property Config_model $configs
  * @property Reminder_model $reminder
  */
@@ -27,6 +28,7 @@ class MY_Controller extends CI_Controller {
         $this->load->model('reminder_model', 'reminder');
         $this->load->model('customers_model', 'customers');
 		$this->load->model('services_model', 'services');
+		$this->load->model('servicestobooking_model', 'services_to_booking');
 		$this->load->library('session');
         $this->load->helper('security');
         $this->load->helper('array');

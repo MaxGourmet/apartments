@@ -86,9 +86,13 @@ class Bookings extends MY_Controller
                     $data['is_final_decision'] = 0;
                 }
                 $servicesToSave = array_extract($data, 'services');
-                var_dump($servicesToSave, $data);exit;
 
                 $this->bookings->update($data);
+
+                if (!empty($servicesToSave)) {
+                	$bookingId = isset($data['id']) ? $data['id'] : $this->bookings->getLastId();
+                	$this->services_to_booking->save($bookingId, $services);
+				}
                 $m = date('Y-m', strtotime($data['start']));
                 redirect("/calendar/month/$m");
             } else {
@@ -112,6 +116,7 @@ class Bookings extends MY_Controller
             if ($id) {
                 $this->title = $this->configs->get(false, 'bookings_edit_title');
                 $booking = $this->bookings->getById($id);
+                $booking['services'] = $this->services_to_booking->getById($id);
 				if ($this->checkRole('viewer') && strtotime($booking['start']) < strtotime("2020-06-01")) {
 					show_404();
 				}
@@ -185,7 +190,8 @@ class Bookings extends MY_Controller
                     'nights' => $nights,
 					'is_final_decision' => 0,
 					'payment_info' => '',
-					'customer_id' => null
+					'customer_id' => null,
+					'services' => []
                 ];
             }
             $totalPeopleCount = [];

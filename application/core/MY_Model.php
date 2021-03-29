@@ -105,6 +105,11 @@ class MY_Model extends CI_Model
         return $this->db->delete($this->table, "id = $id");
     }
 
+    public function deleteByKey($key, $value)
+    {
+        return $this->db->delete($this->table, "$key = $value");
+    }
+
     public function deleteAll()
     {
         return $this->db->truncate($this->table);
