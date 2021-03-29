@@ -69,6 +69,8 @@ class Bookings extends MY_Controller
         $payments = $this->bookings->paymentStatus;
         $is_final_decision = $this->configs->get(false, 'is_final_decision', 'ohne Verlängerungsoption');
         reset($payments);
+        $services = $this->services->get();
+        var_dump($services);exit;
         if (($data = $this->post()) && !empty($data)) {
 //			if ($this->checkRole('viewer')) {
 //				show_404();
@@ -366,7 +368,7 @@ class Bookings extends MY_Controller
 	{
 		$booking = $this->bookings->getById($id);
 		$apartment = $this->apartments->getById($booking['apartment_id']);
-		$customer = $this->apartments->getById($booking['customer_id']);
+		$customer = $this->customers->getById($booking['customer_id']);
 		$vatRates = $this->configs->getPrepared('vat_rate', false, []);
 		var_dump($booking, $apartment, $customer, $vatRates);exit;
 		$this->showView(
