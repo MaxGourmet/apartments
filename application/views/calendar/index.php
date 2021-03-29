@@ -201,7 +201,7 @@
 								$addAttributes2 .= " data-attr-booking_id='$bookingIdForDate'";
 							}
 						}
-						$info = isset($info) ?: '';
+						$info = isset($info) ? $info : '';
 						echo "<td $info class='$defaultClass1 $addClass1' $addAttributes1></td>";
 						echo "<td $info class='$defaultClass2 $addClass2' $addAttributes2></td>";
 					}
