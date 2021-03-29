@@ -72,7 +72,6 @@ class Bookings extends MY_Controller
         $services = $this->services->get();
 		$vatRates = $this->configs->getPrepared('vat_rate', false, []);
         if (($data = $this->post()) && !empty($data)) {
-			var_dump($this->post(), $_POST);exit;
 //			if ($this->checkRole('viewer')) {
 //				show_404();
 //			}
@@ -86,6 +85,8 @@ class Bookings extends MY_Controller
                 if (!isset($data['is_final_decision'])) {
                     $data['is_final_decision'] = 0;
                 }
+                $servicesToSave = array_extract($data, 'services');
+                var_dump($servicesToSave, $data);exit;
 
                 $this->bookings->update($data);
                 $m = date('Y-m', strtotime($data['start']));
