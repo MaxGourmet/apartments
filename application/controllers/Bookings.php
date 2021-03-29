@@ -364,6 +364,11 @@ class Bookings extends MY_Controller
 
     public function print_bill($id)
 	{
+		$booking = $this->bookings->getById($id);
+		$apartment = $this->apartments->getById($booking['apartment_id']);
+		$customer = $this->apartments->getById($booking['customer_id']);
+		$vatRates = $this->configs->getPrepared('vat_rate', false, []);
+		var_dump($booking, $apartment, $customer, $vatRates);exit;
 		$this->showView(
 			'bookings/print_bill',
 			[
