@@ -36,6 +36,7 @@ class Services extends MY_Controller
             $this->load->helper('form');
             $this->load->helper('html');
             $vatRates = $this->configs->getPrepared('vat_rate', false, []);
+
             if ($id) {
                 $service = $this->services->getById($id);
                 if (empty($service)) {
