@@ -96,7 +96,6 @@ if (isset($booking['id'])) {
 }
 echo div($input, ['class' => 'buttons']);
 
-echo form_close();
 ?>
 	<div>
 		<h2>Zusatzleistungen</h2>
@@ -108,6 +107,7 @@ echo form_close();
 		}
 		?>
 	</div>
+	<?php echo form_close(); ?>
 </div>
 
 <div class="customer-popup" style="display: none">
