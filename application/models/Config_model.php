@@ -50,4 +50,14 @@ class Config_model extends MY_Model
     {
         return $this->db->update($this->table, ['value' => $value], ['alias' => $alias, 'name' => $name]);
     }
+
+    public function getPrepared($alias = false, $param = false, $default = false)
+	{
+		$resultFromDB = $this->get($alias, $param, $default);
+		$result = [];
+		foreach ($resultFromDB as $item) {
+			$result[$item['name']] = $item['value'];
+		}
+		return $result;
+	}
 }

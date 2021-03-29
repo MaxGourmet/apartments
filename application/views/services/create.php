@@ -20,8 +20,11 @@ $input = form_label('Preis', 'price')
     . form_input(['name' => 'price', 'id' => 'price', 'value' => $service['price'], 'type' => 'number', 'step' => 0.01]);
 echo div($input, ['class' => 'form-input']);
 
-$input = form_label('TVA', 'vat_rate')
-	. form_input(['name' => 'vat_rate', 'value' => $service['vat_rate'], 'id' => 'vat_rate']);
+$input = form_label('TVA');
+foreach ($vatRates as $paymentKey => $payment) {
+	$input .= span(form_label($payment, "vat_rate$paymentKey", ['class' => 'radio2'])
+		. form_radio(['name' => 'vat_rate', 'id' => "vat_rate$paymentKey"], $paymentKey, $paymentKey == $service['vat_rate']));
+}
 echo div($input, ['class' => 'form-input']);
 
 $input = form_button(['name' => 'cancel', 'id' => 'cancel', 'content' => 'Abbrechen'])
