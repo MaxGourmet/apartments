@@ -7,6 +7,7 @@ class ServicesToBooking_model extends MY_Model
 	{
 		$this->deleteByKey('booking_id', $bookingId);
 		foreach ($services as $serviceId) {
+			var_dump($bookingId, $serviceId);exit;
 			$this->update(['booking_id' => $bookingId, 'service_id' => $serviceId]);
 		}
 	}
