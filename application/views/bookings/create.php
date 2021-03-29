@@ -92,7 +92,7 @@ $input = form_button(['name' => 'cancel', 'id' => 'cancel', 'content' => 'Abbrec
 if (isset($booking['id'])) {
     $input .= form_button(['name' => 'delete', 'id' => 'delete', 'content' => 'Löschen']);
     $input .= form_button(['name' => 'payed_confirm', 'id' => 'payed_confirm', 'content' => 'Bezahlt']);
-    $input .= form_button(['name' => 'print_bill', 'id' => 'print_bill', 'content' => 'Rechnung drucken']);
+    $input .= form_button(['style' => 'width: 160px;', 'name' => 'print_bill', 'id' => 'print_bill', 'content' => 'Rechnung drucken']);
 }
 echo div($input, ['class' => 'buttons']);
 
