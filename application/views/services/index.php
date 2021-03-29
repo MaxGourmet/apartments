@@ -15,7 +15,7 @@
             <td><?= $service['name'] ?></td>
             <td><?= $service['description'] ?></td>
             <td class="text-right"><?= $service['price'] . " €" ?></td>
-			<td><?= $service['vat_rate'] ?></td>
+			<td><?= $vatRates[$service['vat_rate']] ?> %</td>
             <td>
                 <a class="edit" href="/services/edit/<?= $service['id']; ?>"><i class="fa fa-edit" aria-hidden="true"></i></a>
             </td>

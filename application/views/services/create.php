@@ -1,7 +1,7 @@
 <div class="save-form">
 <?php
 $isViewer = user('role') == 'viewer';
-echo form_open('services/create', ['class' => 'create-fair base-form']);
+echo form_open('services/create', ['class' => 'create-subscription base-form']);
 
 if (isset($service['id'])) {
     $input = form_input(['name' => 'id', 'value' => $service['id'], 'type' => 'hidden']);
@@ -21,9 +21,9 @@ $input = form_label('Preis', 'price')
 echo div($input, ['class' => 'form-input']);
 
 $input = form_label('TVA');
-foreach ($vatRates as $paymentKey => $payment) {
-	$input .= span(form_label($payment, "vat_rate$paymentKey", ['class' => 'radio2'])
-		. form_radio(['name' => 'vat_rate', 'id' => "vat_rate$paymentKey"], $paymentKey, $paymentKey == $service['vat_rate']));
+foreach ($vatRates as $vatKey => $vat) {
+	$input .= span(form_label($vat . " %", "vat_rate$vatKey", ['class' => 'radio2'])
+		. form_radio(['name' => 'vat_rate', 'id' => "vat_rate$vatKey"], $vatKey, $vatKey == $service['vat_rate']));
 }
 echo div($input, ['class' => 'form-input']);
 

@@ -13,10 +13,12 @@ class Services extends MY_Controller
     public function index()
     {
         $services = $this->services->get();
+		$vatRates = $this->configs->getPrepared('vat_rate', false, []);
         $this->showView(
             'services/index',
             [
-                'services' => $services
+                'services' => $services,
+                'vatRates' => $vatRates,
             ]
         );
     }
