@@ -82,6 +82,10 @@ class MY_Controller extends CI_Controller {
     private function cleanParams(&$params)
     {
         foreach ($params as &$item) {
+        	if (is_array($item)) {
+        		$this->cleanParams($item);
+        		continue;
+			}
             $item = trim($item);
 //            $item = htmlspecialchars($item);
             $item = xss_clean($item);
