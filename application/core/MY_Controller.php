@@ -3,6 +3,8 @@
  * @property Apartments_model $apartments
  * @property Fairs_model $fairs
  * @property Bookings_model $bookings
+ * @property Customers_model $customers
+ * @property Services_model $services
  * @property Config_model $configs
  * @property Reminder_model $reminder
  */

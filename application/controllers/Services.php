@@ -33,11 +33,8 @@ class Services extends MY_Controller
         } else {
             $this->load->helper('form');
             $this->load->helper('html');
-//            $citiesResult = $this->configs->get('city', false, []);
-//            $cities = [];
-//            foreach ($citiesResult as $city) {
-//                $cities[$city['value']] = $city['value'];
-//            }
+            $vatRates = $this->configs->get('vat_rate', false, []);
+            var_dump($vatRates);exit;
             if ($id) {
                 $service = $this->services->getById($id);
                 if (empty($service)) {
@@ -51,7 +48,7 @@ class Services extends MY_Controller
                     'name' => '',
                     'description' => '',
                     'vat_rate' => 0,
-//                    'city' => $citiesResult[0]['value'],
+//                    'city' => $vatRates[0]['value'],
                     'price' => 0
                 ];
             }
