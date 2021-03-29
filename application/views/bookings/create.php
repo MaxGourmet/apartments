@@ -86,6 +86,13 @@ for ($i = 1; $i <= $maxPeopleCount; $i++) {
 }
 echo div($input, ['class' => 'form-input']);
 
+$input = "<h2>Zusatzleistungen</h2>";
+foreach ($services as $service) {
+	$input .= form_label($service['name'] . "({$service['price']} €)", 'service' . $service['id'])
+		. form_checkbox(['name' => 'services[]', 'id' => 'service' . $service['id']], $service['id'], 0);
+}
+echo div($input, ['class' => 'form-input']);
+
 $input = form_button(['name' => 'cancel', 'id' => 'cancel', 'content' => 'Abbrechen'])
     . form_submit(['name' => 'submit', 'id' => 'submit', 'value' => 'Speichern']);
 
@@ -96,18 +103,7 @@ if (isset($booking['id'])) {
 }
 echo div($input, ['class' => 'buttons']);
 
-?>
-	<div>
-		<h2>Zusatzleistungen</h2>
-		<?php
-		foreach ($services as $service) {
-			$input = form_label($service['name'] . "({$service['price']} €)", 'service' . $service['id'])
-				. form_checkbox(['name' => 'services[]', 'id' => 'service' . $service['id']], $service['id'], 0);
-			echo div($input, ['class' => 'form-input']);
-		}
-		?>
-	</div>
-	<?php echo form_close(); ?>
+echo form_close(); ?>
 </div>
 
 <div class="customer-popup" style="display: none">
