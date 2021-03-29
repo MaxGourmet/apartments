@@ -70,7 +70,6 @@ class Bookings extends MY_Controller
         $is_final_decision = $this->configs->get(false, 'is_final_decision', 'ohne Verlängerungsoption');
         reset($payments);
         $services = $this->services->get();
-        var_dump($services);exit;
         if (($data = $this->post()) && !empty($data)) {
 //			if ($this->checkRole('viewer')) {
 //				show_404();
@@ -95,7 +94,8 @@ class Bookings extends MY_Controller
                     [
                         'apartments' => $this->apartments->prepare($this->apartments->get()),
                         'booking' => $data,
-                        'error' => 'Sorry, but this dates are booked now. Please check another.'
+                        'error' => 'Sorry, but this dates are booked now. Please check another.',
+						'services'=> $services
                     ]
                 );
             }
@@ -197,7 +197,8 @@ class Bookings extends MY_Controller
                     'maxPeopleCount' => $apartmentsRes[$booking['apartment_id']]['beds'],
                     'totalPeopleCount' => $totalPeopleCount,
                     'is_final_decision' => $is_final_decision,
-					'customers' => $customers
+					'customers' => $customers,
+					'services'=> $services
                 ]
             );
         }
