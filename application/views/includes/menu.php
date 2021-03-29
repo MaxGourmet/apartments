@@ -44,7 +44,7 @@
 				<a href="<?= site_url('services'); ?>">Zusatzleistungen</a>
 			</div>
 			<div>
-				<a href="<?= site_url('services/create'); ?>">Neue Zusatzleistungen></a>
+				<a href="<?= site_url('services/create'); ?>">Neue Zusatzleistungen</a>
 			</div>
 		<?php endif; ?>
     <?php endif; ?>
