@@ -98,16 +98,16 @@ echo div($input, ['class' => 'buttons']);
 
 echo form_close();
 ?>
-</div>
-<div>
-	<h2>Zusatzleistungen</h2>
-	<?php
-	foreach ($services as $service) {
-		$input = form_label($service['name'] . "({$service['price']} €)", 'service' . $service['id'])
-			. form_checkbox(['name' => 'services[]', 'id' => 'service' . $service['id']], $service['id'], 0);
-		echo div($input, ['class' => 'form-input']);
-	}
-	?>
+	<div>
+		<h2>Zusatzleistungen</h2>
+		<?php
+		foreach ($services as $service) {
+			$input = form_label($service['name'] . "({$service['price']} €)", 'service' . $service['id'])
+				. form_checkbox(['name' => 'services[]', 'id' => 'service' . $service['id']], $service['id'], 0);
+			echo div($input, ['class' => 'form-input']);
+		}
+		?>
+	</div>
 </div>
 
 <div class="customer-popup" style="display: none">
