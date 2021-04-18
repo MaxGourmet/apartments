@@ -1,6 +1,14 @@
 <div id="print">
-	<div style="background-color: #0000FF;width: 100%">
-		PRINTER
+	<div style="">
+		Картинка
+	</div>
+	<div style="float: right;text-align: right">
+		<div>
+			<?= $billConfigs['contacts']; ?>
+		</div>
+		<div>
+			Düsseldorf, <?= date('d m Y') ?>
+		</div>
 	</div>
 	<table>
 		<tr>

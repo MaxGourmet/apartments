@@ -384,18 +384,17 @@ class Bookings extends MY_Controller
 		$apartment = $this->apartments->getById($booking['apartment_id']);
 		$customer = $this->customers->getById($booking['customer_id']);
 		$vatRates = $this->configs->getPrepared('vat_rate', false, []);
+		$billConfigs = $this->configs->getPrepared('bills', false, []);
 		$services = $this->services->get();
-		var_dump($booking);
-		var_dump($apartment);
-		var_dump($customer);
-		var_dump($vatRates);
-		var_dump($services);exit;
 		$this->showView(
 			'bookings/print_bill',
 			[
-//				'email' => $email,
-//				'startRemind' => $startRemind,
-//				'endRemind' => $endRemind,
+				'booking' => $booking,
+				'apartment' => $apartment,
+				'customer' => $customer,
+				'vatRates' => $vatRates,
+				'billConfigs' => $billConfigs,
+				'services' => $services,
 			]
 		);
 	}
