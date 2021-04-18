@@ -2,17 +2,22 @@
 	<div style="">
 		Картинка
 	</div>
-	<div style="float: right;text-align: right">
+	<div style="text-align: right">
 		<div style="font-weight: bold"><pre><?= $billConfigs['contacts']; ?></pre></div>
 		<br />
 		<div style="font-weight: bold;font-size: 0.55rem;"><pre><?= $billConfigs['phone']; ?></pre></div>
-		<div style="font-weight: bold;font-size: 0.55rem;"><a href="mailto:<?= $billConfigs['email']; ?>"><?= $billConfigs['phone']; ?></a></div>
+		<div style="font-weight: bold;font-size: 0.55rem;"><a href="mailto:<?= $billConfigs['email']; ?>"><?= $billConfigs['email']; ?></a></div>
 		<br />
+		<div style="font-size: 0.45rem;">
+			Finanzamt <?= $billConfigs['tax_office']; ?>
+		</div>
+		<br />
+		<div style="font-size: 0.45rem;"><pre><?= $billConfigs['tax_numbers']; ?></pre></div>
 		<div>
 			Düsseldorf, <?= date('d.m.Y'); ?>
 		</div>
 	</div>
-	<h1>Rechnung: <?= $booking['id'] . "-" . date('d.m.Y'); ?></h1>
+	<h1>Rechnung: <?= $booking['id'] . "-" . date('dmY'); ?></h1>
 	<table>
 		<tr>
 			<td style="border: 1px solid ">1</td>
