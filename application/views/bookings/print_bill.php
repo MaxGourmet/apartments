@@ -3,11 +3,9 @@
 		Картинка
 	</div>
 	<div style="float: right;text-align: right">
+		<div style="font: bold"><pre><?= $billConfigs['contacts']; ?></pre></div>
 		<div>
-			<?= $billConfigs['contacts']; ?>
-		</div>
-		<div>
-			Düsseldorf, <?= date('d m Y') ?>
+			Düsseldorf, <?= date('d.m.Y'); ?>
 		</div>
 	</div>
 	<table>
