@@ -1,6 +1,6 @@
 <div id="print">
-	<div style="">
-		<img src="/assets/img/appnrw-logo.svg" alt="Appartments NRW" />
+	<div style="float: left">
+		<img style="height: 150px;filter: brightness(0.95);" src="/assets/img/appnrw-logo.svg" alt="Appartments NRW" />
 	</div>
 	<div style="text-align: right">
 		<div style="font-weight: bold"><pre><?= $billConfigs['contacts']; ?></pre></div>
